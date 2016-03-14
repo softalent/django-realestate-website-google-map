@@ -1,0 +1,6 @@
+.tern-port
+.DS_Store
+TAG
+node_modules
+npm-debug.log
+tmp/
