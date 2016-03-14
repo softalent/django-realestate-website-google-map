@@ -1,0 +1,514 @@
+{
+  "listings": [
+    {
+      "id": 1,
+      "meta": {
+        "code": 200,
+        "__repr": {
+          "location": {
+            "__name": "location",
+            "zip_code": {
+              "__name": "zip code"
+            },
+            "state": {
+              "__name": "state"
+            },
+            "city": {
+              "__name": "city"
+            },
+            "address": {
+              "__name": "address"
+            },
+            "coordinates": {
+              "__name": "coordinates"
+            }
+          },
+          "price": {
+            "__name": "price",
+            "__prefix": "$",
+            "total": {
+              "__name": "price"
+            },
+            "sqft": {
+              "__name": "price/sq ft"
+            }
+          },
+          "photos": {
+            "__name": "photos"
+          },
+          "details": {
+            "__name": "details",
+            "size": {
+              "__name": "size",
+              "__postfix": "sqft",
+              "house": {
+                "__name": "house size"
+              },
+              "lot": {
+                "__name": "lot size"
+              }
+            },
+            "overview": {
+              "__name": "overview"
+            },
+            "style": {
+              "__name": "style"
+            },
+            "type": {
+              "__name": "type"
+            },
+            "year": {
+              "__name": "year built"
+            },
+            "bedrooms": {
+              "__name": "bedrooms"
+            },
+            "bathrooms": {
+              "__name": "bathrooms",
+              "full": {
+                "__name": "full bathrooms"
+              },
+              "half": {
+                "__name": "half bathrooms"
+              }
+            },
+            "other_rooms": {
+              "__name": "number of rooms"
+            },
+            "features": {
+              "__repr": {
+                "__name": "features"
+              },
+              "basement": {
+                "__name": "basement features"
+              },
+              "interior": {
+                "__name": "interior features"
+              },
+              "exterior": {
+                "__name": "exterior and lot features"
+              },
+              "building": {
+                "__name": "building and construction"
+              },
+              "accessibility": {
+                "__name": "accessibility features"
+              },
+              "garage_parking": {
+                "__name": "garage and parking"
+              },
+              "heating_cooling": {
+                "__name": "heating and cooling"
+              },
+              "waterfront": {
+                "__name": "waterfront and water access"
+              },
+              "utilities": {
+                "__name": "utilities"
+              },
+              "appliances": {
+                "__name": "appliances"
+              },
+              "amenities": {
+                "__name": "amenities and community features"
+              },
+              "pool": {
+                "__name": "pool and spa"
+              },
+              "farm": {
+                "__name": "farm info"
+              }
+            }
+          },
+          "schools": {
+            "__name": "schools",
+            "name": {
+              "__name": "school"
+            },
+            "grades": {
+              "__name": "grades"
+            },
+            "distance": {
+              "__name": "distance",
+              "__postfix": "mi"
+            }
+          }
+        }
+      },
+      "links": {
+        "self": "/listings/56c01c5a70fbe6500b33b10e"
+      },
+      "data": {
+        "_id": "56c01c5a70fbe6500b33b10e",
+        "location": {
+          "zip_code": "11218",
+          "state": "ny",
+          "city": "new york",
+          "address": "207 ocean pkwy units 2H & 3H",
+          "coordinates": [
+            40.6595206,
+            -73.9370403
+          ]
+        },
+        "price": {
+          "total": 638000,
+          "sqft": 491
+        },
+        "photos": [
+          "http://p.rdcpix.com/v01/la150a945-m0xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m0xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m1xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m2xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m3xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m5xd-w640_h480_q80.jpg"
+        ],
+        "details": {
+          "size": {
+            "house": 1300,
+            "lot": 150
+          },
+          "overview": "spacious and bright corner duplex layout allows conversion into a 3 bedroom windows face north and west ample closet space updated kitchen with stainless steel appliances tiled bathrooms hardwood floors throughout low maintenance well-maintained building new elevator and lobby laundry room on each floor bicycle storage wait-listed indoor parking dogs are not permitted near f & g trains - express buses to manhattan on corner short walk to prospect park enjoy americas oldest bike path along ocean pkwy from the park to the beac",
+          "style": "high ranch",
+          "type": "condo/townhome/row home/co-op",
+          "year": 1988,
+          "bedrooms": 2,
+          "bathrooms": {
+            "full": 1,
+            "half": 1
+          },
+          "other_rooms": 5,
+          "features": {
+            "basement": [
+              "full basement with hatchway"
+            ],
+            "interior": [
+              "auto garage door opener",
+              "fireplace",
+              "generator"
+            ],
+            "exterior": [
+              "garden area",
+              "patio",
+              "shed",
+              "stone wall"
+            ],
+            "building": [
+              "energy features: ceiling fan(s), generator, multi zone heat",
+              "exterior siding: stone, vinyl siding"
+            ],
+            "accessibility": [
+              "handicap accessible: unknown"
+            ],
+            "garage_parking": [
+              "attached",
+              "number of garages: 3"
+            ],
+            "heating_cooling": [
+              "cooling system: central air",
+              "heat type: hot air"
+            ],
+            "utilities": [
+              "sewage system: septic",
+              "fuel type: oil",
+              "hot water fuel: oil",
+              "water source: public water connected"
+            ],
+            "appliances": [
+              "dishwasher",
+              "dryer",
+              "gas cooktop",
+              "instant hot water tap",
+              "refrigerator",
+              "wall oven",
+              "washer"
+            ],
+            "amenities": [
+              "health club",
+              "library",
+              "medical facilities",
+              "park",
+              "playground",
+              "public facilities",
+              "tennis courts"
+            ],
+            "farm": [
+              "horse property: no"
+            ]
+          }
+        },
+        "schools": [
+          {
+            "name": "amity regional high school",
+            "grades": "9–12",
+            "distance": 0.3
+          },
+          {
+            "name": "james hillhouse high school",
+            "grades": "9–12",
+            "distance": 1.2
+          },
+          {
+            "name": "edgewood school",
+            "grades": "kg–8",
+            "distance": 0.4
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "meta": {
+        "code": 200,
+        "__repr": {
+          "location": {
+            "__name": "Location",
+            "zip_code": {
+              "__name": "ZIP code"
+            },
+            "state": {
+              "__name": "State"
+            },
+            "city": {
+              "__name": "City"
+            },
+            "address": {
+              "__name": "Address"
+            },
+            "coordinates": {
+              "__name": "Coordinates"
+            }
+          },
+          "price": {
+            "__name": "Price",
+            "__prefix": "$",
+            "total": {
+              "__name": "Price"
+            },
+            "sqft": {
+              "__name": "Price/Sq Ft"
+            }
+          },
+          "photos": {
+            "__name": "Photos"
+          },
+          "details": {
+            "__name": "Details",
+            "size": {
+              "__name": "Size",
+              "__postfix": "sqft",
+              "house": {
+                "__name": "House size"
+              },
+              "lot": {
+                "__name": "Lot size"
+              }
+            },
+            "overview": {
+              "__name": "Overview"
+            },
+            "style": {
+              "__name": "Style"
+            },
+            "type": {
+              "__name": "Type"
+            },
+            "year": {
+              "__name": "Year built"
+            },
+            "bedrooms": {
+              "__name": "Bedrooms"
+            },
+            "bathrooms": {
+              "__name": "Bathrooms",
+              "full": {
+                "__name": "Full Bathrooms"
+              },
+              "half": {
+                "__name": "Half Bathrooms"
+              }
+            },
+            "other_rooms": {
+              "__name": "Number of Rooms"
+            },
+            "features": {
+              "__repr": {
+                "__name": "Features"
+              },
+              "basement": {
+                "__name": "Basement Features"
+              },
+              "interior": {
+                "__name": "Interior Features"
+              },
+              "exterior": {
+                "__name": "Exterior and Lot Features"
+              },
+              "building": {
+                "__name": "Building and Construction"
+              },
+              "accessibility": {
+                "__name": "Accessibility Features"
+              },
+              "garage_parking": {
+                "__name": "Garage and Parking"
+              },
+              "heating_cooling": {
+                "__name": "Heating and Cooling"
+              },
+              "waterfront": {
+                "__name": "Waterfront and Water Access"
+              },
+              "utilities": {
+                "__name": "Utilities"
+              },
+              "appliances": {
+                "__name": "Appliances"
+              },
+              "amenities": {
+                "__name": "Amenities and Community Features"
+              },
+              "pool": {
+                "__name": "Pool and Spa"
+              },
+              "farm": {
+                "__name": "Farm Info"
+              }
+            }
+          },
+          "schools": {
+            "__name": "Schools",
+            "name": {
+              "__name": "School"
+            },
+            "grades": {
+              "__name": "Grades"
+            },
+            "distance": {
+              "__name": "Distance",
+              "__postfix": "mi"
+            }
+          }
+        }
+      },
+      "links": {
+        "self": "/listings/56c01c5a70fbe6500b33b10e"
+      },
+      "data": {
+        "_id": "56c01c5a70fbe6500b33b10e",
+        "location": {
+          "zip_code": "11218",
+          "state": "ny",
+          "city": "new york",
+          "address": "207 Ocean Pkwy Units 2H & 3H",
+          "coordinates": [
+            40.6595206,
+            -73.9370403
+          ]
+        },
+        "price": {
+          "total": 638000,
+          "sqft": 491
+        },
+        "photos": [
+          "http://p.rdcpix.com/v01/la150a945-m0xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m0xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m1xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m2xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m3xd-w640_h480_q80.jpg",
+          "http://p.rdcpix.com/v01/la150a945-m5xd-w640_h480_q80.jpg"
+        ],
+        "details": {
+          "size": {
+            "house": 1300,
+            "lot": 150
+          },
+          "overview": "Spacious and Bright Corner Duplex Layout Allows Conversion Into A 3 Bedroom Windows Face North and West Ample Closet Space Updated Kitchen With Stainless Steel Appliances Tiled Bathrooms Hardwood Floors Throughout Low Maintenance Well-Maintained Building New Elevator And Lobby Laundry Room on Each Floor Bicycle Storage Wait-Listed Indoor Parking Dogs Are Not Permitted Near F & G Trains - Express Buses To Manhattan On Corner Short Walk To Prospect Park Enjoy Americas Oldest Bike Path Along Ocean Pkwy From The Park To The Beac",
+          "style": "High Ranch",
+          "type": "Condo/townhome/row home/co-op",
+          "year": 1988,
+          "bedrooms": 2,
+          "bathrooms": {
+            "full": 1,
+            "half": 1
+          },
+          "other_rooms": 5,
+          "features": {
+            "basement": [
+              "Full Basement With Hatchway"
+            ],
+            "interior": [
+              "Auto Garage Door Opener",
+              "Fireplace",
+              "Generator"
+            ],
+            "exterior": [
+              "Garden Area",
+              "Patio",
+              "Shed",
+              "Stone Wall"
+            ],
+            "building": [
+              "Energy Features: Ceiling Fan(s),Generator,Multi Zone Heat",
+              "Exterior Siding: Stone, Vinyl Siding"
+            ],
+            "accessibility": [
+              "Handicap Accessible: Unknown"
+            ],
+            "garage_parking": [
+              "Attached",
+              "Number Of Garages: 3"
+            ],
+            "heating_cooling": [
+              "Cooling System: Central Air",
+              "Heat Type: Hot Air"
+            ],
+            "utilities": [
+              "Sewage System: Septic",
+              "Fuel Type: Oil",
+              "Hot Water Fuel: Oil",
+              "Water Source: Public Water Connected"
+            ],
+            "appliances": [
+              "Dishwasher",
+              "Dryer",
+              "Gas Cooktop",
+              "Instant Hot Water Tap",
+              "Refrigerator",
+              "Wall Oven",
+              "Washer"
+            ],
+            "amenities": [
+              "Health Club",
+              "Library",
+              "Medical Facilities",
+              "Park",
+              "Playground",
+              "Public Facilities",
+              "Tennis Courts"
+            ],
+            "farm": [
+              "Horse Property: No"
+            ]
+          }
+        },
+        "schools": [
+          {
+            "name": "Amity Regional High School",
+            "grades": "9–12",
+            "distance": 0.3
+          },
+          {
+            "name": "James Hillhouse High School",
+            "grades": "9–12",
+            "distance": 1.2
+          },
+          {
+            "name": "Edgewood School",
+            "grades": "KG–8",
+            "distance": 0.4
+          }
+        ]
+      }
+    }
+  ]
+}

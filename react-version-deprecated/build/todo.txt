@@ -1,0 +1,52 @@
+# General
+
+- [x] page <title> should be dynamic and display the address of the property being viewed
+
+done using react-helmet https://github.com/nfl/react-helmet
+
+- [x] url route didn't reflect the information for the sample property page. Currently "http://localhost:9090/#/1/california/palo-alto" should be "http://localhost:9090/#/1/ny/new-york/207-ocean-pkwy-units-2h-3h"
+
+Url in router is adjasted to accept address as well but i need only `id` from it. Urls could be referenced as /:id/:state/:city/:address template
+
+# Text formatting
+
+- [x] Capitalize address (title case) wherever it appears. In the example it is shown as "207 ocean pkwy units 2h & 3h" but should be "207 Ocean Pkwy Units 2H & 3H"
+- [x] Capitalize city name. Currently "new york", should be "New York"
+- [x] Capitalize property type. Currently "condo/townhome/row home/co-op", should be "Condo/Townhome/Row home/Co-op"
+- [x] Format price to include comma separators for 1000s. Currently "$638000", should be "$638,000" (if price > $1,000,000, also format the price accordingly, i.e. "$1,638,000")
+
+done using toLocaleString()
+
+- [x] Under Description section, is this how it was formatted on the original web page? There are no periods or capital letters to delineate sentences. The description should exactly match the text formatting of the original.
+
+It's same text as it comes from API.
+
+- [x] "Energy features" need spaces between items. Currently "Energy features: ceiling fan(s),generator,multi zone heat", should be "Energy features: ceiling fan(s), generator, multi zone heat"
+
+It's text hot it comes from API
+
+- [x] Under schools, school names should have title case (all first letters capitalized). Currently "Amity regional high school", "James hillhouse high school" and "Edgewood school"; should be "Amity Regional High School", "James Hillhouse High School" and "Edgewood School"
+
+- [x] Under schools, "kg" grade should be capitalized whenever it appears. In the example, it appears for Edgewood School as "kg-8", should be "Kg-8"
+
+# Image carousel
+
+- [-] breaks when viewport is resized in either dimension
+
+It's on template "by design". I'm not sure if i could fix it properly, since i'm front-end programmer, not a designer. Images should be resized to fit certain aspect ratio. Also, after edits in `brian` branch images does not fit the width sometimes.
+
+# Description section
+
+- [-] see above regarding text formatting
+
+# Map
+
+- [x] if possible, set map display to grayscale (I think this is an option in the google maps API settings)
+
+Done.
+
+# Misc
+
+- [x] my browser console says the Google Maps API was called multiple times. Please remove redundancy if possible without breaking things
+
+it's scripts in your tamplate trying to dynamically load google maps api js files. I removed it.
