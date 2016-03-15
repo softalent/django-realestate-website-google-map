@@ -1,0 +1,7 @@
+web:
+  build: .
+  ports:
+    - "80:80"
+  volumes:
+    - /apps/real-estate:/app/www
+  privileged: true

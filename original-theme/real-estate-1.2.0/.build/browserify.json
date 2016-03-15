@@ -1,0 +1,22 @@
+[
+	{
+		"build": "app/essentials.js",
+		"cwd": "./lib/essential/js/",
+		"src": "main.js"
+	},
+	{
+		"build": "app/layout.js",
+		"cwd": "./lib/layout/js/",
+		"src": "main.js"
+	},
+	{
+		"build": "app/sidebar.js",
+		"cwd": "./lib/sidebar/js/",
+		"src": "main.js"
+	},
+	{
+		"build": "app/maps.js",
+		"cwd": "./lib/maps/js/",
+		"src": "google/_init.js"
+	}
+]

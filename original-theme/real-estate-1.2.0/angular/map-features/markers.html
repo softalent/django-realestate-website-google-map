@@ -1,0 +1,529 @@
+<!-- Wrapper required for sidebar transitions -->
+<div class="st-container">
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#sidebar-menu" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a ng-show="$state.is('property.map') || $state.is('discover.map-full') || $state.is('discover.map-listing-list') || $state.is('discover.map-listing-grid')" href="#sidebar-map" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-map-marker"></i></a>
+        <a ng-show="$state.is('property.edit')" href="#sidebar-edit" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-pencil"></i></a>
+        <a class="navbar-brand" ui-sref="discover.map-full"><i class="md fa-fw md-home text-primary"></i> Real Estate</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="main-nav">
+        <form class="navbar-form navbar-left margin-none">
+          <div class="search-1">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-search"></i></span>
+              <input type="text" class="form-control form-control-w-150" placeholder="Search ..">
+            </div>
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- Login -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-fw fa-lock"></i> Login
+            </a>
+            <div class="dropdown-menu dropdown-size-280">
+              <form>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Username">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                    <input type="password" class="form-control" placeholder="Password">
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Login <i class="fa fa-sign-in"></i></button>
+                </div>
+              </form>
+            </div>
+          </li>
+          <!-- // END login -->
+          <!-- Sign up -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-fw fa-plus"></i> Sign Up
+            </a>
+            <div class="dropdown-menu dropdown-size-280">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group form-control-default">
+                      <label for="exampleInputFirstName">First name</label>
+                      <input type="email" class="form-control" id="exampleInputFirstName" placeholder="Your first name">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group form-control-default">
+                      <label for="exampleInputLastName">Last name</label>
+                      <input type="email" class="form-control" id="exampleInputLastName" placeholder="Your last name">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group form-control-default required">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+                <div class="form-group form-control-default required">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </li>
+          <!-- // END sign up -->
+          <!-- user -->
+          <li class="dropdown user">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="images/people/110/guy-6.jpg" alt="" class="img-circle" /> Bill<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
+              <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
+              <li><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
+            </ul>
+          </li>
+          <!-- // END user -->
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+
+    </div>
+  </nav>
+
+  <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
+  <aside class="sidebar left sidebar-size-2 sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop" id=sidebar-menu data-type=collapse>
+    <div data-scrollable>
+      <ul class="sidebar-menu sm-bordered sm-icons-block sm-icons-right">
+        <li class="hasSubmenu" ng-class="{ 'open active': $state.includes('discover') }">
+          <a href="#discover"><i class="fa fa-star"></i><span>Discover</span></a>
+          <ul id="discover" ng-class="{ 'in': $state.includes('discover') }">
+            <li ng-class="{ 'active': $state.is('discover.map-full') }"><a ui-sref="discover.map-full"><i class="fa fa-map-marker"></i><span>Full screen Map</span></a></li>
+            <li ng-class="{ 'active': $state.is('discover.map-listing-list') }"><a ui-sref="discover.map-listing-list"><i class="fa fa-list"></i><span>Map Listing - List</span></a></li>
+            <li ng-class="{ 'active': $state.is('discover.map-listing-grid') }"><a ui-sref="discover.map-listing-grid"><i class="fa fa-th"></i><span>Map Listing - Grid</span></a></li>
+            <li ng-class="{ 'active': $state.is('discover.listing') }"><a ui-sref="discover.listing"><i class="fa fa-list"></i><span>Listing - List</span></a></li>
+            <li ng-class="{ 'active': $state.is('discover.listing-grid') }"><a ui-sref="discover.listing-grid"><i class="fa fa-th"></i><span>Listing - Grid</span></a></li>
+            <li ng-class="{ 'active': $state.is('discover.listing-map') }"><a ui-sref="discover.listing-map"><i class="fa fa-map-marker"></i><span>Listing - Map</span></a></li>
+          </ul>
+        </li>
+        <li class="hasSubmenu" ng-class="{ 'open active': $state.includes('property') }">
+          <a href="#property"><i class="fa fa-home"></i><span>Property</span></a>
+          <ul id="property" ng-class="{ 'in': $state.includes('property') }">
+            <li ng-class="{ 'active': $state.is('property.map') }"><a ui-sref="property.map"><i class="fa fa-map-marker"></i><span>Map + Property</span></a></li>
+            <li ng-class="{ 'active': $state.is('property.property') }"><a ui-sref="property.property"><i class="fa fa-list"></i><span>Property details</span></a></li>
+          </ul>
+        </li>
+        <li ng-class="{ 'active': $state.is('property.edit') }"><a ui-sref="property.edit"><i class="fa fa-pencil"></i><span>Add property</span></a></li>
+      </ul>
+      <h4 class="category">Map features</h4>
+      <ul class="sidebar-menu sm-icons-block sm-icons-right sm-active-item-bg">
+        <li ng-class="{ 'active': $state.is('map-features.filters') }"><a ui-sref="map-features.filters"><i class="fa fa-search"></i><span>Map Filters</span></a></li>
+        <li ng-class="{ 'active': $state.is('map-features.themes') }"><a ui-sref="map-features.themes"><i class="fa fa-eyedropper"></i><span>Map Themes</span></a></li>
+        <li ng-class="{ 'active': $state.is('map-features.markers') }"><a ui-sref="map-features.markers"><i class="fa fa-map-marker"></i><span>Map Markers</span></a></li>
+      </ul>
+      <h4 class="category">Website pages</h4>
+      <div class="sidebar-block">
+        <ul class="list-group list-group-menu">
+          <li class="list-group-item"><a ui-sref="front.home-slider">Home + Slider</a></li>
+          <li class="list-group-item"><a ui-sref="front.home-map">Home + Map</a></li>
+          <li class="list-group-item"><a ui-sref="front.listing">Listing - List</a></li>
+          <li class="list-group-item"><a ui-sref="front.listing-grid">Listing - Grid</a></li>
+          <li class="list-group-item"><a ui-sref="front.property">Property</a></li>
+        </ul>
+      </div>
+      <h4 class="category">Versions</h4>
+      <div class="sidebar-block text-center">
+        <a class="btn btn-primary active btn-block" ui-sref="discover.map-full">
+          <strong>AngularJS</strong>
+        </a>
+        <a class="btn btn-primary btn-block" href="../html/index.html">
+          <strong>HTML</strong>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- sidebar effects OUTSIDE of st-pusher: -->
+  <!-- st-effect-1, st-effect-2, st-effect-4, st-effect-5, st-effect-9, st-effect-10, st-effect-11, st-effect-12, st-effect-13 -->
+
+  <!-- content push wrapper -->
+  <div class="st-pusher">
+
+    <!-- sidebar effects INSIDE of st-pusher: -->
+    <!-- st-effect-3, st-effect-6, st-effect-7, st-effect-8, st-effect-14 -->
+
+    <!-- this is the wrapper for the content -->
+    <div class="st-content">
+
+      <!-- extra div for emulating position:fixed of the menu -->
+      <div class="st-content-inner" id="content" data-scrollable>
+
+        <div class="jumbotron text-center bg-transparent margin-none">
+          <h1>Map markers</h1>
+          <p>80+ unique Google Maps markers in 10 colors organised into a complete and diverse collection for points of interest, properties, buildings, etc.</p>
+        </div>
+
+        <div class="container-fluid">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Bar</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-01.png" alt="marker" /> bar-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-02.png" alt="marker" /> bar-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-03.png" alt="marker" /> bar-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-04.png" alt="marker" /> bar-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-05.png" alt="marker" /> bar-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-06.png" alt="marker" /> bar-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-07.png" alt="marker" /> bar-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-08.png" alt="marker" /> bar-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-09.png" alt="marker" /> bar-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/bar-10.png" alt="marker" /> bar-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Building</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-01.png" alt="marker" /> building-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-02.png" alt="marker" /> building-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-03.png" alt="marker" /> building-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-04.png" alt="marker" /> building-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-05.png" alt="marker" /> building-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-06.png" alt="marker" /> building-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-07.png" alt="marker" /> building-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-08.png" alt="marker" /> building-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-09.png" alt="marker" /> building-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/building-10.png" alt="marker" /> building-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Event</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-01.png" alt="marker" /> event-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-02.png" alt="marker" /> event-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-03.png" alt="marker" /> event-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-04.png" alt="marker" /> event-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-05.png" alt="marker" /> event-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-06.png" alt="marker" /> event-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-07.png" alt="marker" /> event-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-08.png" alt="marker" /> event-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-09.png" alt="marker" /> event-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/event-10.png" alt="marker" /> event-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">House</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-01.png" alt="marker" /> house-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-02.png" alt="marker" /> house-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-03.png" alt="marker" /> house-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-04.png" alt="marker" /> house-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-05.png" alt="marker" /> house-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-06.png" alt="marker" /> house-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-07.png" alt="marker" /> house-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-08.png" alt="marker" /> house-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-09.png" alt="marker" /> house-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/house-10.png" alt="marker" /> house-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Restaurant</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-01.png" alt="marker" /> restaurant-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-02.png" alt="marker" /> restaurant-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-03.png" alt="marker" /> restaurant-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-04.png" alt="marker" /> restaurant-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-05.png" alt="marker" /> restaurant-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-06.png" alt="marker" /> restaurant-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-07.png" alt="marker" /> restaurant-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-08.png" alt="marker" /> restaurant-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-09.png" alt="marker" /> restaurant-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/restaurant-10.png" alt="marker" /> restaurant-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Taxi</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-01.png" alt="marker" /> taxi-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-02.png" alt="marker" /> taxi-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-03.png" alt="marker" /> taxi-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-04.png" alt="marker" /> taxi-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-05.png" alt="marker" /> taxi-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-06.png" alt="marker" /> taxi-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-07.png" alt="marker" /> taxi-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-08.png" alt="marker" /> taxi-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-09.png" alt="marker" /> taxi-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/taxi-10.png" alt="marker" /> taxi-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">User</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-01.png" alt="marker" /> user-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-02.png" alt="marker" /> user-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-03.png" alt="marker" /> user-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-04.png" alt="marker" /> user-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-05.png" alt="marker" /> user-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-06.png" alt="marker" /> user-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-07.png" alt="marker" /> user-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-08.png" alt="marker" /> user-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-09.png" alt="marker" /> user-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/user-10.png" alt="marker" /> user-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Gas</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-01.png" alt="marker" /> gas-01
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-02.png" alt="marker" /> gas-02
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-03.png" alt="marker" /> gas-03
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-04.png" alt="marker" /> gas-04
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-05.png" alt="marker" /> gas-05
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-06.png" alt="marker" /> gas-06
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-07.png" alt="marker" /> gas-07
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-08.png" alt="marker" /> gas-08
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-09.png" alt="marker" /> gas-09
+                </div>
+                <div class="col-sm-4 col-lg-3">
+                  <img src="images/markers/gas-10.png" alt="marker" /> gas-10
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /st-content-inner -->
+
+    </div>
+    <!-- /st-content -->
+
+  </div>
+  <!-- /st-pusher -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <strong>Real Estate</strong> v1.2.0 &copy; Copyright 2015
+  </footer>
+  <!-- // Footer -->
+
+</div>

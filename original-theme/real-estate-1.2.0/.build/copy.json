@@ -1,0 +1,21 @@
+[
+	{
+		"task": "lib-real-estate-images",
+		"cwd": "lib/real-estate/images",
+		"src": ["**/*"],
+		"dest": "images"
+	},
+	{
+		"task": "lib-real-estate-data",
+		"cwd": "lib/real-estate/js/data",
+		"src": "*.json",
+		"dest": "js/data/google_maps"
+	},
+	{
+		"task": "angular-lib-real-estate-data",
+		"cwd": "app/js/themes/angular/data",
+		"src": "*.json",
+		"dest": "js/data/google_maps",
+		"themes": ["angular"]
+	}
+]
