@@ -1,6 +1,5 @@
 {% load staticfiles %}
 <html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-r1-xs sidebar-r-25pc-lg sidebar-r-30pc" lang="en">
-window.history.replaceState('Object', 'Title', '/test');
 <head>
   {% for info in main_data %}
   <meta charset="utf-8">
@@ -618,7 +617,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 {% endfor %}
 
  <script type="text/javascript">
- ChangeUrl('test',{{ new_url }})
+ ChangeUrl('test','{{ new_url }}')
 function ChangeUrl(title, url) {
     if (typeof (history.pushState) != "undefined") {
         var obj = { Title: title, Url: url };
