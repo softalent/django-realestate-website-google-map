@@ -22,7 +22,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 </head>
 
 <body>
-  
+
   <!-- Wrapper required for sidebar transitions -->
   <div class="st-container">
 
@@ -202,10 +202,10 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
-                <img src="/static/{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
+                <img src="{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
               </div>
               {% endfor %}
-             
+
             </div>
             <div class="overlay overlay-bg-black">
               <div class="v-bottom">
@@ -343,7 +343,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         </ul>
                       </div>
 
-                      
+
                       <div class="col-md-6">
                         <h4 class="subsection-header">Utilities</h4>
                         <ul>
@@ -380,7 +380,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                     </div>
 
                     <div class="row">
-                     
+
                       <div class="col-md-6">
                         <h4 class="subsection-header">Farm Info</h4>
                         <ul>
