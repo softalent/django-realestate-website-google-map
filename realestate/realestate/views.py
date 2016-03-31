@@ -82,7 +82,7 @@ def property(request,state,city,address):
 		grades=info.grades
 		distance=info.distance
 		school_dict['name']=str(name)
-		school_dict['grades']=str(grades)
+		school_dict['grades']=grades
 		school_dict['distance']=distance
 		school_data.append(school_dict.copy())
 
