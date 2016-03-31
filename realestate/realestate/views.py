@@ -16,8 +16,8 @@ from django.http import HttpResponsePermanentRedirect
 
 ###render to home page###
 def home(request):
-	ctx = RequestContext(request, {})   
-	return render_to_response('home.html', 
+	ctx = RequestContext(request, {})
+	return render_to_response('home.html',
                               {
                               }, context_instance=ctx)
 
@@ -72,7 +72,7 @@ def property(request,state,city,address):
 
 
 	for img in images.objects.raw('SELECT * FROM images WHERE main_id = %s', [main_id]):
-		img_path=img.path
+		img_path=img.url
 		name=img.name
 		alt_tag=img.alt
 		image_dict['path']=str(img_path)
@@ -87,8 +87,8 @@ def property(request,state,city,address):
 		school_dict['distance']=distance
 		school_data.append(school_dict.copy())
 
-	ctx = RequestContext(request, {})   
-	return render_to_response('index.html', 
+	ctx = RequestContext(request, {})
+	return render_to_response('index.html',
                               {'image_data':image_data,'school_data':school_data,
                               'main_data':main_data,'new_url':new_url
                               }, context_instance=ctx)
