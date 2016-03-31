@@ -73,7 +73,6 @@ def property(request,state,city,address):
 
 	for img in images.objects.raw('SELECT * FROM images WHERE main_id = %s', [main_id]):
 		img_path=img.url
-		name=img.name
 		alt_tag=img.alt
 		image_dict['path']=str(img_path)
 		image_dict['alt']=str(alt_tag)
