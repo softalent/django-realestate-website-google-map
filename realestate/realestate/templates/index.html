@@ -71,7 +71,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
               <!--div id="google-fs-realestate" data-toggle="google-maps" data-file="/static/js/data/google_maps/markers-property-single.json" data-center="{{ info.latitude }},{{ info.longitude }}" data-zoom="17" class="maps-google-fs"></div-->
 
-              <div id="googleMap" style="height: 400px; width: 315px;"></div>
+              <div id="googleMap" style="height: 100%; width: 315px;"></div>
 
               <script id="real-estate-map-pop-1" type="text/x-handlebars-template">
                 <div class="padding-none full">
@@ -227,7 +227,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
           <div class="property-meta">
             <ul>
-              <li class="property-meta-item"><i class="fa fa-fw icon icon-home-2"></i> {{ info.type }}</li><!-- {{listings.type}} -->
+              <li class="property-meta-item"><i class="fa fa-fw icon icon-home-2"></i> {{ info.style }}</li><!-- {{listings.type}} -->
               <li class="property-meta-item"><i class="fa fa-fw icon icon-bed"></i> {{ info.bedrooms }} Bedrooms</li><!-- {{listings.bedrooms}} -->
               <li class="property-meta-item"><i class="fa fa-fw icon icon-toilet"></i> {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }}Half Bathroom</li>
               <li class="property-meta-item"><i class="fa fa-fw icon fa-arrows"></i> {{ info.square_feet }} sq ft | {{ info.square_feet_lot }} sq ft lot</li>
