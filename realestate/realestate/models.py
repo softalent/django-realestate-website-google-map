@@ -20,7 +20,7 @@ class Main(models.Model):
     bathrooms_full=models.IntegerField()
     square_feet=models.IntegerField()
     square_feet_lot=models.IntegerField()
-    price=MoneyField(max_digits=99, decimal_places=0, default_currency='USD')
+    price=models.DecimalField(max_digits=None, decimal_places=None)
     description=models.CharField(max_length=200)
     style=models.CharField(max_length=100)
     home_type=models.CharField(max_length=50)
