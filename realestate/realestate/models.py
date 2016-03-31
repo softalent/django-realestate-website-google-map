@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.fields import CharField
 import moneyed
-from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
