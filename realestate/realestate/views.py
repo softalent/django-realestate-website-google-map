@@ -14,14 +14,14 @@ from django.http import HttpResponsePermanentRedirect
 
 
 
-'''render to home page'''
+###render to home page###
 def home(request):
 	ctx = RequestContext(request, {})   
 	return render_to_response('home.html', 
                               {
                               }, context_instance=ctx)
 
-''' function to fetch data from database'''
+###function to fetch data from database###
 def property(request,state,city,address):
 	current_url = str(request.path)
 	query_state=current_url.split('/',3)
@@ -30,10 +30,9 @@ def property(request,state,city,address):
 	city=query_city[2]
 	query_address=current_url.split('/',5)
 	address=query_address[3]
+	new_add=address.replace('-','%')
 	new_address=translate(address)
-	print 'new_address',new_address
 	new_url=str('/'+state+'/'+city+'/'+new_address+'/')
-	print 'url',new_url
 	image_data=[]
 	image_dict={'path':'','alt':''}
 	school_data=[]
@@ -43,9 +42,10 @@ def property(request,state,city,address):
 	'bathrooms_half':'','square_feet':'','square_feet_lot':'','price':'','description':'','style':'',
 	'home_type':'','year_built':'','price_per_square_foot':'','date_posted':'','status':'','longitude':'',
 	'latitude':'','create_date':'','features':''}
-	for data in Main.objects.raw ('SELECT * FROM Main WHERE address = %s ', [address]):
+	for data in Main.objects.raw ('SELECT * FROM Main WHERE address LIKE %s ', ['%'+new_add+'%']):
 		main_id=data.id
-		address=data.address
+		db_address=data.address
+		address=rm_special(db_address)
 		price=data.price
 		main_dict['address']=address
 		main_dict['price']=price
@@ -93,6 +93,8 @@ def property(request,state,city,address):
                               'main_data':main_data,'new_url':new_url
                               }, context_instance=ctx)
 
+
+###function to replace special characters with hyphen###
 def translate(data):
 	character= '/,*,#,$,%,^,&,@, ,'
 	newdata =[]
@@ -101,5 +103,17 @@ def translate(data):
 			newdata.append(i)
 		else:
 			newdata.append('-')
+	        new_add=''.join(newdata)
+	return new_add
+
+###unction to replace special characters from fetched value from db with space###
+def rm_special(data):
+	character= '/,*,#,$,%,^,&,@'
+	newdata =[]
+	for i in data:
+		if i not in character:
+			newdata.append(i)
+		else:
+			newdata.append(' ')
 	        new_add=''.join(newdata)
 	return new_add

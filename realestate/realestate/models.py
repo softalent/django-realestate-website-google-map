@@ -33,9 +33,7 @@ class Main(models.Model):
     original_url=models.CharField(max_length=100)
     features=models.CharField(max_length=100)
 
-    def __unicode__(self):
-        return self.id
-
+    
 
 #-------------------------------------------------------------------------
 #  listing_provider Model

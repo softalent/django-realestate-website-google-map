@@ -616,7 +616,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <script src="{% static 'js/app/all.js' %}"></script>
 {% endfor %}
 
- <script type="text/javascript">
+ <!--script type="text/javascript">
  ChangeUrl('test','{{ new_url }}')
 function ChangeUrl(title, url) {
     if (typeof (history.pushState) != "undefined") {
@@ -626,7 +626,7 @@ function ChangeUrl(title, url) {
         console.log("Browser does not support HTML5.");
     }
 }
-</script>
+</script-->
 </body>
 
 </html>
