@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.fields import CharField
- 
+import moneyed
+from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
@@ -19,7 +20,7 @@ class Main(models.Model):
     bathrooms_full=models.IntegerField()
     square_feet=models.IntegerField()
     square_feet_lot=models.IntegerField()
-    price=models.IntegerField()
+    price=models.MoneyField(decimal_places=0, default_currency='USD')
     description=models.CharField(max_length=200)
     style=models.CharField(max_length=100)
     home_type=models.CharField(max_length=50)
@@ -33,7 +34,7 @@ class Main(models.Model):
     original_url=models.CharField(max_length=100)
     features=models.CharField(max_length=100)
 
-    
+
 
 #-------------------------------------------------------------------------
 #  listing_provider Model
@@ -65,7 +66,7 @@ class schools(models.Model):
 
     def __unicode__(self):
         return self.id
-    
+
 
 
 

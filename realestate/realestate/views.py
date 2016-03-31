@@ -46,7 +46,7 @@ def property(request,state,city,address):
 		main_id=data.id
 		db_address=data.address
 		address=rm_special(db_address)
-		price=int(data.price)
+		price=data.price
 		main_dict['address']=address
 		main_dict['price']=price
 		main_dict['state']=data.state
