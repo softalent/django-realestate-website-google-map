@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['seethisproperty.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com'. '148.251.15.39']
 
 
 # Application definition
