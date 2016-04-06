@@ -58,7 +58,6 @@ def property(request,state,city,address):
 		main_dict['square_feet']=data.square_feet
 		main_dict['square_feet_lot']=data.square_feet_lot
 		main_dict['description']=data.description
-		main_dict['style']=data.style
 		main_dict['latitude']=data.latitude
 		main_dict['longitude']=data.longitude
 		main_dict['home_type']=data.home_type
