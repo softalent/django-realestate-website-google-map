@@ -39,7 +39,7 @@ def send_email(request):
             'phone' : phone,
         })
     	),
-    	['admin@localmarketingenterprisesllc.com'],
+    	'admin@localmarketingenterprisesllc.com',
     	fail_silently = True
 		)
 		return HttpResponse('OK')
