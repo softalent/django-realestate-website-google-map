@@ -93,7 +93,7 @@ def property(request,state,city,address):
 		main_dict['create_date']=data.create_date
 		main_dict['features']=data.features
 		feat=data.features
-		data = str(json.loads(feat))
+		data = json.loads(str(feat))
 		new_data=ast.literal_eval(feat)
 		main_data.append(main_dict.copy())
 
