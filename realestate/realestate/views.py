@@ -11,7 +11,11 @@ from django.core.urlresolvers import resolve
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponsePermanentRedirect
-
+import json
+from django.core.mail import send_mail
+from django.template.loader import get_template
+from django.template import Context
+import ast
 
 
 ###render to home page###
@@ -20,6 +24,27 @@ def home(request):
 	return render_to_response('home.html',
                               {
                               }, context_instance=ctx)
+
+###send email from see this property contact form###
+def send_email(request):
+	if request.method=='POST':
+		print 'yes inside function...'
+		full_name=request.POST['full_name']
+		email=request.POST['email']
+		phone=request.POST['phone']
+		send_mail('New Query through website',get_template('email-template/email.html').render(
+        Context({
+            'name': full_name,
+            'email': email,
+            'phone' : phone,
+        })
+    	),
+    	['admin@localmarketingenterprisesllc.com'],
+    	fail_silently = True
+		)
+		return HttpResponse('OK')
+	else:
+		print 'no'
 
 ###function to fetch data from database###
 def property(request,state,city,address):

@@ -152,20 +152,23 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           <div class="row">
             <div class="col-lg-8">
               <form action="#">
-
+                <span id="empty_message" style="display:none;color:red">Please fill all required fields.</span>
+                <span id="loading" style="display:none;color:green;">Sending...</span>
+                <span id="successmsg" style="display:none;color:green;">Thank you for requesting to see {{ info.address }}! A local realtor will contact you soon.</span>
                 <div class="form-group form-control-default required">
                   <label for="fullname">Full Name</label>
-                  <input type="text" placeholder="Your Full Name" class="form-control" id="fullname" />
+                  <input type="text" id="full_name" placeholder="Your Full Name" class="form-control" id="fullname" />
                 </div>
                 <div class="form-group form-control-default required">
                   <label for="phone">Phone</label>
-                  <input type="text" placeholder="Contact Phone" class="form-control" id="phone" />
+                  <input type="text" id="phone" placeholder="Contact Phone" class="form-control" id="phone" maxlength="10" />
                 </div>
                 <div class="form-group form-control-default required">
                   <label for="email">Email Address</label>
-                  <input type="text" placeholder="Enter your Email" class="form-control" id="email" />
+                  <input type="text" id="email" placeholder="Enter your Email" class="form-control" id="email" />
+                  <span id="emvalid" style="display:none;color:red">Please enter a valid email id</span>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="sub" class="btn btn-primary">Submit</button>
                 <a data-toggle="sidebar-menu" class="btn btn-default" href="#sidebar-agent"><i class="fa fa-times fa-fw"></i>Cancel</a>
               </form>
             </div>
@@ -182,7 +185,6 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         </div>
       </div>
     </aside>
-
     <!-- sidebar effects OUTSIDE of st-pusher: -->
     <!-- st-effect-1, st-effect-2, st-effect-4, st-effect-5, st-effect-9, st-effect-10, st-effect-11, st-effect-12, st-effect-13 -->
 
@@ -266,131 +268,25 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                 </div>
               </div>
             </div>
-
+            <!-- features -->
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">Features</h4>
               </div>
               <div class="panel-body">
-                    <div class="row">
+                    <div class="row">{% for i in new_data.items %}
                       <div class="col-md-6">
-                        <h4 class="subsection-header">Other Rooms</h4>
-                        <ul>
-                          <li>Rooms Total: 7.00</li>
-                          <li>Basement Features: Full Basement With Hatchway</li>
+                        <h4 class="subsection-header">{{ i.0 }}</h4>
+                        <ul>{% for x in i.1 %}
+                          <li>{{ x }}</li>
+                          {% endfor %}
                         </ul>
                       </div>
-
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Interior Features</h4>
-                      <ul>
-                        <li>Cable - Available</li>
-                        <li>Fireplace</li>
-                        <li>Security System</li>
-                        <li>Smoke Detectors</li>
-                      </ul>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Exterior &amp; Lot Features</h4>
-                        <ul>
-                          <li>Lot Description: Neighborhood</li>
-                          <li>Gutters</li>
-                          <li>Patio</li>
-                          <li>Paved Drive</li>
-                          <li>Sidewalk</li>
-                          <li>Stone Wall</li>
-                        </ul>
-                      </div>
-
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Building &amp; Construction</h4>
-                        <ul>
-                          <li>Style: Cape Cod</li>
-                          <li>Lot Sq Ft: 8276</li>
-                          <li>Energy Features: Ceiling Fan(s)</li>
-                          <li>Exterior Siding: Aluminum</li>
-                        </ul>
-                      </div>
+                      {% endfor %}
 
                     </div>
-
-                      <div class="row">
-                        <div class="col-md-6">
-                          <h4 class="subsection-header">Accessiblity Features</h4>
-                          <ul>
-                            <li>Handicap Accessible: No</li>
-                          </ul>
-                        </div>
-
-                        <div class="col-md-6">
-                          <h4 class="subsection-header">Garage &amp; Parking</h4>
-                          <ul>
-                            <li>Detached</li>
-                            <li>Number Of Garages: 1</li>
-                          </ul>
-                        </div>
-                      </div>
-
-                    <div class="row">
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Heating &amp; Cooling</h4>
-                        <ul>
-                          <li>Cooling System: None</li>
-                          <li>Heat Type: Baseboard,Radiator</li>
-                        </ul>
-                      </div>
-
-
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Utilities</h4>
-                        <ul>
-                          <li>Sewage System: Public Sewer Connected</li>
-                          <li>Hot Water Fuel: Oil</li>
-                          <li>Fuel Type: Oil</li>
-                          <li>Water Source: Public Water Connected</li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Appliances</h4>
-                        <ul>
-                          <li>Dishwasher</li>
-                          <li>Dryer</li>
-                          <li>Refrigerator</li>
-                          <li>Stove Top</li>
-                          <li>Wall Oven</li>
-                        </ul>
-                      </div>
-
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Amenities &amp; Community Features</h4>
-                        <ul>
-                          <li>Bus</li>
-                          <li>Playground</li>
-                          <li>Private School(s)</li>
-                          <li>Public Rec Facilities</li>
-                          <li>Public Trash Pickup</li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div class="row">
-
-                      <div class="col-md-6">
-                        <h4 class="subsection-header">Farm Info</h4>
-                        <ul>
-                          <li>Horse Property: No</li>
-                        </ul>
-                      </div>
-                    </div>
-
-                </div>
               </div>
+            </div><!-- end features -->
 
               <div class="panel panel-default">
                 <div class="panel-heading">

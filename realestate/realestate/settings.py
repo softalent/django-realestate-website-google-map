@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'realestate',
-    'rest_framework'
+    'rest_framework',
+    'api',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,3 +104,10 @@ USE_TZ = True
 
 STATIC_URL = '/realestate/static/'
 MEDIA_URL='/images/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'seethispropertyllc@gmail.com'
+EMAIL_HOST_PASSWORD = 'L0ckd0wn!'
+DEFAULT_FROM_EMAIL = 'admin@localmarketingenterprisesllc.com'
