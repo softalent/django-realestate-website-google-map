@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.fields import CharField
-frm django.contrib.postgres.fields import JSONField
+from django.contrib.postgres.fields import JSONField
 # Create your models here.
 
 #-------------------------------------------------------------------------
