@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.fields import CharField, JsonField
+from django.db.models.fields import CharField
+frm django.contrib.postgres.fields import JSONField
 # Create your models here.
 
 #-------------------------------------------------------------------------
@@ -28,7 +29,7 @@ class Main(models.Model):
     latitude=models.IntegerField()
     create_date=models.DateField()
     original_url=models.CharField(max_length=100)
-    features=models.JsonField(max_length=100)
+    features=models.JSONField()
 
 
 
