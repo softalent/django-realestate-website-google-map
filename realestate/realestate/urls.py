@@ -11,7 +11,7 @@ from api.views import PropertiesViewSet, UserViewSet, GroupViewSet
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
-router.register(r'cities', CitiesViewSet)
+router.register(r'properties', PropertiesViewSet)
 
 
 # Wire up our API using automatic URL routing.
