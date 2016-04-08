@@ -29,7 +29,7 @@ class Main(models.Model):
     latitude=models.IntegerField()
     create_date=models.DateField()
     original_url=models.CharField(max_length=100)
-    features=models.JSONField()
+    features=JSONField()
 
 
 
