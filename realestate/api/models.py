@@ -8,12 +8,12 @@ from django.db import models
 #   2. /api/{{city}} returns JSON of URL strings for each property in {{city}}
 
 class Cities(models.Model):
-    id = models.IntegerField()
+    id = models.IntegerField(primary_key=True)
     city = models.CharField(max_length=100)
     # zip_codes = models.CharField(max_lenth=9999)
 
 class CityProperties(models.Model):
-    id = models.IntegerField()
+    id = models.IntegerField(primary_key=True)
     state_name = models.CharField(max_length=100)
     city_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
