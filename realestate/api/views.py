@@ -54,15 +54,15 @@ class PropertiesViewSet(viewsets.ModelViewSet):
 
 
     # get URL for each address
-    for i in queryset:
-        current_url = '/%s/%s/%s' % (i.state, i.city, i.address)
-    	query_state=current_url.split('/',3)
-    	state=query_state[1]
-    	query_city=current_url.split('/',4)
-    	city=query_city[2]
-    	query_address=current_url.split('/',5)
-    	address=query_address[3]
-    	new_add=address.replace('-','%')
-    	new_address=translate(address)
-    	new_url=str('/'+state+'/'+city+'/'+new_address+'/')
-        States.url_string = new_url
+    # for i in queryset:
+    #     current_url = '/%s/%s/%s' % (i.state, i.city, i.address)
+    # 	query_state=current_url.split('/',3)
+    # 	state=query_state[1]
+    # 	query_city=current_url.split('/',4)
+    # 	city=query_city[2]
+    # 	query_address=current_url.split('/',5)
+    # 	address=query_address[3]
+    # 	new_add=address.replace('-','%')
+    # 	new_address=translate(address)
+    # 	new_url=str('/'+state+'/'+city+'/'+new_address+'/')
+    #     States.url_string = new_url
