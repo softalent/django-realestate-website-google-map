@@ -45,7 +45,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
-class StatesViewSet(viewsets.ReadOnlyViewSet):
+class StatesViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows states to be viewed and selected.
     """
@@ -53,14 +53,14 @@ class StatesViewSet(viewsets.ReadOnlyViewSet):
     serializer_class = StatesSerializer
 
 
-class CitiesViewSet(viewsets.ReadOnlyViewSet):
+class CitiesViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows cities to be viewed and selected.
     """
     queryset = Cities.objects.raw("SELECT DISTINCT city FROM main WHERE state='%s'" % States.state)
     serializer_class = CitiesSerializer
 
-class PropertiesViewSet(viewsets.ReadOnlyViewSet):
+class PropertiesViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows properties to be viewed and selected.
     """
