@@ -5,7 +5,7 @@ from rest_framework import routers, serializers, viewsets
 from api.models import States, Cities, Properties
 from api.serializers import CitiesSerializer, StatesSerializer, PropertiesSerializer
 # from api.views import CitiesViewSet, StatesViewSet, PropertiesViewSet
-from api.views import PropertiesViewSet
+from api.views import PropertiesViewSet, UserViewSet, GroupViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
