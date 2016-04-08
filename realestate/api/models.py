@@ -14,8 +14,8 @@ class Cities(models.Model):
 
 class CityProperties(models.Model):
     id = models.IntegerField()
-    state_name = CharField(max_length=100)
-    city_name = CharField(max_length=100)
-    address = CharField(max_length=100)
-    zip_code = CharField(max_length=5)
-    urlString = CharField(max_length=9999)
+    state_name = models.CharField(max_length=100)
+    city_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=5)
+    urlString = models.CharField(max_length=9999)
