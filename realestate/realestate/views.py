@@ -92,6 +92,9 @@ def property(request,state,city,address):
 		main_dict['status']=data.status
 		main_dict['create_date']=data.create_date
 		main_dict['features']=data.features
+		feat=data.features
+		data = json.loads(feat)
+		new_data=ast.literal_eval(feat)
 		main_data.append(main_dict.copy())
 
 
