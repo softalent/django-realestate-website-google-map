@@ -45,27 +45,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
-class StatesViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows states to be viewed and selected.
-    """
-    queryset = States.objects.raw('SELECT DISTINCT state FROM main')
-    serializer_class = StatesSerializer
-
-
-class CitiesViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows cities to be viewed and selected.
-    """
-    queryset = Cities.objects.raw("SELECT DISTINCT city FROM main WHERE state='%s'" % States.state)
-    serializer_class = CitiesSerializer
-
 class PropertiesViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows properties to be viewed and selected.
     """
-    queryset = States.objects.raw("SELECT id, city, state, address, zip_code FROM main WHERE state='%s' AND city='%s'" % (States.state, Cities.city))
+    queryset = Properties.objects.raw('SELECT * FROM main')
     serializer_class = PropertiesSerializer
+
 
     # get URL for each address
     for i in queryset:

@@ -15,11 +15,11 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'name')
 
 class StatesSerializer(serializers.HyperlinkedModelSerializer):
-    model = States
+    model = Properties
     fields = ('city')
 
 class CitiesSerializer(serializers.HyperlinkedModelSerializer):
-    model = Cities
+    model = Properties
     fields = ('state')
 
 class PropertiesSerializer(serializers.HyperlinkedModelSerializer):
