@@ -25,6 +25,6 @@ urlpatterns = patterns('',
     url(r'^$', 'realestate.views.home', name='home'),
     url(r'^([A-Z]{2})/([-A-Za-z]{2,20})/([-\w\s]{3,100})/$', 'realestate.views.property', name='property'),
     #url(r'^2/ca/buffalo/address/$', 'realestate.views.test', name='test'),
-    url(r'^', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^data/', include('rest_framework.urls', namespace='rest_framework'))
 )
