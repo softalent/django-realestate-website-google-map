@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'realestate',
     'rest_framework',
-    'api',
 )
 
 MIDDLEWARE_CLASSES = (
