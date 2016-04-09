@@ -28,7 +28,6 @@ def home(request):
 ###send email from see this property contact form###
 def send_email(request):
 	if request.method=='POST':
-		print 'yes inside function...'
 		full_name=request.POST['full_name']
 		email=request.POST['email']
 		phone=request.POST['phone']
@@ -39,7 +38,8 @@ def send_email(request):
             'phone' : phone,
         })
     	),
-    	'admin@localmarketingenterprisesllc.com',
+    	'codingcarttechnologies@gmail.com',
+    	['admin@localmarketingenterprisesllc.com'],
     	fail_silently = True
 		)
 		return HttpResponse('OK')
@@ -92,14 +92,20 @@ def property(request,state,city,address):
 		main_dict['status']=data.status
 		main_dict['create_date']=data.create_date
 		main_dict['features']=data.features
-		feat=data.features
-		data = json.loads(feat)
-		new_data=ast.literal_eval(feat)
+		if data.features != None:
+			feat=data.features
+			new_data=ast.literal_eval(feat)
+		else:
+			feat=''
+			new_data=''
 		main_data.append(main_dict.copy())
 
 
 	for img in images.objects.raw('SELECT * FROM images WHERE main_id = %s', [main_id]):
-		img_path=img.url
+		try:
+			img_path=img.url
+		except:
+			img_path=img.path
 		alt_tag=img.alt
 		image_dict['path']=str(img_path)
 		image_dict['alt']=str(alt_tag)
@@ -116,7 +122,7 @@ def property(request,state,city,address):
 	ctx = RequestContext(request, {})
 	return render_to_response('index.html',
                               {'image_data':image_data,'school_data':school_data,
-                              'main_data':main_data,'new_url':new_url
+                              'main_data':main_data,'new_url':new_url,'new_data':new_data
                               }, context_instance=ctx)
 
 
