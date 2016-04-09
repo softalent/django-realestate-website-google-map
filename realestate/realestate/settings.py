@@ -26,7 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39', '127.0.0.1', 'localhost']
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -76,6 +75,7 @@ DATABASES = {
     }
 }
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
 }
@@ -99,6 +99,9 @@ USE_TZ = True
 
 STATIC_URL = '/realestate/static/'
 MEDIA_URL='/images/'
+
+
+
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

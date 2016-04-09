@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     #url(r'^2/ca/buffalo/address/$', 'realestate.views.test', name='test'),
     url(r'^contact/$', 'realestate.views.send_email', name='send_email'),
     # api routing
-    url(r'^api/', include(autoapi.urls, namespace='autoapi')),
+   #url(r'^api/', include(autoapi.urls, namespace='autoapi')),
 )
