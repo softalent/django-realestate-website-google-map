@@ -48,6 +48,9 @@ class Main(models.Model):
         new_add = ''.join(newdata)
         return new_add
 
+    class Meta:
+        db_table = 'Main'
+
 
 
 #-------------------------------------------------------------------------
