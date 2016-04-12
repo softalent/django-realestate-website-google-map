@@ -29,27 +29,28 @@ def home(request):
 
 ###send email from see this property contact form###
 def send_email(request):
-	if request.method=='POST':
-		full_name=request.POST['full_name']
-		email=request.POST['email']
-		phone=request.POST['phone']
-		send_mail('New Query through website',get_template('email-template/email.html').render(
+    if request.method=='POST':
+        full_name=request.POST['full_name']
+        email=request.POST['email']
+        phone=request.POST['phone']
+        send_mail('New Query through website',get_template('email-template/email.html').render(
         Context({
             'name': full_name,
             'email': email,
             'phone' : phone,
         })
-    	),
-    	'codingcarttechnologies@gmail.com',
-    	['admin@localmarketingenterprisesllc.com'],
-    	fail_silently = True
-		)
-		return HttpResponse('OK')
-	else:
-		print 'no'
+        ),
+        'codingcarttechnologies@gmail.com',
+        ['sharmasachin15590@gmail.com'],
+        fail_silently = True
+        )
+        return HttpResponse('OK')
+    else:
+        print 'no'
 
 ###function to fetch data from database###
 def property(request,state,city,address):
+
     current_url = str(request.path)
     query_state=current_url.split('/',3)
     state=query_state[1]
@@ -94,6 +95,12 @@ def property(request,state,city,address):
         main_dict['status']=data.status
         main_dict['create_date']=data.create_date
         main_dict['features']=data.features
+        if data.features != None:
+            feat=str(data.features)
+            new_data=ast.literal_eval(feat)
+        else:
+            feat=''
+            new_data=''
         main_data.append(main_dict.copy())
 
 
@@ -128,7 +135,7 @@ def translate(data):
             newdata.append(i)
         else:
             newdata.append('-')
-            new_add=''.join(newdata)
+    new_add=''.join(newdata)
     return new_add
 
 ###unction to replace special characters from fetched value from db with space###
@@ -140,7 +147,7 @@ def rm_special(data):
             newdata.append(i)
         else:
             newdata.append(' ')
-            new_add=''.join(newdata)
+    new_add=''.join(newdata)
     return new_add
 
 
