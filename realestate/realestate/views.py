@@ -39,7 +39,7 @@ def send_email(request):
         })
     	),
     	'codingcarttechnologies@gmail.com',
-    	['admin@localmarketingenterprisesllc.com'],
+    	['sharmasachin15590@gmail.com'],
     	fail_silently = True
 		)
 		return HttpResponse('OK')
@@ -93,7 +93,7 @@ def property(request,state,city,address):
 		main_dict['create_date']=data.create_date
 		main_dict['features']=data.features
 		if data.features != None:
-			feat=data.features
+			feat=str(data.features)
 			new_data=ast.literal_eval(feat)
 		else:
 			feat=''
