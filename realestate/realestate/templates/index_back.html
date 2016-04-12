@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="{{ info.address }}, {{ info.address }} {{ info.city }}, {{ info.address }} {{ info.zip }}, {{ info.address }} {{ info.city }} {{ info.state }}, {{ info.address }} {{ info.city }} {{ info.state }} {{ info.zip }}">
-  <meta name="description" content="Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!" />
   <title>{{ info.address }} {{ info.city }}, {{ info.state }} | SeeThisProperty.com</title>
   <link href="{% static 'css/vendor/all.css' %}" rel="stylesheet">
   <link href="{% static 'css/app/app.css' %}" rel="stylesheet">
@@ -23,7 +22,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 </head>
 
 <body>
-
+  
   <!-- Wrapper required for sidebar transitions -->
   <div class="st-container">
 
@@ -38,14 +37,14 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#">SeeThisProperty</a>
+          <a class="navbar-brand" href="index.html">SeeThisProperty</a>
             <!-- <a href="tel:15555555555" style="float:right; padding:15px; font-size:1.33em"><i class="fa fa-phone"></i> (555) 555-5555</a> -->
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="main-nav">
           <ul class="nav navbar-nav navbar-right ">
-            <li><a href="tel:8885013124"><i class="fa fa-phone"></i> (888) 501-3124</a></li>
+            <li><a href="tel:15555555555"><i class="fa fa-phone"></i> (888) 501-3124</a></li>
             <li><a href="mailto:contact@seethisproperty.com"><i class="fa fa-envelope"></i> Request Viewing</a></li>
           </ul>
         </div>
@@ -61,7 +60,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
       <div class="split-vertical">
 
         <div class="sidebar-block equal-padding text-center">
-          <h4><i class="fa fa-sm fa-tag"></i> {{ info.price }}<!-- {{listings.price}} --></h4>
+          <h4><i class="fa fa-sm fa-tag"></i> ${{ info.price }}<!-- {{listings.price}} --></h4>
           <p>Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!</p>
           <a href="#sidebar-agent" class="btn btn-primary" data-toggle="sidebar-menu"> See This Property</a>
         </div>
@@ -72,7 +71,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
               <!--div id="google-fs-realestate" data-toggle="google-maps" data-file="/static/js/data/google_maps/markers-property-single.json" data-center="{{ info.latitude }},{{ info.longitude }}" data-zoom="17" class="maps-google-fs"></div-->
 
-              <div id="googleMap" style="height: 100%; width: 315px;"></div>
+              <div id="googleMap" style="height: 400px; width: 315px;"></div>
 
               <script id="real-estate-map-pop-1" type="text/x-handlebars-template">
                 <div class="padding-none full">
@@ -86,7 +85,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                     <div class="list-group-item">
                       <h4 class="margin-v-0-5">{{ title }}</h4>
                       <p>{{ info.description }}</p>
-                      <label class="label label-grey-100">{{ info.price }}</label>&nbsp;
+                      <label class="label label-grey-100">${{ info.price }}</label>&nbsp;
                       <small>
 
                         <i class="fa fa-fw icon-bed"></i> 3 bed <!-- {{listings.bedrooms}} -->
@@ -151,10 +150,10 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         <div class="sidebar-block">
           <div class="row">
             <div class="col-lg-8">
-              <form action="#">
-                <span id="empty_message" style="display:none;color:red">Please fill all required fields.</span>
-                <span id="loading" style="display:none;color:green;">Sending...</span>
-                <span id="successmsg" style="display:none;color:green;">Thank you for requesting to see {{ info.address }}! A local realtor will contact you soon.</span>
+              <form>
+                <span id="empty_message" style="display:none;color:red">Please fill all the fields</span>
+                <span id="loading" style="display:none;color:green; font-size:15px;">PLEASE WAIT...</span>
+                <span id="successmsg" style="display:none;color:green; font-size:15px;">QUERY SENT.WE WILL CONTACT YOU SOON</span>
                 <div class="form-group form-control-default required">
                   <label for="fullname">Full Name</label>
                   <input type="text" id="full_name" placeholder="Your Full Name" class="form-control" id="fullname" />
@@ -185,6 +184,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         </div>
       </div>
     </aside>
+
     <!-- sidebar effects OUTSIDE of st-pusher: -->
     <!-- st-effect-1, st-effect-2, st-effect-4, st-effect-5, st-effect-9, st-effect-10, st-effect-11, st-effect-12, st-effect-13 -->
 
@@ -201,14 +201,14 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         <div class="st-content-inner padding-top-none" id="content">
 
           <div id="carousel-example-generic" class="carousel slide cover overlay overflow-hidden margin-bottom-none max-height-500" data-ride="carousel">
-            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none">{{ info.price }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none">${{ info.price }}</div><!-- {{listings.price}} -->
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
-                <img src="{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
+                <img src="/static/{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
               </div>
               {% endfor %}
-
+             
             </div>
             <div class="overlay overlay-bg-black">
               <div class="v-bottom">
@@ -230,10 +230,10 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
           <div class="property-meta">
             <ul>
-              <li class="property-meta-item"><i class="fa fa-fw icon icon-home-2"></i> {{ info.home_type }}</li><!-- {{listings.type}} -->
+              <li class="property-meta-item"><i class="fa fa-fw icon icon-home-2"></i> {{ info.type }}</li><!-- {{listings.type}} -->
               <li class="property-meta-item"><i class="fa fa-fw icon icon-bed"></i> {{ info.bedrooms }} Bedrooms</li><!-- {{listings.bedrooms}} -->
-              <li class="property-meta-item"><i class="fa fa-fw icon icon-toilet"></i> {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }} Half Bathroom(s)</li>
-              <li class="property-meta-item"><i class="fa fa-fw icon fa-arrows"></i> {{ info.square_feet }} sq ft | {{ info.square_feet_lot }}</li>
+              <li class="property-meta-item"><i class="fa fa-fw icon icon-toilet"></i> {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }}Half Bathroom</li>
+              <li class="property-meta-item"><i class="fa fa-fw icon fa-arrows"></i> {{ info.square_feet }} sq ft | {{ info.square_feet_lot }} sq ft lot</li>
             </ul>
           </div>
 
@@ -259,16 +259,17 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <div class="panel-body">
                 <div class="row">
                     <ul>
-                      <li>Type: {{ info.home_type }}</li><!-- {{listings.type}} -->
+                      <li>Style: {{ info.style }}</li><!-- {{listings.style}} -->
+                      <li>Type: {{ info.type }}</li><!-- {{listings.type}} -->
                       <li>Year built: {{ info.year_built }}</li><!-- {{listings.year}} -->
-                      <li>Price/Sq ft: {{ info.price_per_square_foot }}</li>
+                      <li>Price/Sq ft: ${{ info.price_per_square_foot }}</li>
                       <li>Bedrooms: {{ info.bedrooms }}</li><!-- {{listings.bedrooms}} -->
                       <li>Bathrooms: {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }}Half Bathroom</li>
                     </ul>
                 </div>
               </div>
             </div>
-            <!-- features -->
+
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">Features</h4>
@@ -286,7 +287,11 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
                     </div>
               </div>
-            </div><!-- end features -->
+            </div>
+
+
+
+                      
 
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -310,8 +315,142 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                 </div>
               </div>
 
+            <h4>Related properties</h4>
 
-            <!-- related properties -->
+            <div class="slick-basic slick-slider" data-items="4" data-items-lg="4" data-items-md="3" data-items-sm="2" data-items-xs="1">
+
+              <div class="item">
+                <div class="panel panel-default relative">
+                  <div class="ribbon-heading text-h5 ribbon-primary inline left absolute margin-none">For Sale</div>
+                  <div class="cover hover overlay margin-none">
+                    <img src="{% static 'images/photodune-378874-real-estate-xs.jpg' %}" alt="location" class="img-responsive" />
+                    <a href="property.html" class="overlay overlay-full overlay-bg-black overlay-hover">
+                      <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="panel-body">
+                    <h4 class="margin-v-0-5">Property for sale</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <span class="label label-grey-300">$277,028.00</span>&nbsp;
+                    <i class="small fa fa-fw icon-bed" data-toggle="tooltip" data-title="4 bed"></i>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="panel panel-default relative">
+                  <div class="ribbon-heading text-h5 ribbon-primary inline margin-none left absolute">For Sale</div>
+                  <div class="cover hover overlay margin-none">
+                    <img src="{% static 'images/photodune-195203-houses-xs.jpg' %}" alt="location" class="img-responsive" />
+                    <a href="property.html" class="overlay overlay-full overlay-bg-black overlay-hover">
+                      <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="panel-body">
+                    <h4 class="margin-v-0-5">Property for sale</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <span class="label label-grey-100">$82,331.00</span>
+                    <i class="small fa fa-fw icon-bed" data-toggle="tooltip" data-title="5 bed"></i>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="panel panel-default relative">
+                  <div class="ribbon-heading text-h5 ribbon-primary inline margin-none left absolute">For Sale</div>
+                  <div class="cover hover overlay margin-none">
+                    <img src="images/photodune-196089-house-xs.jpg" alt="location" class="img-responsive" />
+                    <a href="property.html" class="overlay overlay-full overlay-bg-black overlay-hover">
+                      <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="panel-body">
+                    <h4 class="margin-v-0-5">Property for sale</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <span class="label label-grey-100">$81,662.00</span>
+                    <i class="small fa fa-fw icon-bed" data-toggle="tooltip" data-title="5 bed"></i>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="panel panel-default relative">
+                  <div class="ribbon-heading text-h5 ribbon-primary inline margin-none left absolute">For Sale</div>
+                  <div class="cover hover overlay margin-none">
+                    <img src="{% static 'images/photodune-197173-residential-home-xs.jpg' %}" alt="location" class="img-responsive" />
+                    <a href="property.html" class="overlay overlay-full overlay-bg-black overlay-hover">
+                      <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="panel-body">
+                    <h4 class="margin-v-0-5">Residential Home</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <span class="label label-grey-100">$132,021.00</span>
+                    <i class="small fa fa-fw icon-bed" data-toggle="tooltip" data-title="3 bed"></i>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="panel panel-default relative">
+                  <div class="ribbon-heading text-h5 ribbon-primary inline margin-none left absolute">For Sale</div>
+                  <div class="cover hover overlay margin-none">
+                    <img src="{% static 'images/photodune-2238345-apartments-xs.jpg' %}" alt="location" class="img-responsive" />
+                    <a href="property.html" class="overlay overlay-full overlay-bg-black overlay-hover">
+                      <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="panel-body">
+                    <h4 class="margin-v-0-5">Apartments</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <span class="label label-grey-100">$187,285.00</span>
+                    <i class="small fa fa-fw icon-bed" data-toggle="tooltip" data-title="4 bed"></i>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="panel panel-default relative">
+                  <div class="ribbon-heading text-h5 ribbon-primary inline margin-none left absolute">For Sale</div>
+                  <div class="cover hover overlay margin-none">
+                    <img src="{% static 'images/photodune-3979102-superb-backyard-xs.jpg' %}" alt="location" class="img-responsive" />
+                    <a href="property.html" class="overlay overlay-full overlay-bg-black overlay-hover">
+                      <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="panel-body">
+                    <h4 class="margin-v-0-5">Superb Backyard</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <span class="label label-grey-100">$175,654.00</span>
+                    <i class="small fa fa-fw icon-bed" data-toggle="tooltip" data-title="3 bed"></i>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- // END .owl-basic -->
 
 
           </div>
@@ -327,7 +466,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
     <!-- Footer -->
     <footer class="footer">
-      <strong>SeeThisProperty.com</strong> &copy; Copyright 2016
+      <strong>Local Marketing Enterprises, LLC</strong> &copy; Copyright 2016
     </footer>
     <!-- // Footer -->
 
@@ -442,4 +581,3 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </body>
 
 </html>
-

@@ -5,3 +5,4 @@ npm-debug.log
 tmp/
 react-version-deprecated/
 original-theme/
+*.pyc

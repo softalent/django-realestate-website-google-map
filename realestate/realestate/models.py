@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.fields import CharField
-import moneyed
-
 # Create your models here.
 
 #-------------------------------------------------------------------------
@@ -31,6 +29,27 @@ class Main(models.Model):
     create_date=models.DateField()
     original_url=models.CharField(max_length=100)
     features=models.CharField(max_length=100)
+
+    def get_url(self):
+        main_url = 'http://seethisproperty.com'
+        state = self.translate(self.state)
+        city = self.translate(self.city)
+        address = self.translate(self.address)
+        return '/'.join([main_url, state, city, address])
+
+    def translate(self, data):
+        character = '/,*,#,$,%,^,&,@, ,'
+        newdata = []
+        for i in data:
+            if i not in character:
+                newdata.append(i)
+            else:
+                newdata.append('-')
+        new_add = ''.join(newdata)
+        return new_add
+
+    class Meta:
+        db_table = 'main'
 
 
 
