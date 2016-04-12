@@ -49,7 +49,7 @@ class Main(models.Model):
         return new_add
 
     class Meta:
-        db_table = 'Main'
+        db_table = 'main'
 
 
 
