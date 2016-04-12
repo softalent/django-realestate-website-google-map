@@ -13,6 +13,11 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponsePermanentRedirect
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
+import json
+from django.core.mail import send_mail
+from django.template.loader import get_template
+from django.template import Context
+import ast
 
 
 ###render to home page###
@@ -21,6 +26,27 @@ def home(request):
     return render_to_response('home.html',
                               {
                               }, context_instance=ctx)
+
+###send email from see this property contact form###
+def send_email(request):
+	if request.method=='POST':
+		full_name=request.POST['full_name']
+		email=request.POST['email']
+		phone=request.POST['phone']
+		send_mail('New Query through website',get_template('email-template/email.html').render(
+        Context({
+            'name': full_name,
+            'email': email,
+            'phone' : phone,
+        })
+    	),
+    	'codingcarttechnologies@gmail.com',
+    	['admin@localmarketingenterprisesllc.com'],
+    	fail_silently = True
+		)
+		return HttpResponse('OK')
+	else:
+		print 'no'
 
 ###function to fetch data from database###
 def property(request,state,city,address):
@@ -89,7 +115,7 @@ def property(request,state,city,address):
     ctx = RequestContext(request, {})
     return render_to_response('index.html',
                               {'image_data':image_data,'school_data':school_data,
-                              'main_data':main_data,'new_url':new_url
+                              'main_data':main_data,'new_url':new_url,'new_data':new_data
                               }, context_instance=ctx)
 
 
