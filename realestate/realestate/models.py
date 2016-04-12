@@ -11,7 +11,7 @@ class Main(models.Model):
     address=models.CharField(max_length=100)
     city=models.CharField(max_length=50)
     state=models.CharField(max_length=50)
-    zip_code=models.IntegerField()
+    zip_code=models.CharField(max_length=10)
     bedrooms=models.IntegerField()
     bathrooms_full=models.IntegerField()
     bathrooms_full=models.IntegerField()
