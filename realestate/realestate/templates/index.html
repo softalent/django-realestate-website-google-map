@@ -56,7 +56,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
       <div class="split-vertical">
 
         <div class="sidebar-block equal-padding text-center">
-          <h4><i class="fa fa-sm fa-tag"></i> {{ info.price | floatformat:"0" }}<!-- {{listings.price}} --></h4>
+          <h4><i class="fa fa-sm fa-tag"></i> {{ info.price }}<!-- {{listings.price}} --></h4>
           <p>Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!</p>
           <a href="#sidebar-agent" class="btn btn-primary" data-toggle="sidebar-menu"> See This Property</a>
         </div>
@@ -81,7 +81,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                     <div class="list-group-item">
                       <h4 class="margin-v-0-5">{{ title }}</h4>
                       <p>{{ info.description }}</p>
-                      <label class="label label-grey-100">{{ info.price | floatformat:"0" }}</label>&nbsp;
+                      <label class="label label-grey-100">{{ info.price }}</label>&nbsp;
                       <small>
 
                         <i class="fa fa-fw icon-bed"></i> 3 bed <!-- {{listings.bedrooms}} -->
@@ -206,7 +206,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         <div class="st-content-inner padding-top-none" id="content">
 
           <div id="carousel-example-generic" class="carousel slide cover overlay overflow-hidden margin-bottom-none max-height-500" data-ride="carousel">
-            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none">{{ info.price | floatformat:"0" }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none">{{ info.price }}</div><!-- {{listings.price}} -->
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
@@ -266,7 +266,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                     <ul>
                       <li>Type: {{ info.home_type }}</li><!-- {{listings.type}} -->
                       <li>Year built: {{ info.year_built }}</li><!-- {{listings.year}} -->
-                      <li>Price/Sq ft: {{ info.price_per_square_foot | floatformat:"0" }}</li>
+                      <li>Price/Sq ft: {{ info.price_per_square_foot }}</li>
                       <li>Bedrooms: {{ info.bedrooms }}</li><!-- {{listings.bedrooms}} -->
                       <li>Bathrooms: {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }} Half Bathroom(s)</li>
                     </ul>
