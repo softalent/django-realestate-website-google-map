@@ -31,14 +31,9 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
           <a class="navbar-brand" href="#">SeeThisProperty</a>
+          <a href="#sidebar-agent" class="navbar-toggle navbar-link btn btn-primary" data-toggle="sidebar-menu" style="background-color: #26a69a; color: #FFFFFF;">Schedule a Viewing</a>
+
             <!-- <a href="tel:15555555555" style="float:right; padding:15px; font-size:1.33em"><i class="fa fa-phone"></i> (555) 555-5555</a> -->
         </div>
 
@@ -147,25 +142,35 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
     <aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-48pc sidebar-size-40pc sidebar-offset-0 sidebar-skin-white" id=sidebar-agent data-overlay=true>
       <div data-scrollable>
-        <h3 class="category">Request Showing</h3>
+        <div class="hidden-xs">
+          <h3 class="category">Request Showing</h3>
+        </div>
+        <div class="col-md-4 visible-xs text-left">
+          <p style="margin-top: 15px">Submit the form below to have a realtor
+          contact you about viewing {{info.address}} {{info.city}}, {{info.state}}</p>
+        </div>
+            <div class="visible-xs text-left" style="margin: 15px;">
+              <a href="tel:8885013124" style="font-size: 16px; text-decoration: none;"><i class="fa fa-phone"></i> (888) 501-3124</a>
+            </div>
         <div class="sidebar-block">
           <div class="row">
             <div class="col-lg-8">
-              <form action="#">
+              <form action="/contact/" method="POST">
+                {% csrf_token %}
                 <span id="empty_message" style="display:none;color:red">Please fill all required fields.</span>
                 <span id="loading" style="display:none;color:green;">Sending...</span>
                 <span id="successmsg" style="display:none;color:green;">Thank you for requesting to see {{ info.address }}! A local realtor will contact you soon.</span>
                 <div class="form-group form-control-default required">
                   <label for="fullname">Full Name</label>
-                  <input type="text" id="full_name" placeholder="Your Full Name" class="form-control" id="fullname" />
+                  <input type="text" id="full_name" placeholder="Your Full Name" class="form-control" name="name" />
                 </div>
                 <div class="form-group form-control-default required">
                   <label for="phone">Phone</label>
-                  <input type="text" id="phone" placeholder="Contact Phone" class="form-control" id="phone" maxlength="10" />
+                  <input type="text" id="phone" placeholder="Contact Phone" class="form-control" name="phone" maxlength="10" />
                 </div>
                 <div class="form-group form-control-default required">
                   <label for="email">Email Address</label>
-                  <input type="text" id="email" placeholder="Enter your Email" class="form-control" id="email" />
+                  <input type="text" id="email" placeholder="Enter your Email" class="form-control" name="email" />
                   <span id="emvalid" style="display:none;color:red">Please enter a valid email id</span>
                 </div>
                 <button type="submit" id="sub" class="btn btn-primary">Submit</button>
@@ -385,9 +390,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
         $(this).val ( $(this).val().replace(/[^0-9]/g,'') );
   });
 
- $('input:text[id="full_name"]').bind('keyup blur', function(){  
-        $(this).val( $(this).val().replace(/[^a-zA-Z ]/g,'') );  
-    });  
+ $('input:text[id="full_name"]').bind('keyup blur', function(){
+        $(this).val( $(this).val().replace(/[^a-zA-Z ]/g,'') );
+    });
 
  $("#email").blur(function(){
         var useremail=$('#email').val();
@@ -398,14 +403,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
             console.log('email is invalid');
             $("#emvalid").show().delay(5000).fadeOut();
         }
-        
+
     });
-    
+
     function validateEmail($email) {
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailReg.test($email);
     }
-    
+
  $('#sub').click(function(){
      if($('#full_name').val() == '' || $('#email').val() == '' ||  $('#phone').val() == ''){
             $("#empty_message").show().delay(5000).fadeOut();
