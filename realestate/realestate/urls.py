@@ -7,14 +7,12 @@ from realestate import views
 router = routers.DefaultRouter()
 router.register(r'main', views.MainViewSet)
 
-
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^api/', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'realestate.views.home', name='home'),
-    url(r'^([A-Z]{2})/([-A-Za-z]{2,20})/([-\w\s]{3,100})/$', 'realestate.views.property', name='property'),
-    #url(r'^2/ca/buffalo/address/$', 'realestate.views.test', name='test'),
-    url(r'^contact/$', 'realestate.views.send_email', name='send_email'),
-    # api routing
-   #url(r'^api/', include(autoapi.urls, namespace='autoapi')),
+    url(r'^$', views.HomeView.as_view(), name='home'),
+    # Receives as parameters State / City / Address
+    url(r'^(?P<s>[A-Z]{2})/(?P<c>[-A-Za-z]{2,20})/(?P<a>[-\w\s]{3,100})/$',
+        views.PropertyView.as_view(), name='property'),
 )
