@@ -11,7 +11,15 @@
   <link href="{% static 'css/vendor/all.css' %}" rel="stylesheet">
   <link href="{% static 'css/app/app.css' %}" rel="stylesheet">
   <link href="{% static 'css/app/main.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
+  <link href="{% static 'css/dark_lightbox.css' %}" rel="stylesheet">
+
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!-- If you don't need support for Internet Explorer <= 8 you can safely remove these -->
@@ -26,6 +34,27 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
       color: #ffffff;
       text-decoration-color: #ffffff;
     }
+
+    .btn-primary,
+    .btn-primary:focus,
+    .btn-primary.active {
+      background-color: #26a69a;
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+      border-color: #26a69a;
+    }
+
+    .btn-primary:hover,
+    .btn-primary.active {
+      background-color: #22958B;
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+      border-color: #22958B;
+    }
+
+/*    #26A583
+    #22958B*/
+
 </style>
 
 </head>
@@ -222,10 +251,25 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="ribbon-heading ribbon-primary h4 inline absolute right visible-xs" style="padding-right:30px; padding-top: 10px;">
               <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call now</a>
             </div>
+
+<!--             <ol class="carousel-indicators">
+              <li class="" data-slide-to="0" data-target="#carousel-example-generic"></li>
+              <li class="" data-slide-to="1" data-target="#carousel-example-generic"></li>
+              <li class="active" data-slide-to="2" data-target="#carousel-example-generic"></li>
+            </ol> -->
+
+            <ol class="carousel-indicators">
+            {% for img in image_data %}
+              <li class="{% if forloop.first %} active{% endif %}" data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}"></li>
+            {% endfor %}
+            </ol>
+
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
-                <img src="{{MEDIA_URL}}{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
+                <a href="{{MEDIA_URL}}{{ img.path }}" data-toggle="lightbox">
+                  <img src="{{MEDIA_URL}}{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
+                </a>
               </div>
               {% endfor %}
 
@@ -281,10 +325,10 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="row visible-xs" style="margin-bottom: 30px;">
               <div class="col-xs-12 text-center">
                 <h4>Call now to speak with a local realtor about {{info.address}} or email us today:</h4>
-                  <a href="tel:8885013124" class="btn btn-primary">
+                  <a href="tel:8885013124" class="btn btn-primary navbar_button">
                     <i class="fa fa-phone fa-fw"></i>Call Now
                   </a>
-                  <a href="#sidebar-agent" class="btn btn-primary" data-toggle="sidebar-menu">
+                  <a href="#sidebar-agent" class="btn btn-primary navbar_button" data-toggle="sidebar-menu">
                     <i class="fa fa-envelope fa-fw"></i>Email Us
                   </a>
               </div>
@@ -329,10 +373,10 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="row visible-xs" style="margin-bottom: 30px;">
               <div class="col-xs-12 text-center">
                 <h4>Call now to speak with a local realtor about {{info.address}} or email us today:</h4>
-                  <a href="tel:8885013124" class="btn btn-primary">
+                  <a href="tel:8885013124" class="btn btn-primary navbar_button">
                     <i class="fa fa-phone fa-fw"></i>Call Now
                   </a>
-                  <a href="#sidebar-agent" class="btn btn-primary" data-toggle="sidebar-menu">
+                  <a href="#sidebar-agent" class="btn btn-primary navbar_button" data-toggle="sidebar-menu">
                     <i class="fa fa-envelope fa-fw"></i>Email Us
                   </a>
               </div>
@@ -423,11 +467,14 @@ marker.setMap(map);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
   <script data-cfasync="false" type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="{% static 'js/vendor/all.js' %}"></script>
   <script src="{% static 'js/app/app.js' %}"></script>
   <script src="{% static 'js/app/all.js' %}"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+
 {% endfor %}
 
  <script type="text/javascript">
@@ -488,6 +535,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
         }
  });
+
+ $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
 </script>
 </body>
 
