@@ -214,7 +214,14 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         <div class="st-content-inner padding-top-none" id="content">
 
           <div id="carousel-example-generic" class="carousel slide cover overlay overflow-hidden margin-bottom-none max-height-500" data-ride="carousel">
-            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none">{{ info.price }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none hidden-xs">{{ info.price }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left visible-xs" style="padding-left:30px; padding-top: 10px;">{{ info.price }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute right margin-none hidden-xs">
+              <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call to see this property</a>
+            </div>
+            <div class="ribbon-heading ribbon-primary h4 inline absolute right visible-xs" style="padding-right:30px; padding-top: 10px;">
+              <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call now</a>
+            </div>
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
