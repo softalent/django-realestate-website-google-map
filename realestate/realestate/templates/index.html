@@ -20,6 +20,14 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<style>
+    .navbar_button{
+      background-color: #26a69a;
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+    }
+</style>
+
 </head>
 
 <body>
@@ -32,7 +40,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">SeeThisProperty</a>
-          <a href="#sidebar-agent" class="navbar-toggle navbar-link btn btn-primary" data-toggle="sidebar-menu" style="background-color: #26a69a; color: #FFFFFF;">Schedule a Viewing</a>
+          <a href="#sidebar-agent" class="navbar-toggle btn btn-primary navbar_button" data-toggle="sidebar-menu"><i class="fa fa-envelope fa-fw fa-2x"></i></a>
+          <a href="tel:8885013124" class="navbar-toggle btn btn-primary navbar_button"><i class="fa fa-phone fa-fw fa-2x"></i></a>
 
             <!-- <a href="tel:15555555555" style="float:right; padding:15px; font-size:1.33em"><i class="fa fa-phone"></i> (555) 555-5555</a> -->
         </div>
@@ -150,7 +159,6 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           contact you about viewing {{info.address}} {{info.city}}, {{info.state}}</p>
         </div>
             <div class="visible-xs text-left" style="margin: 15px;">
-              <a href="tel:8885013124" style="font-size: 16px; text-decoration: none;"><i class="fa fa-phone"></i> (888) 501-3124</a>
             </div>
         <div class="sidebar-block">
           <div class="row">
