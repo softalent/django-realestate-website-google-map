@@ -218,12 +218,12 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
-                <img src="{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
+                <img src="{{MEDIA_URL}}{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
               </div>
               {% endfor %}
 
             </div>
-            <div class="overlay overlay-bg-black">
+            <div class="overlay overlay-bg-black hidden-xs">
               <div class="v-bottom">
                 <div class="page-section">
                    <h1 class="text-h1 text-overlay">{{ info.address}}</h1> <!-- {{listings.address}} -->
@@ -241,6 +241,12 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             </a>
           </div>
 
+          <!-- property complete address mobile only -->
+          <div class="visible-xs property-meta" style="margin-top: 20px;">
+            <ul>
+              <li class="property-meta-item">{{info.address}}<br/>{{ info.city }}, {{ info.state }} {{ info.zip_code }}</li>
+            </ul>
+          </div>
           <div class="property-meta">
             <ul>
               <li class="property-meta-item"><i class="fa fa-fw icon icon-home-2"></i> {{ info.home_type }}</li><!-- {{listings.type}} -->
