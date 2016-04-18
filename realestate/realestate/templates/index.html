@@ -267,8 +267,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
-                <a href="{{MEDIA_URL}}{{ img.path }}" data-toggle="lightbox">
-                  <img src="{{MEDIA_URL}}{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
+                <a href="{{ img.path }}" data-toggle="lightbox">
+                  <img src="{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
                 </a>
               </div>
               {% endfor %}
