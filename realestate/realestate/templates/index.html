@@ -252,12 +252,6 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call now</a>
             </div>
 
-<!--             <ol class="carousel-indicators">
-              <li class="" data-slide-to="0" data-target="#carousel-example-generic"></li>
-              <li class="" data-slide-to="1" data-target="#carousel-example-generic"></li>
-              <li class="active" data-slide-to="2" data-target="#carousel-example-generic"></li>
-            </ol> -->
-
             <ol class="carousel-indicators">
             {% for img in image_data %}
               <li class="{% if forloop.first %} active{% endif %}" data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}"></li>
