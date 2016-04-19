@@ -77,7 +77,7 @@ class School(models.Model):
 class Image(models.Model):
     id = models.IntegerField(primary_key=True)
     main = models.ForeignKey('Main', related_name='image', db_column='main_id')
-    path = models.CharField(max_length=350)
+    url = models.CharField(max_length=350)
     alt = models.CharField(max_length=200)
 
     class Meta:
