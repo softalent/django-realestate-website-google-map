@@ -50,17 +50,6 @@ class Main(models.Model):
         db_table = 'main'
 
 
-class ListingProvider(models.Model):
-    id = models.IntegerField(primary_key=True)
-    main = models.ForeignKey(
-        'Main', related_name='listing_provider', db_column='main_id')
-    listing_agent = models.CharField(max_length=50)
-    agent_phone_number = models.IntegerField()
-
-    class Meta:
-        db_table = 'listing_provider'
-
-
 class School(models.Model):
     id = models.IntegerField(primary_key=True)
     main = models.ForeignKey(
