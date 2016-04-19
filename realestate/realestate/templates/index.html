@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-r1-xs sidebar-r-25pc-lg sidebar-r-30pc" lang="en">
 <head>
-  {% for info in main_data %}
+{% with main_data as info %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -463,7 +463,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
 
-{% endfor %}
+{% endwith %}
 
  <script type="text/javascript">
  $('input:text[id="phone"]').bind('keyup blur', function() {

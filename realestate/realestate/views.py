@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from realestate import models
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
@@ -14,14 +15,15 @@ class PropertyView(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PropertyView, self).get_context_data(*args, **kwargs)
-        main_data = models.Main.objects.filter(
-            state=kwargs.get('s', ''), city=kwargs.get('c', ''),
-            address__icontains=kwargs.get('a', '').replace('-', ' '))
+        main_data = get_object_or_404(
+            models.Main, state=kwargs.get('s', ''), city=kwargs.get('c', ''),
+            address__icontains=kwargs.get('a', '').replace('-', ' '),
+            available=True)
         context['main_data'] = main_data
-        context['image_data'] = main_data[0].image.all()
-        context['school_data'] = main_data[0].school.all()
-        context['new_data'] = main_data[0].features
-        context['new_url'] = main_data[0].get_url()
+        context['image_data'] = main_data.image.all()
+        context['school_data'] = main_data.school.all()
+        context['new_data'] = main_data.features
+        context['new_url'] = main_data.get_url()
         return context
 
 
