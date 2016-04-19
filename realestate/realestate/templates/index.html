@@ -36,8 +36,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     }
 
     .btn-primary,
-    .btn-primary:focus,
-    .btn-primary.active {
+    .btn-primary:focus {
       background-color: #26a69a;
       color: #ffffff;
       text-decoration-color: #ffffff;
@@ -189,11 +188,12 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         <div class="sidebar-block">
           <div class="row">
             <div class="col-lg-8">
-              <form action="/contact/" method="POST">
+              <form action="{% url 'contact' %}" method="POST" id="contact_form">
                 {% csrf_token %}
                 <span id="empty_message" style="display:none;color:red">Please fill all required fields.</span>
                 <span id="loading" style="display:none;color:green;">Sending...</span>
                 <span id="successmsg" style="display:none;color:green;">Thank you for requesting to see {{ info.address }}! A local realtor will contact you soon.</span>
+                <span id="failmsg" style="display:none;color:red;">Sorry! Anything bad just happend and we didn't receive your message.</span>
                 <div class="form-group form-control-default required">
                   <label for="fullname">Full Name</label>
                   <input type="text" id="full_name" placeholder="Your Full Name" class="form-control" name="name" />
@@ -491,43 +491,42 @@ google.maps.event.addDomListener(window, 'load', initialize);
         return emailReg.test($email);
     }
 
- $('#sub').click(function(){
-     if($('#full_name').val() == '' || $('#email').val() == '' ||  $('#phone').val() == ''){
-            $("#empty_message").show().delay(5000).fadeOut();
-        }else{
-            console.log('every field is filled')
-                $('#loading').show();
-                var token = $.cookie('csrftoken');
-                var full_name=$('#full_name').val();
-                var phone=$('#phone').val();
-                var email=$('#email').val();
-                var params = { 'csrfmiddlewaretoken': token,'full_name':full_name,'email':email,
-                'phone':phone,}
-                $.ajax({
-                    type:"POST",
-                    url:"/contact/",
-                    data: params,
-                    success: function(res){
-                        console.log('here');
-                        if(res=='OK'){
-                        $('#full_name').val('');
-                        $('#email').val('');
-                        $('#phone').val('');
-                            $("#loading").hide();
-                            $("#successmsg").show().delay(5000).fadeOut();
-                        }else{
-                            console.log('not saved')
-                        }
-                    }
-                });
-
-        }
- });
-
  $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox();
 });
+
+
+$(document).on("submit", "#contact_form", function(e) {
+    e.preventDefault();
+    var self = $(this);
+        data = $(this).serialize();
+        url = self.attr("action");
+
+   if($('#full_name').val() == '' || $('#email').val() == '' ||  $('#phone').val() == ''){
+          $("#empty_message").show().delay(5000).fadeOut();
+   }else{
+      $.ajax({
+          url: url,
+          type: "POST",
+          crossDomain: false, // obviates need for sameOrigin test
+          data: data,
+          beforeSend: function(xhr, settings) {
+            $('#loading').show();
+          },
+          success: function(data, textStatus, xhr){
+            $("#loading").hide();
+            $("#successmsg").show().delay(5000).fadeOut();
+          },
+          error: function(data, textStatus, xhr){
+            $("#loading").hide();
+            $("#failmsg").show().delay(5000).fadeOut();
+            console.log(data, textStatus, xhr);
+          }
+      });
+   }
+});
+
 </script>
 </body>
 

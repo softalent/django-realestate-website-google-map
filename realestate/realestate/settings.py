@@ -107,9 +107,9 @@ REST_FRAMEWORK = {
 }
 
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'mail.seethisproperty.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'seethispropertyllc@gmail.com'
-EMAIL_HOST_PASSWORD = 'L0ckd0wn!'
-DEFAULT_FROM_EMAIL = 'seethispropertyllc@gmail.com'
+EMAIL_HOST_USER = 'contact@seethisproperty.com'
+EMAIL_HOST_PASSWORD = '2vdn8bhm1k'
+DEFAULT_FROM_EMAIL = 'contact@seethisproperty.com'

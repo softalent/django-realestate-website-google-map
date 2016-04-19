@@ -1,9 +1,14 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from realestate import models
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
-
+from .forms import ContactForm
 from django.views import generic
+from django.core.urlresolvers import reverse_lazy
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import EmailMultiAlternatives
 
 
 class HomeView(generic.TemplateView):
@@ -35,3 +40,40 @@ class MainViewSet(viewsets.ReadOnlyModelViewSet):
         params = {k: v for k, v in self.request.query_params.items()}
         queryset = models.Main.objects.filter(**params)
         return queryset
+
+
+class MainContact(generic.FormView):
+    template_name = 'emails/contact_form.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('contact')
+
+    def form_valid(self, form):
+        obj = form.cleaned_data
+
+        custumer_content = render_to_string('emails/customer_message.html', {
+            'name': obj['name'],
+        })
+        custumer_text_content = strip_tags(custumer_content)
+        # Subject, Content, EmailFrom, EmailTo, ReplyTo
+        custumer_email = EmailMultiAlternatives(
+            u'Contact from SeeThisProperty', custumer_text_content,
+            'contact@seethisproperty.com', [obj['email']],
+            headers={'Reply-To': 'contact@seethisproperty.com'})
+        custumer_email.attach_alternative(custumer_content, 'text/html')
+        custumer_email.send()
+
+        our_content = render_to_string('emails/our_message.html', {
+            'name': obj['name'],
+            'phone': obj['phone'],
+            'email': obj['email'],
+            'url': self.request.META['HTTP_REFERER']
+        })
+        our_text_content = strip_tags(our_content)
+        # Subject, Content, EmailFrom, EmailTo, ReplyTo
+        our_email = EmailMultiAlternatives(
+            u'Contact from SeeThisProperty', our_text_content,
+            'contact@seethisproperty.com', ['contact@seethisproperty.com'],
+            headers={'Reply-To': obj['email']})
+        our_email.attach_alternative(our_content, 'text/html')
+        our_email.send()
+        return JsonResponse({'message': 'success'})
