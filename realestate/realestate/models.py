@@ -65,10 +65,10 @@ class School(models.Model):
     id = models.IntegerField(primary_key=True)
     main = models.ForeignKey(
         'Main', related_name='school', db_column='main_id')
-    score = models.IntegerField()
-    name = models.CharField(max_length=50)
-    grades = models.CharField(max_length=100)
-    distance = models.IntegerField()
+    score = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
+    grades = models.CharField(max_length=50)
+    distance = models.CharField(max_length=50)
 
     class Meta:
         db_table = 'schools'
