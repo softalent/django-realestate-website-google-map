@@ -52,9 +52,6 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
       border-color: #22958B;
     }
 
-/*    #26A583
-    #22958B*/
-
 </style>
 
 </head>
@@ -252,11 +249,6 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call now</a>
             </div>
 
-            <ol class="carousel-indicators">
-            {% for img in image_data %}
-              <li class="{% if forloop.first %} active{% endif %}" data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}"></li>
-            {% endfor %}
-            </ol>
 
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
@@ -284,7 +276,9 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
+
           </div>
+
 
           <!-- property complete address mobile only -->
           <div class="visible-xs property-meta" style="margin-top: 20px;">
