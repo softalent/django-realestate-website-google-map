@@ -14,6 +14,8 @@ from django.core.mail import EmailMultiAlternatives
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
 
+class HomeTestView(generic.TemplateView):
+    template_name = 'home_working.html'
 
 class PropertyView(generic.TemplateView):
     template_name = 'index.html'
