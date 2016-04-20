@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load main_filters %}
 <html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-r1-xs sidebar-r-25pc-lg sidebar-r-30pc" lang="en">
 <head>
 {% with main_data as info %}
@@ -111,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="split-vertical">
 
         <div class="sidebar-block equal-padding text-center">
-          <h4><i class="fa fa-sm fa-tag"></i> {{ info.price|floatformat:0 }}<!-- {{listings.price}} --></h4>
+          <h4><i class="fa fa-sm fa-tag"></i> {{ info.price|remove_float }}<!-- {{listings.price}} --></h4>
           <p>Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!</p>
           <a href="#sidebar-agent" class="btn btn-primary" data-toggle="sidebar-menu"> See This Property</a>
         </div>
@@ -136,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="list-group-item">
                       <h4 class="margin-v-0-5">{{ title }}</h4>
                       <p>{{ info.description }}</p>
-                      <label class="label label-grey-100">{{ info.price|floatformat:0 }}</label>&nbsp;
+                      <label class="label label-grey-100">{{ info.price|remove_float }}</label>&nbsp;
                       <small>
 
                         <i class="fa fa-fw icon-bed"></i> 3 bed <!-- {{listings.bedrooms}} -->
@@ -261,8 +262,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="st-content-inner padding-top-none" id="content">
 
           <div id="carousel-example-generic" class="carousel slide cover overlay overflow-hidden margin-bottom-none max-height-500" data-ride="carousel">
-            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none hidden-xs">{{ info.price|floatformat:0 }}</div><!-- {{listings.price}} -->
-            <div class="ribbon-heading ribbon-primary h4 inline absolute left visible-xs" style="padding-left:30px; padding-top: 10px;">{{ info.price|floatformat:0 }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none hidden-xs">{{ info.price|remove_float }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left visible-xs" style="padding-left:30px; padding-top: 10px;">{{ info.price|remove_float }}</div><!-- {{listings.price}} -->
             <div class="ribbon-heading ribbon-primary h4 inline absolute right margin-none hidden-xs">
               <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call to see this property</a>
             </div>
