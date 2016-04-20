@@ -96,7 +96,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-
+EMAIL_USE_SSL = False
 EMAIL_USE_TLS = False
 EMAIL_HOST = 'mail.seethisproperty.com'
 EMAIL_PORT = 587
