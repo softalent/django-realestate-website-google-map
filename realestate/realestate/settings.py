@@ -23,11 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 DEBUG = config('DEBUG', default=False, cast=bool)
+=======
+DEBUG = False
+>>>>>>> 7b422abf0f27649badd1aa035c77c14ee68c5ede
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39']
 
 # Application definition
 
@@ -61,7 +65,18 @@ WSGI_APPLICATION = 'realestate.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
+<<<<<<< HEAD
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+=======
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'house_rent',
+        'USER': 'app_user',
+        'PASSWORD': 'P8zR3cPjAh87p3J',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+>>>>>>> 7b422abf0f27649badd1aa035c77c14ee68c5ede
 }
 
 
