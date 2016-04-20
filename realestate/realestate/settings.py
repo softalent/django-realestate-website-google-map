@@ -20,11 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'q3%c!jf8i5z45dt)6urxh35ect+oqc9##mmax%#5cpl7nlph_5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39']
+ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'realestate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'house_rent',
+        'NAME': 'house_rent_test',
         'USER': 'app_user',
         'PASSWORD': 'P8zR3cPjAh87p3J',
         'HOST': '127.0.0.1',
@@ -107,9 +107,9 @@ REST_FRAMEWORK = {
 }
 
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'mail.seethisproperty.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'seethispropertyllc@gmail.com'
-EMAIL_HOST_PASSWORD = 'L0ckd0wn!'
-DEFAULT_FROM_EMAIL = 'seethispropertyllc@gmail.com'
+EMAIL_HOST_USER = 'contact@seethisproperty.com'
+EMAIL_HOST_PASSWORD = '2vdn8bhm1k'
+DEFAULT_FROM_EMAIL = 'contact@seethisproperty.com'

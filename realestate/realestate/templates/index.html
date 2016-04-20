@@ -1,7 +1,8 @@
 {% load staticfiles %}
+{% load main_filters %}
 <html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-r1-xs sidebar-r-25pc-lg sidebar-r-30pc" lang="en">
 <head>
-  {% for info in main_data %}
+{% with main_data as info %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +12,15 @@
   <link href="{% static 'css/vendor/all.css' %}" rel="stylesheet">
   <link href="{% static 'css/app/app.css' %}" rel="stylesheet">
   <link href="{% static 'css/app/main.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
+  <link href="{% static 'css/dark_lightbox.css' %}" rel="stylesheet">
+
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!-- If you don't need support for Internet Explorer <= 8 you can safely remove these -->
@@ -20,9 +29,55 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<style>
+    .navbar_button{
+      background-color: #26a69a;
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+    }
+
+    .btn-primary,
+    .btn-primary:focus {
+      background-color: #26a69a;
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+      border-color: #26a69a;
+    }
+
+    .btn-primary:hover,
+    .btn-primary.active {
+      background-color: #22958B;
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+      border-color: #22958B;
+    }
+
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-76109657-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
 </head>
 
 <body>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P8M2BP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P8M2BP');</script>
+<!-- End Google Tag Manager -->
+
 
   <!-- Wrapper required for sidebar transitions -->
   <div class="st-container">
@@ -32,7 +87,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">SeeThisProperty</a>
-          <a href="#sidebar-agent" class="navbar-toggle navbar-link btn btn-primary" data-toggle="sidebar-menu" style="background-color: #26a69a; color: #FFFFFF;">Schedule a Viewing</a>
+          <a href="#sidebar-agent" class="navbar-toggle btn btn-primary navbar_button" data-toggle="sidebar-menu"><i class="fa fa-envelope fa-fw fa-2x"></i></a>
+          <a href="tel:8885013124" class="navbar-toggle btn btn-primary navbar_button"><i class="fa fa-phone fa-fw fa-2x"></i></a>
 
             <!-- <a href="tel:15555555555" style="float:right; padding:15px; font-size:1.33em"><i class="fa fa-phone"></i> (555) 555-5555</a> -->
         </div>
@@ -56,7 +112,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
       <div class="split-vertical">
 
         <div class="sidebar-block equal-padding text-center">
-          <h4><i class="fa fa-sm fa-tag"></i> {{ info.price }}<!-- {{listings.price}} --></h4>
+          <h4><i class="fa fa-sm fa-tag"></i> {{ info.price|remove_float }}<!-- {{listings.price}} --></h4>
           <p>Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!</p>
           <a href="#sidebar-agent" class="btn btn-primary" data-toggle="sidebar-menu"> See This Property</a>
         </div>
@@ -81,7 +137,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                     <div class="list-group-item">
                       <h4 class="margin-v-0-5">{{ title }}</h4>
                       <p>{{ info.description }}</p>
-                      <label class="label label-grey-100">{{ info.price }}</label>&nbsp;
+                      <label class="label label-grey-100">{{ info.price|remove_float }}</label>&nbsp;
                       <small>
 
                         <i class="fa fa-fw icon-bed"></i> 3 bed <!-- {{listings.bedrooms}} -->
@@ -150,16 +206,16 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           contact you about viewing {{info.address}} {{info.city}}, {{info.state}}</p>
         </div>
             <div class="visible-xs text-left" style="margin: 15px;">
-              <a href="tel:8885013124" style="font-size: 16px; text-decoration: none;"><i class="fa fa-phone"></i> (888) 501-3124</a>
             </div>
         <div class="sidebar-block">
           <div class="row">
             <div class="col-lg-8">
-              <form action="/contact/" method="POST">
+              <form action="{% url 'contact' %}" method="POST" id="contact_form">
                 {% csrf_token %}
                 <span id="empty_message" style="display:none;color:red">Please fill all required fields.</span>
                 <span id="loading" style="display:none;color:green;">Sending...</span>
                 <span id="successmsg" style="display:none;color:green;">Thank you for requesting to see {{ info.address }}! A local realtor will contact you soon.</span>
+                <span id="failmsg" style="display:none;color:red;">Sorry! Anything bad just happend and we didn't receive your message.</span>
                 <div class="form-group form-control-default required">
                   <label for="fullname">Full Name</label>
                   <input type="text" id="full_name" placeholder="Your Full Name" class="form-control" name="name" />
@@ -206,16 +262,27 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         <div class="st-content-inner padding-top-none" id="content">
 
           <div id="carousel-example-generic" class="carousel slide cover overlay overflow-hidden margin-bottom-none max-height-500" data-ride="carousel">
-            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none">{{ info.price }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none hidden-xs">{{ info.price|remove_float }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute left visible-xs" style="padding-left:30px; padding-top: 10px;">{{ info.price|remove_float }}</div><!-- {{listings.price}} -->
+            <div class="ribbon-heading ribbon-primary h4 inline absolute right margin-none hidden-xs">
+              <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call to see this property</a>
+            </div>
+            <div class="ribbon-heading ribbon-primary h4 inline absolute right visible-xs" style="padding-right:30px; padding-top: 10px;">
+              <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call now</a>
+            </div>
+
+
             <div class="carousel-inner" role="listbox">
               {% for img in image_data %}
               <div class="item{% if forloop.first %} active{% endif %}">
-                <img src="{{ img.path }}" alt='{{ img.alt }}' class="width-100pc">
+                <a href="{{ img.url }}" data-toggle="lightbox" data-gallery="multiimages">
+                  <img src="{{ img.url }}" alt='{{ img.alt }}' class="width-100pc">
+                </a>
               </div>
               {% endfor %}
 
             </div>
-            <div class="overlay overlay-bg-black">
+            <div class="overlay overlay-bg-black hidden-xs">
               <div class="v-bottom">
                 <div class="page-section">
                    <h1 class="text-h1 text-overlay">{{ info.address}}</h1> <!-- {{listings.address}} -->
@@ -231,14 +298,22 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
+
           </div>
 
+
+          <!-- property complete address mobile only -->
+          <div class="visible-xs property-meta" style="margin-top: 20px;">
+            <ul>
+              <li class="property-meta-item"><h4><b>{{info.address}}</b></h4>{{ info.city }}, {{ info.state }} {{ info.zip_code }}</li>
+            </ul>
+          </div>
           <div class="property-meta">
             <ul>
               <li class="property-meta-item"><i class="fa fa-fw icon icon-home-2"></i> {{ info.home_type }}</li><!-- {{listings.type}} -->
               <li class="property-meta-item"><i class="fa fa-fw icon icon-bed"></i> {{ info.bedrooms }} Bedrooms</li><!-- {{listings.bedrooms}} -->
               <li class="property-meta-item"><i class="fa fa-fw icon icon-toilet"></i> {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }} Half Bathroom(s)</li>
-              <li class="property-meta-item"><i class="fa fa-fw icon fa-arrows"></i> {{ info.square_feet }} sq ft | {{ info.square_feet_lot }}</li>
+              <li class="property-meta-item"><i class="fa fa-fw icon fa-arrows"></i> {{ info.square_feet }} sq ft | {{ info.square_feet_lot }} lot</li>
             </ul>
           </div>
 
@@ -257,6 +332,18 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
               </div>
             </div>
 
+            <div class="row visible-xs" style="margin-bottom: 30px;">
+              <div class="col-xs-12 text-center">
+                <h4>Call now to speak with a local realtor about {{info.address}} or email us today:</h4>
+                  <a href="tel:8885013124" class="btn btn-primary navbar_button">
+                    <i class="fa fa-phone fa-fw"></i>Call Now
+                  </a>
+                  <a href="#sidebar-agent" class="btn btn-primary navbar_button" data-toggle="sidebar-menu">
+                    <i class="fa fa-envelope fa-fw"></i>Email Us
+                  </a>
+              </div>
+            </div>
+
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">Key Facts</h4>
@@ -268,7 +355,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                       <li>Year built: {{ info.year_built }}</li><!-- {{listings.year}} -->
                       <li>Price/Sq ft: {{ info.price_per_square_foot }}</li>
                       <li>Bedrooms: {{ info.bedrooms }}</li><!-- {{listings.bedrooms}} -->
-                      <li>Bathrooms: {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }}Half Bathroom</li>
+                      <li>Bathrooms: {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }} Half Bathroom(s)</li>
                     </ul>
                 </div>
               </div>
@@ -292,6 +379,18 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                     </div>
               </div>
             </div><!-- end features -->
+
+            <div class="row visible-xs" style="margin-bottom: 30px;">
+              <div class="col-xs-12 text-center">
+                <h4>Call now to speak with a local realtor about {{info.address}} or email us today:</h4>
+                  <a href="tel:8885013124" class="btn btn-primary navbar_button">
+                    <i class="fa fa-phone fa-fw"></i>Call Now
+                  </a>
+                  <a href="#sidebar-agent" class="btn btn-primary navbar_button" data-toggle="sidebar-menu">
+                    <i class="fa fa-envelope fa-fw"></i>Email Us
+                  </a>
+              </div>
+            </div>
 
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -378,12 +477,15 @@ marker.setMap(map);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
   <script data-cfasync="false" type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="{% static 'js/vendor/all.js' %}"></script>
   <script src="{% static 'js/app/app.js' %}"></script>
   <script src="{% static 'js/app/all.js' %}"></script>
-{% endfor %}
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+
+{% endwith %}
 
  <script type="text/javascript">
  $('input:text[id="phone"]').bind('keyup blur', function() {
@@ -411,40 +513,43 @@ google.maps.event.addDomListener(window, 'load', initialize);
         return emailReg.test($email);
     }
 
- $('#sub').click(function(){
-     if($('#full_name').val() == '' || $('#email').val() == '' ||  $('#phone').val() == ''){
-            $("#empty_message").show().delay(5000).fadeOut();
-        }else{
-            console.log('every field is filled')
-                $('#loading').show();
-                var token = $.cookie('csrftoken');
-                var full_name=$('#full_name').val();
-                var phone=$('#phone').val();
-                var email=$('#email').val();
-                var params = { 'csrfmiddlewaretoken': token,'full_name':full_name,'email':email,
-                'phone':phone,}
-                $.ajax({
-                    type:"POST",
-                    url:"/contact/",
-                    data: params,
-                    success: function(res){
-                        console.log('here');
-                        if(res=='OK'){
-                        $('#full_name').val('');
-                        $('#email').val('');
-                        $('#phone').val('');
-                            $("#loading").hide();
-                            $("#successmsg").show().delay(5000).fadeOut();
-                        }else{
-                            console.log('not saved')
-                        }
-                    }
-                });
+ $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
 
-        }
- });
+
+$(document).on("submit", "#contact_form", function(e) {
+    e.preventDefault();
+    var self = $(this);
+        data = $(this).serialize();
+        url = self.attr("action");
+
+   if($('#full_name').val() == '' || $('#email').val() == '' ||  $('#phone').val() == ''){
+          $("#empty_message").show().delay(5000).fadeOut();
+   }else{
+      $.ajax({
+          url: url,
+          type: "POST",
+          crossDomain: false, // obviates need for sameOrigin test
+          data: data,
+          beforeSend: function(xhr, settings) {
+            $('#loading').show();
+          },
+          success: function(data, textStatus, xhr){
+            $("#loading").hide();
+            $("#successmsg").show().delay(5000).fadeOut();
+          },
+          error: function(data, textStatus, xhr){
+            $("#loading").hide();
+            $("#failmsg").show().delay(5000).fadeOut();
+            console.log(data, textStatus, xhr);
+          }
+      });
+   }
+});
+
 </script>
 </body>
 
 </html>
-
