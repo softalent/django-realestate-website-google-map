@@ -11,14 +11,11 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 import us
 
-
 class HomeView(generic.TemplateView):
-    template_name = 'home.html'
-
-class HomeTestView(generic.TemplateView):
     template_name = 'home_working.html'
+
     def get_context_data(self, *args, **kwargs):
-        context = super(HomeTestView, self).get_context_data(*args, **kwargs)
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
         states = us.states.STATES
         statesObj = []
         for i in range(0, len(states)):
@@ -26,6 +23,7 @@ class HomeTestView(generic.TemplateView):
             abbr = str(states[i].abbr)
             statesObj.append({'name': name, 'abbr': abbr})
         context['states'] = statesObj
+        context['five_random_properties'] = models.Main.objects.filter(available=True).order_by('?')[:5]
         return context
 
 class PropertyView(generic.TemplateView):
