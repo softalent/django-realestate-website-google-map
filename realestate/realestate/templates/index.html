@@ -6,17 +6,10 @@
     {{ main_data.address }} {{ main_data.city }}, {{ main_data.state }} | SeeThisProperty.com
   {% endblock page_title %}
 
-  {% block extra_css %}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap">
-    </script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
-    <link href="{% static 'css/dark_lightbox.css' %}" rel="stylesheet">
-  {% endblock extra_css %}
-
 {% block content %}
 {% with main_data as info %}
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
-<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-25pc sidebar-size-30pc sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop" id=sidebar-property>
+<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-25pc sidebar-size-30pc sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop" id="sidebar-property">
   <div class="split-vertical">
 
     <div class="sidebar-block equal-padding text-center">
@@ -335,11 +328,10 @@
 {% endwith %}
 {% endblock content %}
 
-{% block extra_js %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js" />
 
+{% block map_js %}
   <script>
-    var myCenter = new google.maps.LatLng({{ info.latitude }},{{ info.longitude }});
+    var myCenter = new google.maps.LatLng({{ main_data.latitude }},{{ main_data.longitude }});
     function initialize(){
       var mapProp = {
             center:myCenter,
@@ -354,6 +346,11 @@
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
+{% endblock map_js %}
+
+
+{% block extra_js %}
+
 
   <script>
     $('input:text[id="phone"]').bind('keyup blur', function() {
@@ -380,12 +377,6 @@
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailReg.test($email);
     }
-
-    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox();
-    });
-
 
     $(document).on("submit", "#contact_form", function(e) {
         e.preventDefault();
