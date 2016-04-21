@@ -34,6 +34,25 @@ class StateListView(generic.ListView):
         state='')
 
 
+class StateListView(generic.ListView):
+    template_name = 'state_list.html'
+    queryset = models.Main.objects.filter(
+        available=True, state__isnull=False).distinct('state').exclude(
+        state='')
+
+
+class PropertyListView(generic.ListView):
+    template_name = 'property_list.html'
+    paginate_by = 18
+
+    def get_queryset(self):
+        kwargs = self.kwargs
+        queryset = models.Main.objects.filter(
+            available=True, state=kwargs.get('s', ''),
+            city=kwargs.get('c', '').replace('-', ' '))
+        return queryset
+
+
 class PropertyView(generic.TemplateView):
     template_name = 'index.html'
 

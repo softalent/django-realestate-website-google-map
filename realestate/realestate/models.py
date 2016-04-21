@@ -55,6 +55,7 @@ class Main(models.Model):
 
     class Meta:
         db_table = 'main'
+        ordering = ['-id']
 
 
 class School(models.Model):
