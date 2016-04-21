@@ -15,6 +15,6 @@ urlpatterns = patterns(
     url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'test/', views.HomeTestView.as_view(), name='test'),
     # Receives as parameters State / City / Address
-    url(r'^(?P<s>[A-Z]{2})/(?P<c>[-A-Za-z]{2,20})/(?P<a>[-\w\s]{3,100})/$',
+    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)?)/(?P<a>[-\w]*)/$',
         views.PropertyView.as_view(), name='property'),
 )
