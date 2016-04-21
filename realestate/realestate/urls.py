@@ -12,8 +12,9 @@ urlpatterns = patterns(
     url(r'^api/', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^contact/', views.MainContact.as_view(), name='contact'),
+    url(r'^states/$', views.StateListView.as_view(), name='states'),
     url(r'^$', views.HomeView.as_view(), name='home'),
     # Receives as parameters State / City / Address
-    url(r'^(?P<s>[A-Z]{2})/(?P<c>[-A-Za-z]{2,20})/(?P<a>[-\w\s]{3,100})/$',
+    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)?)/(?P<a>[-\w]*)/$',
         views.PropertyView.as_view(), name='property'),
 )

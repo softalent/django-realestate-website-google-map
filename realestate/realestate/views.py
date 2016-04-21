@@ -27,13 +27,21 @@ class HomeView(generic.TemplateView):
         context['properties'] = main_data
         return context
 
+class StateListView(generic.ListView):
+    template_name = 'state_list.html'
+    queryset = models.Main.objects.filter(
+        available=True, state__isnull=False).distinct('state').exclude(
+        state='')
+
+
 class PropertyView(generic.TemplateView):
     template_name = 'index.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(PropertyView, self).get_context_data(*args, **kwargs)
         main_data = get_object_or_404(
-            models.Main, state=kwargs.get('s', ''), city=kwargs.get('c', ''),
+            models.Main, state=kwargs.get('s', ''),
+            city=kwargs.get('c', '').replace('-', ' '),
             address__icontains=kwargs.get('a', '').replace('-', ' '),
             available=True)
         context['main_data'] = main_data

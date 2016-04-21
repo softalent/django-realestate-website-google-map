@@ -46,6 +46,13 @@ class Main(models.Model):
         new_add = ''.join(newdata)
         return new_add
 
+    def get_complete_state(self):
+        from realestate.us_states import US_STATES
+        if self.state in US_STATES:
+            return US_STATES[self.state]
+        else:
+            return self.state
+
     class Meta:
         db_table = 'main'
 
