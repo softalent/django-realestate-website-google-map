@@ -14,7 +14,6 @@ urlpatterns = patterns(
     url(r'^contact/', views.MainContact.as_view(), name='contact'),
     url(r'^states/$', views.StateListView.as_view(), name='states'),
     url(r'^$', views.HomeView.as_view(), name='home'),
-    url(r'test/', views.HomeTestView.as_view(), name='test'),
     # Receives as parameters State / City / Address
     url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)?)/(?P<a>[-\w]*)/$',
         views.PropertyView.as_view(), name='property'),
