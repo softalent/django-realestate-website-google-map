@@ -16,7 +16,7 @@
 {% block content %}
 {% with main_data as info %}
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
-<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-25pc sidebar-size-30pc sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop" id=sidebar-property>
+<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-25pc sidebar-size-30pc sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop" id="sidebar-property">
   <div class="split-vertical">
 
     <div class="sidebar-block equal-padding text-center">
@@ -335,11 +335,10 @@
 {% endwith %}
 {% endblock content %}
 
-{% block extra_js %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js" />
 
+{% block map_js %}
   <script>
-    var myCenter = new google.maps.LatLng({{ info.latitude }},{{ info.longitude }});
+    var myCenter = new google.maps.LatLng({{ main_data.latitude }},{{ main_data.longitude }});
     function initialize(){
       var mapProp = {
             center:myCenter,
@@ -354,7 +353,11 @@
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
+{% endblock map_js %}
 
+
+{% block extra_js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js" />
   <script>
     $('input:text[id="phone"]').bind('keyup blur', function() {
           $(this).val ( $(this).val().replace(/[^0-9]/g,'') );
