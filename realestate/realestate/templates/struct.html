@@ -4,16 +4,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% comment %}
     <meta name="keywords" content="{{ info.address }}, {{ info.address }} {{ info.city }}, {{ info.address }} {{ info.zip }}, {{ info.address }} {{ info.city }} {{ info.state }}, {{ info.address }} {{ info.city }} {{ info.state }} {{ info.zip }}">
     <meta name="description" content="Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!" />
+    {% endcomment %}
     <title>
       {% block page_title %}
       {% endblock page_title %}
     </title>
+
     <link href="{% static 'css/vendor/all.css' %}" rel="stylesheet">
     <link href="{% static 'css/app/app.css' %}" rel="stylesheet">
     <link href="{% static 'css/app/main.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
+    <link href="{% static 'css/dark_lightbox.css' %}" rel="stylesheet">
 
     <style>
         .btn-cyan{
@@ -90,7 +96,16 @@
     <script src="{% static 'js/vendor/all.js' %}"></script>
     <script src="{% static 'js/app/app.js' %}"></script>
     <script src="{% static 'js/app/all.js' %}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/ekko-lightbox.4.0.1.min.js' %}"></script>
+
+    <script>
+      $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+      });
+    </script>
+
     {% block extra_js %}
     {% endblock extra_js %}
   </body>
