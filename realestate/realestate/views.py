@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 from realestate import models
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
+import us
 
 
 class HomeView(generic.TemplateView):
@@ -16,6 +17,16 @@ class HomeView(generic.TemplateView):
 
 class HomeTestView(generic.TemplateView):
     template_name = 'home_working.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomeTestView, self).get_context_data(*args, **kwargs)
+        states = us.states.STATES
+        statesObj = []
+        for i in range(0, len(states)):
+            name = str(states[i].name)
+            abbr = str(states[i].abbr)
+            statesObj.append({'name': name, 'abbr': abbr})
+        context['states'] = statesObj
+        return context
 
 class PropertyView(generic.TemplateView):
     template_name = 'index.html'
