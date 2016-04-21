@@ -15,6 +15,13 @@ class HomeView(generic.TemplateView):
     template_name = 'home.html'
 
 
+class StateListView(generic.ListView):
+    template_name = 'state_list.html'
+    queryset = models.Main.objects.filter(
+        available=True, state__isnull=False).distinct('state').exclude(
+        state='')
+
+
 class PropertyView(generic.TemplateView):
     template_name = 'index.html'
 
