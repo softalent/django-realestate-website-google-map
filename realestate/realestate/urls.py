@@ -13,6 +13,8 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^contact/', views.MainContact.as_view(), name='contact'),
     url(r'^states/$', views.StateListView.as_view(), name='states'),
+    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)?)/$',
+        views.PropertyListView.as_view(), name='property_list'),
     url(r'^$', views.HomeView.as_view(), name='home'),
     # Receives as parameters State / City / Address
     url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)?)/(?P<a>[-\w]*)/$',
