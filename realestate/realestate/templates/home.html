@@ -179,8 +179,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                   <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" style="height:110px; overflow:scroll;">
-                {% for abbr, name in states.items %}
-                  <li><a href="/{{abbr}}/" rel="Properties in {{name}}">{{name}}</a></li>
+                {% for state in states %}
+                  <li><a href="/{{ state.abbr}}/" rel="Properties in {{ state.name }}">{{ state.name }}</a></li>
                 {% endfor %}
               </ul>
             </div>
