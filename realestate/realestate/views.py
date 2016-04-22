@@ -93,6 +93,7 @@ class MainViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         params = {k: v for k, v in self.request.query_params.items()}
+        params['available'] = True
         queryset = models.Main.objects.filter(**params)
         return queryset
 
