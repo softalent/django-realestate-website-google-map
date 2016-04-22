@@ -11091,6 +11091,10 @@ span.fancytree-node.fancytree-active .fancytree-expander {
 .cover.overlay .overlay [class*="v-spacing-2"].v-bottom {
   bottom: 20px;
 }
+
+.cover.overlay .overlay [class*="v-spacing-2"].v-middle {
+  vertical-align: middle;
+}
 .cover.overlay .overlay.overlay-full {
   top: 0;
   height: 100%;
@@ -11133,6 +11137,17 @@ span.fancytree-node.fancytree-active .fancytree-expander {
   vertical-align: baseline;
   text-align: inherit;
 }
+
+.cover.overlay .overlay.overlay-full .v-middle {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  display: block;
+  width: auto;
+  height: auto;
+  vertical-align: middle;;
+  text-align: inherit;
+}
 .cover.overlay .overlay.overlay-full [class*="v-spacing-2"] {
   left: 20px;
   right: 20px;
@@ -11142,6 +11157,10 @@ span.fancytree-node.fancytree-active .fancytree-expander {
 }
 .cover.overlay .overlay.overlay-full [class*="v-spacing-2"].v-bottom {
   bottom: 20px;
+}
+
+.cover.overlay .overlay.overlay-full [class*="v-spacing-2"].v-middle {
+vertical-align: middle;
 }
 @media (max-width: 767px) {
   .cover.overlay .overlay.overlay-full-xs {
@@ -11186,6 +11205,18 @@ span.fancytree-node.fancytree-active .fancytree-expander {
     vertical-align: baseline;
     text-align: inherit;
   }
+
+  .cover.overlay .overlay.overlay-full-xs .v-middle {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    display: block;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+    text-align: inherit;
+  }
+
   .cover.overlay .overlay.overlay-full-xs [class*="v-spacing-2"] {
     left: 20px;
     right: 20px;
@@ -11196,6 +11227,11 @@ span.fancytree-node.fancytree-active .fancytree-expander {
   .cover.overlay .overlay.overlay-full-xs [class*="v-spacing-2"].v-bottom {
     bottom: 20px;
   }
+
+  .cover.overlay .overlay.overlay-full-xs [class*="v-spacing-2"].v-middle {
+  vertical-align: middle;
+  }
+
   .cover.overlay .overlay[class*="overlay-full"] .v-top-xs {
     vertical-align: top !important;
     position: absolute;
@@ -11229,6 +11265,18 @@ span.fancytree-node.fancytree-active .fancytree-expander {
     width: auto;
     height: auto;
     vertical-align: baseline;
+    text-align: inherit;
+  }
+
+  .cover.overlay .overlay[class*="overlay-full"] .v-middle-xs {
+    position: absolute;
+    top: auto;
+    left: 10px;
+    right: 10px;
+    display: block;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
     text-align: inherit;
   }
 }
