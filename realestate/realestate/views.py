@@ -9,29 +9,19 @@ from django.core.urlresolvers import reverse_lazy
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
-import us
+from realestate.us_states import US_STATES
+
 
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
-        states = us.states.STATES
-        statesObj = []
-        for i in range(0, len(states)):
-            name = str(states[i].name)
-            abbr = str(states[i].abbr)
-            statesObj.append({'name': name, 'abbr': abbr})
-        main_data = models.Main.objects.filter(available=True).order_by('?')[:5]
-        context['states'] = statesObj
+        main_data = models.Main.objects.filter(
+            available=True).order_by('?')[:5]
+        context['states'] = US_STATES
         context['properties'] = main_data
         return context
-
-class StateListView(generic.ListView):
-    template_name = 'state_list.html'
-    queryset = models.Main.objects.filter(
-        available=True, state__isnull=False).distinct('state').exclude(
-        state='')
 
 
 class StateListView(generic.ListView):
