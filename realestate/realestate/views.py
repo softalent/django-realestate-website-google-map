@@ -49,9 +49,15 @@ class CityListView(generic.ListView):
 
     def get_queryset(self):
         kwargs = self.kwargs
-        queryset = models.Main.objects.filter(
+        base_qs = models.Main.objects.filter(
             available=True, state=kwargs.get('s', '')).order_by(
             'city').distinct('city')
+        cities_already_listed = []
+        queryset = []
+        for prop in base_qs:
+            if not prop.city.strip(',').title() in cities_already_listed:
+                cities_already_listed.append(prop.city.strip(',').title())
+                queryset.append(prop)
         return queryset
 
 
