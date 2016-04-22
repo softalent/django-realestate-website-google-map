@@ -34,6 +34,18 @@ class PropertyListView(generic.ListView):
         return queryset
 
 
+class CityListView(generic.ListView):
+    template_name = 'city_list.html'
+    paginate_by = 18
+
+    def get_queryset(self):
+        kwargs = self.kwargs
+        queryset = models.Main.objects.filter(
+            available=True, state=kwargs.get('s', '')).order_by(
+            'city').distinct('city')
+        return queryset
+
+
 class PropertyView(generic.TemplateView):
     template_name = 'index.html'
 
