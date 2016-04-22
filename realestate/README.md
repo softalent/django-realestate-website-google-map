@@ -63,4 +63,5 @@ exec gunicorn ${DJANGO_WSGI_MODULE} \
   --name $NAME \
   --workers $NUM_WORKERS \
   --log-level=debug \
-  --log-file=-```
+  --log-file=-
+  ```
