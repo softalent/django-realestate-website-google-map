@@ -6,3 +6,4 @@ tmp/
 react-version-deprecated/
 original-theme/
 *.pyc
+realestate/.env
