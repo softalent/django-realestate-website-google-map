@@ -6,13 +6,6 @@
     {{ main_data.address }} {{ main_data.city }}, {{ main_data.state }} | SeeThisProperty.com
   {% endblock page_title %}
 
-  {% block extra_css %}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap">
-    </script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
-    <link href="{% static 'css/dark_lightbox.css' %}" rel="stylesheet">
-  {% endblock extra_css %}
-
 {% block content %}
 {% with main_data as info %}
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
@@ -357,7 +350,8 @@
 
 
 {% block extra_js %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js" />
+
+
   <script>
     $('input:text[id="phone"]').bind('keyup blur', function() {
           $(this).val ( $(this).val().replace(/[^0-9]/g,'') );
@@ -383,12 +377,6 @@
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailReg.test($email);
     }
-
-    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox();
-    });
-
 
     $(document).on("submit", "#contact_form", function(e) {
         e.preventDefault();

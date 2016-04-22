@@ -9,10 +9,64 @@ from django.core.urlresolvers import reverse_lazy
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
+from realestate.us_states import US_STATES
+import us
 
 
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        main_data = models.Main.objects.filter(
+            available=True).order_by('?')[:5]
+        states = us.states.STATES
+        statesObj = []
+        for i in range(0, len(states)):
+            name = str(states[i].name)
+            abbr = str(states[i].abbr)
+            statesObj.append({'name': name, 'abbr': abbr})
+        main_data = models.Main.objects.filter(available=True).order_by('?')[:5]
+        context['states'] = statesObj
+        context['properties'] = main_data
+        return context
+
+
+class StateListView(generic.ListView):
+    template_name = 'state_list.html'
+    queryset = models.Main.objects.filter(
+        available=True, state__isnull=False).distinct('state').exclude(
+        state='')
+
+
+class PropertyListView(generic.ListView):
+    template_name = 'property_list.html'
+    paginate_by = 16
+
+    def get_queryset(self):
+        kwargs = self.kwargs
+        queryset = models.Main.objects.filter(
+            available=True, state=kwargs.get('s', ''),
+            city=kwargs.get('c', '').replace('-', ' '))
+        return queryset
+
+
+class CityListView(generic.ListView):
+    template_name = 'city_list.html'
+    paginate_by = 16
+
+    def get_queryset(self):
+        kwargs = self.kwargs
+        base_qs = models.Main.objects.filter(
+            available=True, state=kwargs.get('s', '')).order_by(
+            'city').distinct('city')
+        cities_already_listed = []
+        queryset = []
+        for prop in base_qs:
+            if not prop.city.strip(',').title() in cities_already_listed:
+                cities_already_listed.append(prop.city.strip(',').title())
+                queryset.append(prop)
+        return queryset
 
 
 class PropertyView(generic.TemplateView):
@@ -39,6 +93,7 @@ class MainViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         params = {k: v for k, v in self.request.query_params.items()}
+        params['available'] = True
         queryset = models.Main.objects.filter(**params)
         return queryset
 
