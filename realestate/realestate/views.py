@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 from realestate.us_states import US_STATES
+import us
 
 
 class HomeView(generic.TemplateView):
@@ -19,7 +20,14 @@ class HomeView(generic.TemplateView):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         main_data = models.Main.objects.filter(
             available=True).order_by('?')[:5]
-        context['states'] = US_STATES
+        states = us.states.STATES
+        statesObj = []
+        for i in range(0, len(states)):
+            name = str(states[i].name)
+            abbr = str(states[i].abbr)
+            statesObj.append({'name': name, 'abbr': abbr})
+        main_data = models.Main.objects.filter(available=True).order_by('?')[:5]
+        context['states'] = statesObj
         context['properties'] = main_data
         return context
 
@@ -33,7 +41,7 @@ class StateListView(generic.ListView):
 
 class PropertyListView(generic.ListView):
     template_name = 'property_list.html'
-    paginate_by = 18
+    paginate_by = 16
 
     def get_queryset(self):
         kwargs = self.kwargs
@@ -45,7 +53,7 @@ class PropertyListView(generic.ListView):
 
 class CityListView(generic.ListView):
     template_name = 'city_list.html'
-    paginate_by = 18
+    paginate_by = 16
 
     def get_queryset(self):
         kwargs = self.kwargs
