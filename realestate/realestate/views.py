@@ -3,13 +3,12 @@ from django.shortcuts import get_object_or_404
 from realestate import models
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
-from .forms import ContactForm
+from .forms import ContactForm, ContactUsForm
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
-from realestate.us_states import US_STATES
 import us
 
 
@@ -30,6 +29,26 @@ class HomeView(generic.TemplateView):
         context['states'] = statesObj
         context['properties'] = main_data
         return context
+
+
+class AboutView(generic.TemplateView):
+    template_name = 'about.html'
+
+
+class TermsView(generic.TemplateView):
+    template_name = 'terms_of_use.html'
+
+
+class PrivacyView(generic.TemplateView):
+    template_name = 'privacy.html'
+
+
+class ContactUsView(generic.FormView):
+    template_name = 'contact_us.html'
+    form_class = ContactUsForm
+
+    def form_valid(self, form):
+        return super(ContactUsView, self).form_valid(form)
 
 
 class StateListView(generic.ListView):
