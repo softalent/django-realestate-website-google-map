@@ -36,10 +36,7 @@
               <div class="panel-body">
                 <h4>{{property.city}}</h4>
                 <p class="text-center">
-                  <a href="/{{property.state}}/{{property.city}}" class="btn btn-cyan">See This City</a>
-                  {% comment %}
-                  <a href="{% url 'property_list' s=property.state c=property.city %}" class="btn btn-cyan">See This City</a>
-                  {% endcomment %}
+                  <a href="{% url 'property_list' s=property.state c=property.city|slugify|title %}" class="btn btn-cyan">See This City</a>
                 </p>
               </div>
             </div>
