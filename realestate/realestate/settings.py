@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'realestate',
     'rest_framework',
+    'bootstrapform',
 )
 
 MIDDLEWARE_CLASSES = (

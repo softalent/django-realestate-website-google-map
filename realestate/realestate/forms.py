@@ -11,4 +11,4 @@ class ContactUsForm(forms.Form):
     name = forms.CharField()
     phone = forms.CharField()
     email = forms.CharField()
-    message = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
