@@ -6,6 +6,10 @@
     {{ main_data.address }} {{ main_data.city }}, {{ main_data.state }} | SeeThisProperty.com
   {% endblock page_title %}
 
+  {% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/lightgallery.css" %}" />
+  {% endblock extra_css %}
+
 {% block content %}
 {% with main_data as info %}
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
@@ -169,13 +173,11 @@
         </div>
 
 
-        <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner" role="listbox" id="lightgallery">
           {% for img in image_data %}
-          <div class="item{% if forloop.first %} active{% endif %}">
-            <a href="{{ img.url }}" data-toggle="lightbox" data-gallery="multiimages">
+            <a href="{{ img.url }}" class="item{% if forloop.first %} active{% endif %} img-responsive">
               <img src="{{ img.url }}" alt='{{ img.alt }}' class="width-100pc">
             </a>
-          </div>
           {% endfor %}
 
         </div>
@@ -197,7 +199,6 @@
         </a>
 
       </div>
-
 
       <!-- property complete address mobile only -->
       <div class="visible-xs property-meta" style="margin-top: 20px;">
@@ -351,7 +352,6 @@
 
 {% block extra_js %}
 
-
   <script>
     $('input:text[id="phone"]').bind('keyup blur', function() {
           $(this).val ( $(this).val().replace(/[^0-9]/g,'') );
@@ -409,4 +409,43 @@
     });
 
   </script>
+  <script src="{% static 'js/jquery.mobile.custom.min.js' %}"></script>
+
+  <script>
+    $(document).ready(function() {
+       $("#carousel-example-generic").swiperight(function() {
+          $(this).carousel('prev');
+        });
+       $("#carousel-example-generic").swipeleft(function() {
+          $(this).carousel('next');
+       });
+
+    });
+
+  </script>
+
+  <!-- A jQuery plugin that adds cross-browser mouse wheel support. (Optional) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+  <script src="{% static "js/lightgallery.min.js" %}"></script>
+  <script src="{% static "js/lg-zoom.min.js" %}"></script>
+  <script src="{% static "js/lg-thumbnail.min.js" %}"></script>
+  <script src="{% static "js/lg-video.min.js" %}"></script>
+
+    <script>
+      $(document).ready(function() {
+          $('#lightgallery').lightGallery({
+              download: false,
+              autoplay: false,
+              autoplayControls: false,
+              fullScreen: false,
+              pager: false,
+              hash: false,
+              actualSize: false,
+              hideBarsDelay: 1000,
+              controls: false
+          });
+
+
+      });
+    </script>
 {% endblock extra_js %}

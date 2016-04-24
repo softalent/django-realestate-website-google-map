@@ -18,9 +18,6 @@
     <link href="{% static 'css/app/main.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
-    <link href="{% static 'css/dark_lightbox.css' %}" rel="stylesheet">
-
 
     <style>
     /*==========  Mobile First Method  ==========*/
@@ -143,14 +140,6 @@
     <script src="{% static 'js/app/app.js' %}"></script>
     <script src="{% static 'js/app/all.js' %}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/ekko-lightbox.4.0.1.min.js' %}"></script>
-
-    <script>
-      $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox();
-      });
-    </script>
 
     {% block extra_js %}
     {% endblock extra_js %}
