@@ -20,12 +20,7 @@ class HomeView(generic.TemplateView):
         main_data = models.Main.objects.filter(
             available=True).order_by('?')[:5]
         states = us.states.STATES
-        statesObj = []
-        for i in range(0, len(states)):
-            name = str(states[i].name)
-            abbr = str(states[i].abbr)
-            statesObj.append({'name': name, 'abbr': abbr})
-        main_data = models.Main.objects.filter(available=True).order_by('?')[:5]
+        statesObj = [{'name': i.name, 'abbr': i.abbr} for i in states]
         context['states'] = statesObj
         context['properties'] = main_data
         return context
