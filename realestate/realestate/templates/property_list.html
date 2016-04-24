@@ -42,7 +42,7 @@
                   <p><i class="fa fa-fw fa-home"></i> {{property.square_feet}} square feet</p>
                 </ul>
                 <p class="text-center">
-                  <a href="{{property.get_url}}" class="btn btn-cyan">See This Property</a>
+                  <a href="{% url 'property' s=property.state c=property.city|slugify|title a=property.address|slugify|title %}" class="btn btn-cyan">See This Property</a>
                 </p>
               </div>
             </div>
