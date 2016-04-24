@@ -82,7 +82,7 @@
             <div class="text-center text-h3 page-header">
               <h3>Find properties around the US</h3>
             </div>
-            {% for i in states %}
+            {% for i in base_states %}
             <div class="col-md-4 col-sm-4 col-xs-6">
               <h5><a href="/{{ i.abbr }}/" rel="Properties in {{ i.name }}">{{ i.name }}</a></h5>
             </div>

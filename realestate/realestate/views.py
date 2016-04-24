@@ -9,7 +9,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
-import us
 
 
 class HomeView(generic.TemplateView):
@@ -19,9 +18,6 @@ class HomeView(generic.TemplateView):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         main_data = models.Main.objects.filter(
             available=True).order_by('?')[:5]
-        states = us.states.STATES
-        statesObj = [{'name': i.name, 'abbr': i.abbr} for i in states]
-        context['states'] = statesObj
         context['properties'] = main_data
         return context
 

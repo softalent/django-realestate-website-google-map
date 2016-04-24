@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load main_filters %}
+{% get_base_states as base_states %}
 <!DOCTYPE html>
 <html class="hide-sidebar ls-bottom-footer-fixed" lang="en">
 <head>
@@ -95,7 +96,7 @@
                   <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" style="height:110px; overflow:scroll;">
-                {% for state in states %}
+                {% for state in base_states %}
                   <li><a href="/{{ state.abbr}}/" rel="Properties in {{ state.name }}">{{ state.name }}</a></li>
                 {% endfor %}
               </ul>
