@@ -9,6 +9,8 @@
 
 {% block body %}
 
+<div class="st-container">
+
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
@@ -30,16 +32,15 @@
         <!-- /.navbar-collapse -->
       </div>
     </nav>
-    <div class="first-container container">
     {% block content %}
     {% endblock content %}
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
       <strong>SeeThisProperty.com</strong> &copy; Copyright 2016
     </footer>
     <!-- // Footer -->
+</div>
 {% endblock body %}
 
 {% block extra_js %}
