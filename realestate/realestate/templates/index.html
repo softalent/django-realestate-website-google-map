@@ -8,7 +8,22 @@
 
   {% block extra_css %}
     <link type="text/css" rel="stylesheet" href="{% static "css/lightgallery.css" %}" />
-    <style>@media(min-width:768px){.show-sidebar.sidebar-r-30pc #content{margin-right: 25%!important;padding-right:5%!important;}}@media(min-width:1200px){.show-sidebar.sidebar-r-25pc #content {margin-right:19%!important;padding-right:6%!important;}}</style>
+    <style>
+    @media (min-width:1200px) {
+      .show-sidebar.sidebar-r-25pc #content {
+        margin-right:0 !important;
+        padding-right: 25%!important;
+      }
+    }
+    </style>
+    <style>
+    @media (min-width:768px) {
+      .show-sidebar.sidebar-r-30pc #content {
+        margin-right:0 !important;
+        padding-right:30%!important;
+      }
+    }
+    </style>
   {% endblock extra_css %}
 
 {% block content %}
