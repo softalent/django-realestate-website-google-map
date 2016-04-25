@@ -18,12 +18,12 @@ urlpatterns = patterns(
     url(r'^terms/$', views.TermsView.as_view(), name='terms'),
     url(r'^privacy/$', views.PrivacyView.as_view(), name='privacy'),
 
-    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)?)/$',
+    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/$',
         views.PropertyListView.as_view(), name='property_list'),
     url(r'^(?P<s>\w{2})/$',
         views.CityListView.as_view(), name='city_list'),
     url(r'^$', views.HomeView.as_view(), name='home'),
     # Receives as parameters State / City / Address
-    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)?)/(?P<a>[-\w]*)/$',
+    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/(?P<a>[-\w]*)/$',
         views.PropertyView.as_view(), name='property'),
 )
