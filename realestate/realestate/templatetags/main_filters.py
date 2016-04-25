@@ -1,5 +1,6 @@
 # coding:utf-8
 from django import template
+import us
 
 register = template.Library()
 
@@ -65,4 +66,9 @@ def paginator(context, adjacent_pages=3):
         'show_last': pages not in page_numbers,
     }
 
-# register.inclusion_tag('paginator.html', takes_context=True)(paginator)
+
+@register.simple_tag
+def get_base_states():
+    states = us.states.STATES
+    statesObj = [{'name': i.name, 'abbr': i.abbr} for i in states]
+    return statesObj

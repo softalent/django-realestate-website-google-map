@@ -140,3 +140,7 @@ h6 small,
   border-bottom: 1px solid #e2e9e6;
   padding: 8px 4px;
 }
+
+.img-center {
+  margin: 0 auto !important;
+}

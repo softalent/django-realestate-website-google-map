@@ -18,8 +18,48 @@
     <link href="{% static 'css/app/main.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
-    <link href="{% static 'css/dark_lightbox.css' %}" rel="stylesheet">
+
+    <style>
+    body{
+      background-color: #F5F5F5;
+    }
+    /*==========  Mobile First Method  ==========*/
+
+        /* Custom, iPhone Retina */
+        @media only screen and (min-width : 320px) {
+          .first-container{
+            margin-top: 100px;
+            margin-bottom: 30px;
+          }
+
+        }
+
+        /* Extra Small Devices, Phones */
+        @media only screen and (min-width : 480px) {
+          .first-container{
+            margin-top: 100px;
+            margin-bottom: 30px;
+          }
+        }
+
+        /* Small Devices, Tablets */
+        @media only screen and (min-width : 768px) {
+          .first-container{
+            margin-top: 100px;
+            margin-bottom: 30px;
+          }
+        }
+
+        /* Medium Devices, Desktops */
+        @media only screen and (min-width : 992px) {
+
+        }
+
+        /* Large Devices, Wide Screens */
+        @media only screen and (min-width : 1200px) {
+
+        }
+    </style>
 
     <style>
         .btn-cyan{
@@ -97,14 +137,6 @@
     <script src="{% static 'js/app/app.js' %}"></script>
     <script src="{% static 'js/app/all.js' %}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/ekko-lightbox.4.0.1.min.js' %}"></script>
-
-    <script>
-      $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox();
-      });
-    </script>
 
     {% block extra_js %}
     {% endblock extra_js %}

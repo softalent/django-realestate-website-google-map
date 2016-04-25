@@ -25,16 +25,14 @@
   {% endcomment %}
 
 
-<div class="container" style="margin-top: 50px;">
-
   <h1 class="text-h3">Properties For Sale in {{ object_list.0.city }}, {{ object_list.0.state }}</h1>
   <div class="row">
     {% for property in object_list %}
-          <div class="col-md-3">
+          <div class="col-md-3 col-xs-6">
             <div class="panel panel-default relative">
               <div class="ribbon-heading ribbon-primary inline absolute left margin-none">{{property.price|remove_float}}</div>
               <div class="cover margin-none">
-                <img src="{{property.image.all.0.url}}" alt="location" class="" style="height: 150px; width: 100%;"/>
+                <img src="{{property.image.all.0.url}}" alt="location" class="img-responsive" style="height: 150px; margin:0 auto;"/>
               </div>
               <div class="panel-body">
                 <h5>{{property.address}}</h5>
@@ -44,7 +42,7 @@
                   <p><i class="fa fa-fw fa-home"></i> {{property.square_feet}} square feet</p>
                 </ul>
                 <p class="text-center">
-                  <a href="{{property.get_url}}" class="btn btn-cyan">See This Property</a>
+                  <a href="{% url 'property' s=property.state c=property.city|slugify|title a=property.address|slugify|title %}" class="btn btn-cyan">See This Property</a>
                 </p>
               </div>
             </div>
@@ -55,7 +53,6 @@
       {% endif %}
     {% endfor %}
   </div>
-</div>
 
 <div class="row text-center" style="margin-bottom: 50px;">
   <div class="content">

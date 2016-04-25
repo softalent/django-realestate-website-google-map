@@ -1,16 +1,15 @@
+from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from realestate import models
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
-from .forms import ContactForm
+from .forms import ContactForm, ContactUsForm
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
-from realestate.us_states import US_STATES
-import us
 
 
 class HomeView(generic.TemplateView):
@@ -20,16 +19,61 @@ class HomeView(generic.TemplateView):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         main_data = models.Main.objects.filter(
             available=True).order_by('?')[:5]
-        states = us.states.STATES
-        statesObj = []
-        for i in range(0, len(states)):
-            name = str(states[i].name)
-            abbr = str(states[i].abbr)
-            statesObj.append({'name': name, 'abbr': abbr})
-        main_data = models.Main.objects.filter(available=True).order_by('?')[:5]
-        context['states'] = statesObj
         context['properties'] = main_data
         return context
+
+
+class AboutView(generic.TemplateView):
+    template_name = 'about.html'
+
+
+class TermsView(generic.TemplateView):
+    template_name = 'terms_of_use.html'
+
+
+class PrivacyView(generic.TemplateView):
+    template_name = 'privacy.html'
+
+
+class ContactUsView(generic.FormView):
+    template_name = 'contact_us.html'
+    form_class = ContactUsForm
+    success_url = reverse_lazy('contact_us')
+
+    def form_valid(self, form):
+        obj = form.cleaned_data
+
+        try:
+            custumer_content = render_to_string(
+                'emails/customer_message.html', {
+                    'name': obj['name'], })
+            custumer_text_content = strip_tags(custumer_content)
+            # Subject, Content, EmailFrom, EmailTo, ReplyTo
+            custumer_email = EmailMultiAlternatives(
+                u'Contact from SeeThisProperty', custumer_text_content,
+                'contact@seethisproperty.com', [obj['email']],
+                headers={'Reply-To': 'contact@seethisproperty.com'})
+            custumer_email.attach_alternative(custumer_content, 'text/html')
+            custumer_email.send()
+
+            our_content = render_to_string(
+                'emails/our_message_contact_us.html', {
+                    'name': obj['name'],
+                    'phone': obj['phone'],
+                    'email': obj['email'],
+                    'message': obj['message']})
+            our_text_content = strip_tags(our_content)
+            # Subject, Content, EmailFrom, EmailTo, ReplyTo
+            our_email = EmailMultiAlternatives(
+                u'Contact from SeeThisProperty', our_text_content,
+                'contact@seethisproperty.com', ['contact@seethisproperty.com'],
+                headers={'Reply-To': obj['email']})
+            our_email.attach_alternative(our_content, 'text/html')
+            our_email.send()
+            messages.success(self.request, "Thanks for contacting us, we'll get back to you as soon as possible.")
+        except:
+            messages.error(self.request, "Sorry, something is wrong with our mail server and we couldn't get your message, please try again later.", extra_tags='danger')
+        return super(ContactUsView, self).form_valid(form)
 
 
 class StateListView(generic.ListView):
