@@ -28,13 +28,13 @@
   <h1 class="text-h3">Cities in {{ object_list.0.state }}</h1>
   <div class="row">
     {% for property in object_list %}
-          <div class="col-md-3">
+          <div class="col-xs-6 col col-md-3">
             <div class="panel panel-default relative">
               <div class="cover margin-none">
-                <img src="{{property.image.all.0.url}}" alt="location" class="" style="height: 150px; width: 100%;"/>
+                <img src="{{property.image.all.0.url}}" alt="location" class="img-responsive" style="margin:0 auto;height:150px"/>
               </div>
               <div class="panel-body">
-                <h4>{{property.city}}</h4>
+                <h4 class="text-center">{{property.city}}</h4>
                 <p class="text-center">
                   <a href="{% url 'property_list' s=property.state c=property.city|slugify|title %}" class="btn btn-cyan">See This City</a>
                 </p>
