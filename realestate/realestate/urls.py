@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from rest_framework import routers
 from realestate import views
 
@@ -17,7 +18,8 @@ urlpatterns = patterns(
     url(r'^about/$', views.AboutView.as_view(), name='about'),
     url(r'^terms/$', views.TermsView.as_view(), name='terms'),
     url(r'^privacy/$', views.PrivacyView.as_view(), name='privacy'),
-
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+    name='django.contrib.sitemaps.views.sitemap'),
     url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/$',
         views.PropertyListView.as_view(), name='property_list'),
     url(r'^(?P<s>\w{2})/$',
