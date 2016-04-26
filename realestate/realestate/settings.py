@@ -27,6 +27,10 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 TEMPLATE_DEBUG = True
 
+ADMINS = (
+    ('Brian Girer', 'brian.girer@gmail.com'),
+)
+
 ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39', '127.0.0.1', 'localhost']
 
 # Application definition
@@ -104,3 +108,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'contact@seethisproperty.com'
 EMAIL_HOST_PASSWORD = '2vdn8bhm1k'
 DEFAULT_FROM_EMAIL = 'contact@seethisproperty.com'
+
+EMAIL_CONTACT_ADDRESS = DEFAULT_FROM_EMAIL
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
