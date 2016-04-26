@@ -8,28 +8,12 @@
 
   {% block extra_css %}
     <link type="text/css" rel="stylesheet" href="{% static "css/lightgallery.css" %}" />
-    <style>
-    @media (min-width:1200px) {
-      .show-sidebar.sidebar-r-25pc #content {
-        margin-right:0 !important;
-        padding-right: 25%!important;
-      }
-    }
-    </style>
-    <style>
-    @media (min-width:768px) {
-      .show-sidebar.sidebar-r-30pc #content {
-        margin-right:0 !important;
-        padding-right:30%!important;
-      }
-    }
-    </style>
   {% endblock extra_css %}
 
 {% block content %}
 {% with main_data as info %}
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
-<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-25pc sidebar-size-30pc sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop" id="sidebar-property" style="margin-top:50px;">
+<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-25pc sidebar-size-30pc sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop" id="sidebar-property">
   <div class="split-vertical">
 
     <div class="sidebar-block equal-padding text-center">
@@ -115,7 +99,7 @@
 </aside>
 
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
-<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-48pc sidebar-size-40pc sidebar-offset-0 sidebar-skin-white" id="sidebar-agent" data-overlay="true" style="margin-top:50px;">
+<aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-48pc sidebar-size-40pc sidebar-offset-0 sidebar-skin-white" id="sidebar-agent" data-overlay="true">
   <div data-scrollable>
     <div class="hidden-xs">
       <h3 class="category">Request Showing</h3>
