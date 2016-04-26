@@ -10,6 +10,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
+import operator
+from django.db.models import Q
 
 
 class HomeView(generic.TemplateView):
@@ -118,12 +120,19 @@ class PropertyView(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PropertyView, self).get_context_data(*args, **kwargs)
-        main_data = get_object_or_404(
-            models.Main, state=kwargs.get('s', ''),
+        # Get the available properties for the given state and city
+        main = models.Main.objects.filter(
+            state=kwargs.get('s', ''),
             city__icontains=kwargs.get('c', '').replace('-', ' '),
-            address__icontains=kwargs.get('a', '').replace('-', ' '),
             available=True)
+        # Filter objects by each word in the given address
+        address_q = kwargs.get('a', '').replace('-', ' ').split(' ')
+        query = reduce(
+            operator.and_, (Q(address__icontains=item) for item in address_q))
+        print(query)
+        main_data = get_object_or_404(main, query)
         context['main_data'] = main_data
+        # Use model's get_images() to get noImage.jpg if there is no image
         context['image_data'] = main_data.get_images()
         context['school_data'] = main_data.school.all()
         context['new_data'] = main_data.features
