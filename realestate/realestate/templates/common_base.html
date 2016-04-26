@@ -92,56 +92,38 @@
 
 {% endblock content %}
 
-    <section class="footer-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6 col-md-2">
-            <h4>Corporate</h4>
-            <ul class="list-unstyled">
-              <li><a href="{% url 'about' %}">About the company</a></li>
-              <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
-              <li><a href="{% url 'terms' %}">Terms of use</a></li>
-              <li><a href="{% url 'privacy' %}">Privacy</a></li>
-            </ul>
-          </div>
-          <div class="col-xs-6 col-md-2">
-            <h4>Find Properties</h4>
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Select a State
-                  <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" style="height:110px; overflow:scroll;">
-                {% for state in base_states %}
-                  <li><a href="{% url 'city_list' s=state.abbr %}" rel="Properties in {{ state.name }}">{{ state.name }}</a></li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="col-xs-12 col-md-4 text-center">
-            <h4>About SeeThisProperty.com</h4>
-            <div class="panel bg-transparent margin-none">
-              <div class="panel-body">
-                <p>SeeThisProperty.com connects home buyers with local realtors in order to help buyers get priority access to the best properties in the United States. This site also provides pertinent information about each property to empower consumers to find and purchase the perfect property.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-md-4">
-            <div class="panel bg-transparent margin-none">
-              <div class="panel-body">
-                <div class="form-group form-control-default">
-                  <label for="email">Email:</label>
-                  <input id="email" class="form-control" type="text" placeholder="Your email address .." />
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-pink-500">Subscribe</button>
-                </div>
-              </div>
-            </div>
-          </div>
+<section class="footer-section">
+  <div class="container" style="padding-bottom:30px;">
+    <div class="row">
+      <div class="col-xs-6 col-md-4">
+        <h4>Corporate</h4>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'about' %}">About the company</a></li>
+          <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+          <li><a href="{% url 'terms' %}">Terms of use</a></li>
+          <li><a href="{% url 'privacy' %}">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="col-xs-6 col-md-4">
+        <h4>Find Properties</h4>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              Select a State
+              <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" style="height:110px; overflow:scroll;">
+            {% for state in base_states %}
+              <li><a href="{% url 'city_list' s=state.abbr %}" rel="Properties in {{ state.name }}">{{ state.name }}</a></li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
-    </section>
+      <div class="col-xs-12 col-md-4">
+        <h4>About SeeThisProperty.com</h4>
+            <p>SeeThisProperty.com connects home buyers with local realtors in order to help buyers get priority access to the best properties in the United States. This site also provides pertinent information about each property to empower consumers to find and purchase the perfect property.</p>
+    </div>
+  </div>
+</section>
 
   </div>
   <!-- // END #content -->
