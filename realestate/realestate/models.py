@@ -53,6 +53,9 @@ class Main(models.Model):
         else:
             return self.state
 
+    def get_images(self):
+        return self.image.all() or [{'url': '/static/images/noImage.jpg'}]
+
     class Meta:
         db_table = 'main'
         ordering = ['-id']

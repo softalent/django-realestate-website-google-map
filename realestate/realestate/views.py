@@ -120,11 +120,11 @@ class PropertyView(generic.TemplateView):
         context = super(PropertyView, self).get_context_data(*args, **kwargs)
         main_data = get_object_or_404(
             models.Main, state=kwargs.get('s', ''),
-            city=kwargs.get('c', '').replace('-', ' '),
+            city__icontains=kwargs.get('c', '').replace('-', ' '),
             address__icontains=kwargs.get('a', '').replace('-', ' '),
             available=True)
         context['main_data'] = main_data
-        context['image_data'] = main_data.image.all()
+        context['image_data'] = main_data.get_images()
         context['school_data'] = main_data.school.all()
         context['new_data'] = main_data.features
         context['new_url'] = main_data.get_url()
