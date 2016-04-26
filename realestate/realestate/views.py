@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 from realestate import models
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
@@ -91,7 +91,8 @@ class PropertyListView(generic.ListView):
 
     def get_queryset(self):
         kwargs = self.kwargs
-        queryset = models.Main.objects.filter(
+        queryset = get_list_or_404(
+            models.Main,
             available=True, state=kwargs.get('s', ''),
             city=kwargs.get('c', '').replace('-', ' '))
         return queryset
@@ -103,15 +104,8 @@ class CityListView(generic.ListView):
 
     def get_queryset(self):
         kwargs = self.kwargs
-        base_qs = models.Main.objects.filter(
-            available=True, state=kwargs.get('s', '')).order_by(
-            'city').distinct('city')
-        cities_already_listed = []
-        queryset = []
-        for prop in base_qs:
-            if not prop.city.strip(',').title() in cities_already_listed:
-                cities_already_listed.append(prop.city.strip(',').title())
-                queryset.append(prop)
+        queryset = models.Main.objects.distinct_cities_at(
+            state=kwargs.get('s', ''))
         return queryset
 
 

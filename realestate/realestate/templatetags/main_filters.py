@@ -76,6 +76,12 @@ def get_base_states():
     return statesObj
 
 
+@register.filter
+def lookup_state_name(state):
+    '''Return the state name from the given abbr'''
+    return us.states.lookup(state).name
+
+
 @register.inclusion_tag('get_404_object.html')
 def get_404_object(path):
     '''Return suggestions based on the requested path that resulted in 404'''
@@ -89,10 +95,18 @@ def get_404_object(path):
 
     if url_name and url_name == 'property':
         return {
-            'property_not_found': True,
+            '404_type': 'property',
             'properties': Main.objects.filter(
                 available=True,
                 state=kwargs['s'], city__icontains=kwargs['c'])[:5],
+            'city': kwargs['c'],
+            'state': kwargs['s']
+        }
+    elif url_name and url_name == 'property_list':
+        return {
+            '404_type': 'city',
+            'properties': Main.objects.distinct_cities_at(
+                state=kwargs.get('s'))[:5],
             'city': kwargs['c'],
             'state': kwargs['s']
         }

@@ -1,6 +1,21 @@
 from django.db import models
 
 
+class MainManager(models.Manager):
+    def distinct_cities_at(self, state):
+        '''Return a list of one property for each city on db for the given
+        state, '''
+        base_qs = self.get_queryset().filter(
+            available=True, state=state).order_by('city').distinct('city')
+        cities_already_listed = []
+        queryset = []
+        for prop in base_qs:
+            if not prop.city.strip(',').title() in cities_already_listed:
+                cities_already_listed.append(prop.city.strip(',').title())
+                queryset.append(prop)
+        return queryset
+
+
 class Main(models.Model):
     id = models.IntegerField(primary_key=True)
     address = models.TextField()
@@ -27,6 +42,7 @@ class Main(models.Model):
     original_url = models.TextField()
     features = models.TextField()
     available = models.BooleanField(default=True)
+    objects = MainManager()
 
     def get_url(self):
         main_url = 'http://seethisproperty.com'
