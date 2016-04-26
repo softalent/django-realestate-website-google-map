@@ -1,6 +1,8 @@
 # coding:utf-8
 from django import template
 import us
+from django.core.urlresolvers import resolve
+from realestate.models import Main
 
 register = template.Library()
 
@@ -72,3 +74,30 @@ def get_base_states():
     states = us.states.STATES
     statesObj = [{'name': i.name, 'abbr': i.abbr} for i in states]
     return statesObj
+
+
+@register.inclusion_tag('get_404_object.html')
+def get_404_object(path):
+    '''Return suggestions based on the requested path that resulted in 404'''
+    try:
+        if '/' not in path[-1]:
+            path = path + '/'
+        url_name = resolve(path).url_name
+        kwargs = resolve(path).kwargs
+    except:
+        url_name = ''
+
+    if url_name and url_name == 'property':
+        return {
+            'property_not_found': True,
+            'properties': Main.objects.filter(
+                available=True,
+                state=kwargs['s'], city__icontains=kwargs['c'])[:5],
+            'city': kwargs['c'],
+            'state': kwargs['s']
+        }
+    else:
+        return {
+            'property_not_found': False,
+            'properties': Main.objects.filter(
+                available=True).order_by('?')[:5]}
