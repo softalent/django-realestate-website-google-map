@@ -4,9 +4,8 @@
 <div class="row">
   <div class="container">
   <div class="col-md-12">
-    <h3>Sorry but we weren't able to find any available property on the address you're searching for.</h3>
-    <h4><a href="{% url 'property_list' state city %}">Please, take a look at other properties at {{city}}</a></h4>
-    <h4>Some examples below.</h4>
+    <h3>We weren't able to find any available properties at the address you're searching for.</h3>
+    <h4>You might like these other properties in {{city}}:</h4>
   </div>
     <div class="col-md-12">
         <div class="slick-basic slick-slider" data-items="3" data-items-lg="3" data-items-md="2" data-items-sm="2" data-items-xs="1">
@@ -32,6 +31,8 @@
             </div>
             {% endfor %}
         </div>
+        <h4><a href="{% url 'property_list' state city %}">See all properties in {{city}}</a></h4>
+
     </div>
   </div>
 </div>
@@ -42,8 +43,8 @@
   <div class="container">
   <div class="col-md-12">
     <h3>Sorry but the page you're looking for doesn't exist.</h3>
-    <h4><a href="{% url 'home' %}">Please, clicking here to take a look at other properties</a></h4>
-    <h4>Some examples below.</h4>
+    <h4><a href="{% url 'home' %}">Click here to return to the home page</a></h4>
+    <h4>Check out some of our latest properties:</h4>
   </div>
     <div class="col-md-12">
         <div class="slick-basic slick-slider" data-items="3" data-items-lg="3" data-items-md="2" data-items-sm="2" data-items-xs="1">
