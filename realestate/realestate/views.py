@@ -129,7 +129,6 @@ class PropertyView(generic.TemplateView):
         address_q = kwargs.get('a', '').replace('-', ' ').split(' ')
         query = reduce(
             operator.and_, (Q(address__icontains=item) for item in address_q))
-        print(query)
         main_data = get_object_or_404(main, query)
         context['main_data'] = main_data
         # Use model's get_images() to get noImage.jpg if there is no image
