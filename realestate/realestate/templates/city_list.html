@@ -24,7 +24,7 @@
     </aside>
   {% endcomment %}
 
-
+<div class="container">
   <h1 class="text-h3">Cities in {{ object_list.0.state }}</h1>
   <div class="row">
     {% for property in object_list %}
@@ -53,5 +53,5 @@
     {% if is_paginated %}{% paginator %}{% endif %}
   </div>
 </div>
-
+</div>
  {% endblock content %}
