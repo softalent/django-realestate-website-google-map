@@ -87,7 +87,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'http://seethisproperty-static-dir.e7bdqjqzfgrkl9rf7exoosh97egthfg5d5mpvbjb.netdna-cdn.com/'
 MEDIA_URL = '/images/'
 
 
