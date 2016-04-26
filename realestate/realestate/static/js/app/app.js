@@ -2779,7 +2779,7 @@ require('./_preview');
         if (typeof $.fn.slick == 'undefined') return;
 
         var c = this;
-        
+
         c.slick({
             dots: true,
             slidesToShow: c.data('items') || 3,
