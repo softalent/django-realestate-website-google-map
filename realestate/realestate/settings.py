@@ -28,7 +28,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = True
 
 ADMINS = (
-    ('Brian Girer', 'brian.girer@gmail.com'),
+    ('See This Property', 'seethispropertyllc@gmail.com'),
 )
 
 ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39', '127.0.0.1', 'localhost']
