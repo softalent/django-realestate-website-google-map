@@ -46,7 +46,7 @@ class Main(models.Model):
         return '/'.join([main_url, state, city, address])
 
     def translate(self, data):
-        character = '/,*,#,$,%,^,&,@, ,'
+        character = '/,*,#,$,%,^,&,@, ,(,),-,'
         newdata = []
         for i in data:
             if i not in character:
@@ -65,6 +65,12 @@ class Main(models.Model):
 
     def get_images(self):
         return self.image.all() or [{'url': '/static/images/noImage.jpg'}]
+
+    def get_absolute_url(self):
+        return '/'.join([
+            '/' + str(self.state),
+            str(self.translate(self.city)),
+            str(self.translate(self.address))])
 
     class Meta:
         db_table = 'main'
