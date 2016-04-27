@@ -3,14 +3,9 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap, index
 from rest_framework import routers
 from realestate import views
-from django.contrib.sitemaps import GenericSitemap
-from realestate.models import Main
+from realestate.sitemaps import StateSitemap, CitySitemap
 
-property_dict = {
-    'queryset': Main.objects.filter(available=True)
-}
-
-sitemaps = {'properties': GenericSitemap(property_dict, priority=0.6)}
+sitemaps = {'cities': CitySitemap, 'states': StateSitemap}
 
 router = routers.DefaultRouter()
 router.register(r'main', views.MainViewSet)

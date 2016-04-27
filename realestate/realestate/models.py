@@ -72,6 +72,14 @@ class Main(models.Model):
             str(self.translate(self.city)),
             str(self.translate(self.address))])
 
+    @property
+    def city_slug(self):
+        return self.translate(str(self.city))
+
+    @property
+    def address_slug(self):
+        return self.translate(str(self.address))
+
     class Meta:
         db_table = 'main'
         ordering = ['-id']
