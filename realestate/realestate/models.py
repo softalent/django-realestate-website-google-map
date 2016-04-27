@@ -1,6 +1,15 @@
 from django.db import models
 
 
+class MainManager(models.Manager):
+    def distinct_cities_at(self, state):
+        '''Return a list of one property for each city on db for the given
+        state, '''
+        queryset = self.get_queryset().filter(
+            available=True, state=state).order_by('city').distinct('city')
+        return queryset
+
+
 class Main(models.Model):
     id = models.IntegerField(primary_key=True)
     address = models.TextField()
@@ -27,6 +36,7 @@ class Main(models.Model):
     original_url = models.TextField()
     features = models.TextField()
     available = models.BooleanField(default=True)
+    objects = MainManager()
 
     def get_url(self):
         main_url = 'http://seethisproperty.com'
@@ -36,7 +46,7 @@ class Main(models.Model):
         return '/'.join([main_url, state, city, address])
 
     def translate(self, data):
-        character = '/,*,#,$,%,^,&,@, ,'
+        character = '/,*,#,$,%,^,&,@, ,(,),-,'
         newdata = []
         for i in data:
             if i not in character:
@@ -55,6 +65,20 @@ class Main(models.Model):
 
     def get_images(self):
         return self.image.all() or [{'url': '/static/images/noImage.jpg'}]
+
+    def get_absolute_url(self):
+        return '/'.join([
+            '/' + str(self.state),
+            str(self.translate(self.city)),
+            str(self.translate(self.address))])
+
+    @property
+    def city_slug(self):
+        return self.translate(str(self.city))
+
+    @property
+    def address_slug(self):
+        return self.translate(str(self.address))
 
     class Meta:
         db_table = 'main'
