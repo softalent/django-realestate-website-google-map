@@ -3,7 +3,7 @@ from realestate.models import Main
 
 
 class StateSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "daily"
     priority = 0.6
 
     def items(self):
