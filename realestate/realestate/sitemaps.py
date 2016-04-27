@@ -15,7 +15,7 @@ class StateSitemap(Sitemap):
 
 
 class CitySitemap(Sitemap):
-    changefreq = "weekly"
+    changefreq = "daily"
     priority = 0.6
 
     def items(self):
