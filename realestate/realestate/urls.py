@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps.views import sitemap, index
 from rest_framework import routers
 from realestate import views
 from django.contrib.sitemaps import GenericSitemap
@@ -35,6 +35,6 @@ urlpatterns = patterns(
         views.PropertyView.as_view(), name='property'),
 
     # SITEMAPS
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
-        name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^sitemap\.xml$', index, {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', sitemap, {'sitemaps': sitemaps}),
 )
