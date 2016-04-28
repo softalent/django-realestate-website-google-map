@@ -7,3 +7,4 @@ react-version-deprecated/
 original-theme/
 *.pyc
 realestate/realestate/.env
+realestate/dump.rdb
