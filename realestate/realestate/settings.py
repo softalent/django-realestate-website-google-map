@@ -28,7 +28,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = True
 
 ADMINS = (
-    ('Brian Girer', 'brian.girer@gmail.com'),
+    ('See This Property', 'seethispropertyllc@gmail.com'),
 )
 
 ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39', '127.0.0.1', 'localhost']
@@ -46,9 +46,13 @@ INSTALLED_APPS = (
     'realestate',
     'rest_framework',
     'bootstrapform',
+    'compressor',
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -56,6 +60,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 
@@ -68,6 +73,22 @@ WSGI_APPLICATION = 'realestate.wsgi.application'
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '127.0.0.1:6379',
+        'OPTIONS': {
+            'DB': 3,
+            'PARSER_CLASS': 'redis.connection.HiredisParser',
+            'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
+            'CONNECTION_POOL_CLASS_KWARGS': {
+                'max_connections': 25,
+                'timeout': 4,
+            }
+        },
+    },
 }
 
 
@@ -92,9 +113,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = 'http://seethisproperty-static-dir.e7bdqjqzfgrkl9rf7exoosh97egthfg5d5mpvbjb.netdna-cdn.com/'
+STATIC_URL = config('STATIC_URL', default='/static/')
+# 'http://seethisproperty-static-dir.e7bdqjqzfgrkl9rf7exoosh97egthfg5d5mpvbjb.netdna-cdn.com/'
 MEDIA_URL = '/images/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
@@ -112,3 +141,16 @@ DEFAULT_FROM_EMAIL = 'contact@seethisproperty.com'
 
 EMAIL_CONTACT_ADDRESS = DEFAULT_FROM_EMAIL
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+COMPRESS_ENABLED = True
+COMPRESS_AUTO = True
+COMPRESS_VERSION = True
+
+COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
+
+HTML_MINIFY = True
+KEEP_COMMENTS_ON_MINIFYING = True
