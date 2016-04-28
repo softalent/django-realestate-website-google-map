@@ -175,8 +175,17 @@
 
         <div class="carousel-inner" role="listbox" id="lightgallery">
           {% for img in image_data %}
-            <a href="{{ img.url }}" class="item{% if forloop.first %} active{% endif %} img-responsive">
-              <img src="{{ img.url }}" alt='{{ img.alt }}' class="img-responsive img-center">
+            {% if forloop.first %}
+              <a href="{{ img.url }}" class="item active img-responsive">
+                <img src="{{ img.url }}" alt='{{ img.alt }}' class="img-responsive img-center">
+            {% else %}
+              <a href="{{ img.url }}" class="item img-responsive">
+              {% comment %}
+                REMOVE THE COMMENT TO RELEASE THE LAZY LOADER!! :) also remove the line below
+                <img lazy-src="{{ img.url }}" alt='{{ img.alt }}' class="img-responsive img-center">
+              {% endcomment %}
+                <img src="{{ img.url }}" alt='{{ img.alt }}' class="img-responsive img-center">
+            {% endif %}
             </a>
           {% endfor %}
 
@@ -410,9 +419,13 @@
 
   </script>
   <script src="{% static 'js/jquery.mobile.custom.min.js' %}"></script>
+  <script src="{% static "js/lazy-bootstrap-carousel-v3.js" %}"></script>
 
   <script>
     $(document).ready(function() {
+       // Remove comment to let the lazy loader do its job
+       // $('.carousel').carousel({interval:false});
+
        $("#carousel-example-generic").swiperight(function() {
           $(this).carousel('prev');
         });
@@ -429,7 +442,6 @@
   <script src="{% static "js/lightgallery.min.js" %}"></script>
   <script src="{% static "js/lg-zoom.min.js" %}"></script>
   <script src="{% static "js/lg-thumbnail.min.js" %}"></script>
-  <script src="{% static "js/lg-video.min.js" %}"></script>
 
     <script>
       $(document).ready(function() {
