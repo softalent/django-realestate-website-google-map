@@ -170,3 +170,6 @@ class MainContact(generic.FormView):
         our_email.attach_alternative(our_content, 'text/html')
         our_email.send()
         return JsonResponse({'message': 'success'})
+
+class googledc6ee21d00cd442a(generic.TemplateView):
+    template_name='googledc6ee21d00cd442a.html'
