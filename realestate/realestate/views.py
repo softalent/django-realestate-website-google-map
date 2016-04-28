@@ -114,16 +114,7 @@ class PropertyView(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PropertyView, self).get_context_data(*args, **kwargs)
-        # Get the available properties for the given state and city
-        main = models.Main.objects.filter(
-            state=kwargs.get('s', ''),
-            city__icontains=kwargs.get('c', '').replace('-', ' '),
-            available=True)
-        # Filter objects by each word in the given address
-        address_q = kwargs.get('a', '').replace('-', ' ').split(' ')
-        query = reduce(
-            operator.and_, (Q(address__icontains=item) for item in address_q))
-        main_data = get_object_or_404(main, query)
+        main_data = get_object_or_404(models.Main, pk=kwargs.get('pk'))
         context['main_data'] = main_data
         # Use model's get_images() to get noImage.jpg if there is no image
         context['image_data'] = main_data.get_images()

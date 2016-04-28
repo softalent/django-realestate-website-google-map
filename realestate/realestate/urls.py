@@ -26,7 +26,7 @@ urlpatterns = patterns(
         views.CityListView.as_view(), name='city_list'),
     url(r'^$', views.HomeView.as_view(), name='home'),
     # Receives as parameters State / City / Address
-    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/(?P<a>[-\w]*)/$',
+    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/(?P<a>[-\w]*)/(?P<pk>\d*)$',
         views.PropertyView.as_view(), name='property'),
 
     # SITEMAPS

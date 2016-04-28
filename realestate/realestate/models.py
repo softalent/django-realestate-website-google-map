@@ -39,11 +39,7 @@ class Main(models.Model):
     objects = MainManager()
 
     def get_url(self):
-        main_url = 'http://seethisproperty.com'
-        state = self.translate(self.state)
-        city = self.translate(self.city)
-        address = self.translate(self.address)
-        return '/'.join([main_url, state, city, address])
+        return 'http://seethisproperty.com' + self.get_absolute_url()
 
     def translate(self, data):
         character = '/,*,#,$,%,^,&,@, ,(,),-,'
@@ -68,9 +64,8 @@ class Main(models.Model):
 
     def get_absolute_url(self):
         return '/'.join([
-            '/' + str(self.state),
-            str(self.translate(self.city)),
-            str(self.translate(self.address))])
+            '/' + str(self.state), self.city_slug, self.address_slug,
+            str(self.pk)])
 
     @property
     def city_slug(self):
