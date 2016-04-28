@@ -8,3 +8,11 @@ python-decouple==3.0
 gunicorn==19.4.5
 us==0.9.1
 django-bootstrap-form==3.2
+django-compressor==2.0
+django-appconf==1.0.2
+html5lib==0.9999999
+slimit==0.8.1
+lxml==3.6.0
+django-redis-cache==1.6.5
+hiredis==0.2.0
+django-htmlmin==0.9.1
