@@ -13,6 +13,7 @@ router.register(r'main', views.MainViewSet)
 urlpatterns = patterns(
     '',
     url(r'^api/', include(router.urls)),
+    url(r'^googledc6ee21d00cd442a\.html$', views.googledc6ee21d00cd442a.as_view(), name='google site verification'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^request_viewing/', views.MainContact.as_view(), name='contact'),
     url(r'^states/$', views.StateListView.as_view(), name='states'),
