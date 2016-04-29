@@ -8,3 +8,5 @@ original-theme/
 *.pyc
 realestate/realestate/.env
 realestate/dump.rdb
+realestate/seethisproperty-heroku.key
+realestate/seethisproperty-heroku.key.pub
