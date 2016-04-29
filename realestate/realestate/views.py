@@ -109,19 +109,11 @@ class CityListView(generic.ListView):
         return queryset
 
 
-class PropertyView(generic.TemplateView):
+class PropertyView(generic.DetailView):
     template_name = 'index.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(PropertyView, self).get_context_data(*args, **kwargs)
-        main_data = get_object_or_404(models.Main, pk=kwargs.get('pk'))
-        context['main_data'] = main_data
-        # Use model's get_images() to get noImage.jpg if there is no image
-        context['image_data'] = main_data.get_images()
-        context['school_data'] = main_data.school.all()
-        context['new_data'] = main_data.features
-        context['new_url'] = main_data.get_url()
-        return context
+    model = models.Main
+    context_object_name = 'main_data'
+    pk_url_kwarg = 'pk'
 
 
 class MainViewSet(viewsets.ReadOnlyModelViewSet):
