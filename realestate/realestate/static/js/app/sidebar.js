@@ -544,15 +544,15 @@ module.exports = function (sidebar) {
 
         $('body').on(eventtype, '[data-toggle="sidebar-menu"]', toggle);
 
-        $(document).on('keydown', null, 'esc', function () {
+        $(document).keyup(function(e) {
+             if (e.keyCode == 27) { // escape key maps to keycode `27`
+                var container = $(containerSelector);
 
-            var container = $(containerSelector);
-
-            if (container.hasClass('st-menu-open')) {
-                reset();
-                return false;
+                if (container.hasClass('st-menu-open')) {
+                    reset();
+                    return false;
+                }
             }
-
         });
 
         /**
