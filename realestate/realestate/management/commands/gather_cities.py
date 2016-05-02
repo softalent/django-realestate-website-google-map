@@ -15,8 +15,7 @@ class Command(BaseCommand):
         for city in cities:
             obj, created = models.City.objects.get_or_create(
                 name=city.city,
-                state=city.state,
-                zip_code=city.zip_code)
+                state=city.state)
             if created:
                 c_count += 1
             else:
