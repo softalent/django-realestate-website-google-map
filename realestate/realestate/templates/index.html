@@ -174,17 +174,13 @@
 
 
         <div class="carousel-inner" role="listbox" id="lightgallery">
-          {% for img in image_data %}
+          {% for img in main_data.image.all %}
             {% if forloop.first %}
               <a href="{{ img.url }}" class="item active img-responsive">
-                <img src="{{ img.url }}" alt='{{ img.alt }}' class="img-responsive img-center">
+                <img lazy-src="{{ img.url }}" src='{{ img.url }}' alt='{{ img.alt }}' class="img-responsive img-center">
             {% else %}
               <a href="{{ img.url }}" class="item img-responsive">
-              {% comment %}
-                REMOVE THE COMMENT TO RELEASE THE LAZY LOADER!! :) also remove the line below
-                <img lazy-src="{{ img.url }}" alt='{{ img.alt }}' class="img-responsive img-center">
-              {% endcomment %}
-                <img src="{{ img.url }}" alt='{{ img.alt }}' class="img-responsive img-center">
+                <img lazy-src="{{ img.url }}" src='#' alt='{{ img.alt }}' class="img-responsive img-center">
             {% endif %}
             </a>
           {% endfor %}
@@ -273,7 +269,7 @@
             <h4 class="panel-title">Features</h4>
           </div>
           <div class="panel-body">
-                <div class="row">{% for i in new_data.items %}
+                <div class="row">{% for i in main_data.features.items %}
                   <div class="col-md-6">
                     <h4 class="subsection-header">{{ i.0 }}</h4>
                     <ul>{% for x in i.1 %}
@@ -310,7 +306,7 @@
                   <th>Grades</th>
                   <th>Distance</th>
                 </tr>
-                {% for school in school_data %}
+                {% for school in main_data.school.all %}
                 <tr>
                   <td>{{ school.name }}</td>
                   <td>{{ school.grades }}</td>
@@ -419,12 +415,11 @@
 
   </script>
   <script src="{% static 'js/jquery.mobile.custom.min.js' %}"></script>
-  <script src="{% static "js/lazy-bootstrap-carousel-v3.js" %}"></script>
 
   <script>
     $(document).ready(function() {
        // Remove comment to let the lazy loader do its job
-       // $('.carousel').carousel({interval:false});
+       $('.carousel').carousel({interval:false});
 
        $("#carousel-example-generic").swiperight(function() {
           $(this).carousel('prev');
@@ -434,6 +429,14 @@
        });
 
     });
+
+    $(window).bind("load", function() {
+         $('img[lazy-src]').each(function(){
+            $(this).attr('src', $(this).attr('lazy-src'));
+            $(this).removeAttr('lazy-src');
+         });
+    });
+
 
   </script>
 
