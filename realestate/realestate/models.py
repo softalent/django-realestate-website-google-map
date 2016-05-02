@@ -101,3 +101,10 @@ class Image(models.Model):
 
     class Meta:
         db_table = 'images'
+
+
+class City(models.Model):
+    name = models.TextField()
+    state = models.CharField(max_length=2)
+    zip_code = models.CharField(max_length=10)
+    available = models.BooleanField(default=True)
