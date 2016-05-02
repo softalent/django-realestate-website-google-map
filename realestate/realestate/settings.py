@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 from decouple import config
 from dj_database_url import parse as dburl
+import urlparse
+
 
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,10 +28,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 TEMPLATE_DEBUG = True
-
-ADMINS = (
-    ('See This Property', 'seethispropertyllc@gmail.com'),
-)
 
 ALLOWED_HOSTS = ['seethisproperty.com', 'www.seethisproperty.com', '148.251.15.39', '127.0.0.1', 'localhost']
 
@@ -75,22 +73,32 @@ DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': '127.0.0.1:6379',
-        'OPTIONS': {
-            'DB': 3,
-            'PARSER_CLASS': 'redis.connection.HiredisParser',
-            'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
-            'CONNECTION_POOL_CLASS_KWARGS': {
-                'max_connections': 25,
-                'timeout': 4,
-            }
-        },
-    },
-}
+default_cache = 'redis://x:@127.0.0.1:6379'
+redis_url = urlparse.urlparse(config('REDIS_URL', default=default_cache))
 
+if DEBUG:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
+else:
+    CACHES = {
+        'default': {
+            'BACKEND': 'redis_cache.RedisCache',
+            'LOCATION': "{0}:{1}".format(redis_url.hostname, redis_url.port),
+            'OPTIONS': {
+                'DB': 0,
+                'PASSWORD': redis_url.password,
+                'PARSER_CLASS': 'redis.connection.HiredisParser',
+                'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
+                'CONNECTION_POOL_CLASS_KWARGS': {
+                    'max_connections': 25,
+                    'timeout': 4,
+                }
+            },
+        },
+    }
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
@@ -138,9 +146,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'contact@seethisproperty.com'
 EMAIL_HOST_PASSWORD = '2vdn8bhm1k'
 DEFAULT_FROM_EMAIL = 'contact@seethisproperty.com'
-
-EMAIL_CONTACT_ADDRESS = DEFAULT_FROM_EMAIL
-SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 COMPRESS_ENABLED = True
 COMPRESS_AUTO = True

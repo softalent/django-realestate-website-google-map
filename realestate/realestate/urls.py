@@ -26,9 +26,13 @@ urlpatterns = patterns(
     url(r'^(?P<s>\w{2})/$',
         views.CityListView.as_view(), name='city_list'),
     url(r'^$', views.HomeView.as_view(), name='home'),
-    # Receives as parameters State / City / Address
+    # Receives as parameters State / City / Address and redirects
+    url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/(?P<a>[-\w]*)/$',
+        views.old_property_view, name='old_property'),
+    # Receives as parameters State / City / Address / ID BUT uses only ID
     url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/(?P<a>[-\w]*)/(?P<pk>\d*)$',
         views.PropertyView.as_view(), name='property'),
+
 
     # SITEMAPS
     url(r'^sitemap\.xml$', index, {'sitemaps': sitemaps}),

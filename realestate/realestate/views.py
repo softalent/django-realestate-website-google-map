@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404, redirect
 from realestate import models
 from rest_framework import viewsets
 from realestate.serializers import MainSerializer
@@ -109,19 +109,25 @@ class CityListView(generic.ListView):
         return queryset
 
 
-class PropertyView(generic.TemplateView):
-    template_name = 'index.html'
+def old_property_view(request, **kwargs):
+    # Get the available properties for the given state and city
+    main = models.Main.objects.filter(
+        state=kwargs.get('s', ''),
+        city__icontains=kwargs.get('c', '').replace('-', ' '),
+        available=True)
+    # Filter objects by each word in the given address
+    address_q = kwargs.get('a', '').replace('-', ' ').split(' ')
+    query = reduce(
+        operator.and_, (Q(address__icontains=item) for item in address_q))
+    main_property = get_object_or_404(main, query)
+    return redirect(main_property)
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(PropertyView, self).get_context_data(*args, **kwargs)
-        main_data = get_object_or_404(models.Main, pk=kwargs.get('pk'))
-        context['main_data'] = main_data
-        # Use model's get_images() to get noImage.jpg if there is no image
-        context['image_data'] = main_data.get_images()
-        context['school_data'] = main_data.school.all()
-        context['new_data'] = main_data.features
-        context['new_url'] = main_data.get_url()
-        return context
+
+class PropertyView(generic.DetailView):
+    template_name = 'index.html'
+    model = models.Main
+    context_object_name = 'main_data'
+    pk_url_kwarg = 'pk'
 
 
 class MainViewSet(viewsets.ReadOnlyModelViewSet):
