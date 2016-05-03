@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load main_filters %}
-
   {% block page_title %}
     {{ main_data.address }} {{ main_data.city }}, {{ main_data.state }} | SeeThisProperty.com
   {% endblock page_title %}
 
   {% block meta %}
-  <meta name="keywords" content="{{ info.address }}, {{ info.address }} {{ info.city }}, {{ info.address }} {{ info.zip }}, {{ info.address }} {{ info.city }} {{ info.state }}, {{ info.address }} {{ info.city }} {{ info.state }} {{ info.zip }}">
-  <meta name="description" content="Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!" />
+  <meta name="keywords" content="{{ main_data.address }}, {{ main_data.address }} {{ main_data.city }}, {{ main_data.address }} {{ main_data.zip }}, {{ main_data.address }} {{ main_data.city }} {{ main_data.state }}, {{ main_data.address }} {{ main_data.city }} {{ main_data.state }} {{ main_data.zip }}">
+  <meta name="description" content="Call (888) 501-3124 now before {{ main_data.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ main_data.city }} will personally guide you through the property and happily answer all your questions. See this Property today!" />
   {% endblock meta %}
 
   {% block extra_css %}
@@ -22,7 +21,7 @@
   <div class="split-vertical">
 
     <div class="sidebar-block equal-padding text-center">
-      <h4><i class="fa fa-sm fa-tag"></i> {{ info.price|remove_float }}<!-- {{listings.price}} --></h4>
+      <h4><i class="fa fa-sm fa-tag"></i> {{ info.price|remove_float }}</h4>
       <p>Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!</p>
       <a href="#sidebar-agent" class="btn btn-cyan" data-toggle="sidebar-menu"> See This Property</a>
     </div>
@@ -47,9 +46,7 @@
                   <p>{{ info.description }}</p>
                   <label class="label label-grey-100">{{ info.price|remove_float }}</label>&nbsp;
                   <small>
-
-                    <i class="fa fa-fw icon-bed"></i> 3 bed <!-- {{listings.bedrooms}} -->
-
+                    <i class="fa fa-fw icon-bed"></i> 3 bed
                   </small>
                 </div>
               </div>
@@ -171,7 +168,7 @@
         <div class="ribbon-heading ribbon-primary h4 inline absolute left margin-none hidden-xs">{{ info.price|remove_float }}</div><!-- {{listings.price}} -->
         <div class="ribbon-heading ribbon-primary h4 inline absolute left visible-xs" style="padding-left:30px; padding-top: 10px;">{{ info.price|remove_float }}</div><!-- {{listings.price}} -->
         <div class="ribbon-heading ribbon-primary h4 inline absolute right margin-none hidden-xs">
-          <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call to see this property</a>
+          <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call to see {{ info.address }} today!</a>
         </div>
         <div class="ribbon-heading ribbon-primary h4 inline absolute right visible-xs" style="padding-right:30px; padding-top: 10px;">
           <a href="tel:8885013124" style="text-decoration: none; color: #ffffff;"><i class="fa fa-phone fa-fw"></i>Call now</a>
@@ -193,10 +190,8 @@
         </div>
         <div class="overlay overlay-bg-black hidden-xs">
           <div class="v-bottom">
-            <div class="page-section">
-               <h1 class="text-h1 text-overlay">{{ info.address}}</h1> <!-- {{listings.address}} -->
-              <p class="text-subhead text-overlay">{{ info.city }}, {{ info.state }} {{ info.zip_code }}</p><!-- {{listings.city}}, {{listings.state}} {{listings.zip_code}} -->
-            </div>
+               <h1 class="text-h1 text-overlay">{{ info.address}}</h1>
+              <p class="text-subhead text-overlay">{{ info.city }}, {{ info.state }} {{ info.zip_code }}</p>{{ info.city }}, {{ info.state }} {{ info.zip_code }}</p>
           </div>
         </div>
         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -226,6 +221,7 @@
       </div>
 
       <div class="container-fluid">
+        <h2 class="text-h3 text-default">About {{ info.address }} {{ info.city }}, {{ info.state }} {{ info.zip_code }}</h2>
 
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -302,7 +298,7 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4>Schools</h4>
+              <h4>Schools near {{ info.address }}</h4>
             </div>
             <div class="panel-body">
               <table class="table">
