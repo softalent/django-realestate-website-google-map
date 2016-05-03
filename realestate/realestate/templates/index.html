@@ -6,8 +6,13 @@
     {{ main_data.address }} {{ main_data.city }}, {{ main_data.state }} | SeeThisProperty.com
   {% endblock page_title %}
 
+  {% block meta %}
+  <meta name="keywords" content="{{ info.address }}, {{ info.address }} {{ info.city }}, {{ info.address }} {{ info.zip }}, {{ info.address }} {{ info.city }} {{ info.state }}, {{ info.address }} {{ info.city }} {{ info.state }} {{ info.zip }}">
+  <meta name="description" content="Call (888) 501-3124 now before {{ info.address }} is gone! Get on the phone with an agent immediately. An experienced local agent in {{ info.city }} will personally guide you through the property and happily answer all your questions. See this Property today!" />
+  {% endblock meta %}
+
   {% block extra_css %}
-    <link type="text/css" rel="stylesheet" href="{% static "css/lightgallery.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "css/lightgallery.min.css" %}" />
   {% endblock extra_css %}
 
 {% block content %}
