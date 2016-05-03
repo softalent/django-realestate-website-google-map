@@ -18,8 +18,8 @@ class Command(BaseCommand):
         t_count = 0  # total count
         for city in cities_dict:
             obj, created = models.City.objects.get_or_create(
-                name=city['city'],
-                state=city['state'])
+                name=city.get('city', 'blank'),
+                state=city.get('state', 'blank'))
             if created:
                 c_count += 1
             else:
