@@ -23,9 +23,9 @@ class Command(BaseCommand):
             if created:
                 c_count += 1
             else:
-                if obj.available != city.available:
+                if obj.available != city.get('available', False):
                     u_count += 1
-            obj.available = city.available
+            obj.available = city.get('available', False)
             obj.save()
             t_count += 1
             print('Total of {0} cities on DB'.format(t_count))
