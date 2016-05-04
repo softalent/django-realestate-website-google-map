@@ -27,16 +27,16 @@
 <div class="container">
   <h1 class="text-h3">Cities in {{ object_list.0.state }}</h1>
   <div class="row">
-    {% for property in object_list %}
+    {% for city in object_list %}
           <div class="col-xs-6 col col-md-3">
             <div class="panel panel-default relative">
               <div class="cover margin-none">
-                <img src="{{property.get_images.0.url}}" alt="location" class="img-responsive" style="margin:0 auto;height:150px"/>
+                <img src="{{city.image}}" alt="location" class="img-responsive" style="margin:0 auto;height:150px"/>
               </div>
               <div class="panel-body">
-                <h4 class="text-center">{{property.city}}</h4>
+                <h4 class="text-center">{{city.name}}</h4>
                 <p class="text-center">
-                  <a href="{% url 'property_list' s=property.state c=property.city|slugify|title %}" class="btn btn-cyan">See This City</a>
+                  <a href="{% url 'property_list' s=city.state c=city.name|slugify|title %}" class="btn btn-cyan">See This City</a>
                 </p>
               </div>
             </div>

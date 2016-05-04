@@ -104,7 +104,7 @@ class CityListView(generic.ListView):
 
     def get_queryset(self):
         kwargs = self.kwargs
-        qs = models.Main.objects.distinct_cities_at(state=kwargs.get('s', ''))
+        qs = models.City.objects.filter(state=kwargs.get('s', ''))
         queryset = get_list_or_404(qs)
         return queryset
 
