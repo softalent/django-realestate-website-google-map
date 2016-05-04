@@ -35,7 +35,9 @@ class Command(BaseCommand):
             if not image_url:
                 try:
                     image_url = models.Main.objects.filter(
-                        city=city_name, state=state_abbr, available=True)[0]
+                        city=city_name,
+                        state=state_abbr,
+                        available=True)[0].image.all()[0].url
                 except:
                     image_url = ''
             obj.image = image_url
