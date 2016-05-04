@@ -107,3 +107,4 @@ class City(models.Model):
     name = models.TextField(null=True, blank=True)
     state = models.CharField(max_length=2, null=True, blank=True)
     available = models.BooleanField(default=True)
+    image = models.CharField(max_length=350, null=True, blank=True)
