@@ -9,6 +9,7 @@ sitemaps = {'cities': CitySitemap, 'states': StateSitemap}
 
 router = routers.DefaultRouter()
 router.register(r'main', views.MainViewSet)
+router.register(r'removed', views.MainRemovedViewSet)
 
 urlpatterns = patterns(
     '',
