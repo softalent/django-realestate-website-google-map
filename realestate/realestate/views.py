@@ -1,3 +1,4 @@
+import datetime
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, get_list_or_404, redirect
@@ -137,6 +138,12 @@ class MainViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         params = {k: v for k, v in self.request.query_params.items()}
         params['available'] = True
+        if 'days_posted' in params.keys():
+            filter_day = datetime.timedelta(days=int(params.get('days_posted')))
+            filter_by = datetime.date.today() - filter_day
+            params['create_date__gte'] = filter_by
+            params.pop('days_posted')
+
         queryset = models.Main.objects.filter(**params)
         return queryset
 
