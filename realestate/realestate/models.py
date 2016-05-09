@@ -108,3 +108,35 @@ class City(models.Model):
     state = models.CharField(max_length=2, null=True, blank=True)
     available = models.BooleanField(default=True)
     image = models.CharField(max_length=350, null=True, blank=True)
+
+
+class MainRemoved(models.Model):
+    main = models.ForeignKey(Main)
+    date_removed = models.DateField()
+
+    @property
+    def address(self):
+        return self.main.address or ''
+
+    @property
+    def city(self):
+        return self.main.city or ''
+
+    @property
+    def state(self):
+        return self.main.state or ''
+
+    @property
+    def zip_code(self):
+        return self.main.zip_code or ''
+
+    @property
+    def mainid(self):
+        return self.main.id or ''
+
+    @property
+    def removed_at(self):
+        return self.date_removed.strftime('%Y/%m/%d')
+
+    def get_url(self):
+        return self.main.get_url() or ''
