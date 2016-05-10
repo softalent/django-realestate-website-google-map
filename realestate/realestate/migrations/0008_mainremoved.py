@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_removed', models.DateField()),
-                ('main', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='realestate.Main')),
+                ('main', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='realestate.Main')),
             ],
         ),
     ]

@@ -111,7 +111,8 @@ class City(models.Model):
 
 
 class MainRemoved(models.Model):
-    main = models.ForeignKey(Main)
+    main = models.ForeignKey(
+        Main, related_name='+', on_delete=models.DO_NOTHING)
     date_removed = models.DateField()
 
     @property
