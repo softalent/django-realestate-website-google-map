@@ -4,6 +4,7 @@ from django.contrib.sitemaps.views import sitemap, index
 from rest_framework import routers
 from realestate import views
 from realestate.sitemaps import StateSitemap, CitySitemap
+from django.views.generic.simple import direct_to_template
 
 sitemaps = {'cities': CitySitemap, 'states': StateSitemap}
 
@@ -33,6 +34,8 @@ urlpatterns = patterns(
     # Receives as parameters State / City / Address / ID BUT uses only ID
     url(r'^(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/(?P<a>[-\w]*)/(?P<pk>\d*)$',
         views.PropertyView.as_view(), name='property'),
+    url(r'^robots\.txt$', direct_to_template,
+     {'template': 'robots.txt', 'mimetype': 'text/plain'}),
 
 
     # SITEMAPS
