@@ -46,7 +46,7 @@ class Main(models.Model):
         return 'http://seethisproperty.com' + self.get_absolute_url()
 
     def translate(self, data):
-        character = '/,*,#,$,%,^,&,@, ,(,),-,'
+        character = '/,*,#,$,%,^,&,@, ,(,),-,.'
         newdata = []
         for i in data:
             if i not in character:
