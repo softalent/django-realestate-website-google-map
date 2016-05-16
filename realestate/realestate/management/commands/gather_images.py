@@ -16,7 +16,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # get all images urls
-        images = models.Image.objects.all()[:50]
+        images = models.Image.objects.all()
         total = images.count()
         count = 0
         print('Total of {} urls to download'.format(total))
