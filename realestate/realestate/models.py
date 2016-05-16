@@ -1,4 +1,8 @@
+# coding: utf-8
 from django.db import models
+from .thumbnail import Thumbnailed
+import datetime
+from hashlib import md5
 
 
 class MainManager(models.Manager):
@@ -141,3 +145,33 @@ class MainRemoved(models.Model):
 
     def get_url(self):
         return self.main.get_url() or ''
+
+
+def image_path(instance, filename):
+    return str(instance.main.pk) + '/' + filename
+
+
+# New Stuff
+class MainImage(models.Model):
+    image = models.ImageField(verbose_name='Image', upload_to=image_path)
+    main = models.ForeignKey(
+        'Main', related_name='local_image', db_column='main_id')
+
+    @property
+    def thumbnail_url(self):
+        thumbs = Thumbnailed(file=self.image)
+        return thumbs.thumb_url
+
+    def save(self, *args, **kwargs):
+        super(MainImage, self).save(*args, **kwargs)
+        thumbs = Thumbnailed(file=self.image)
+        thumbs.compress_image()
+        thumbs.create_thumbnail()
+
+    def delete(self):
+        thumbs = Thumbnailed(file=self.image)
+        thumbs.delete_thumbnail()
+        super(MainImage, self).delete()
+
+    class Meta:
+        db_table = 'main_image'
