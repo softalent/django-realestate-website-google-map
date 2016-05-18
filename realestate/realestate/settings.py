@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'bootstrapform',
     'compressor',
+    'storages'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -161,3 +162,10 @@ COMPRESS_CSS_FILTERS = [
 
 HTML_MINIFY = True
 KEEP_COMMENTS_ON_MINIFYING = True
+
+# Set storage to AWS S3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_STORAGE_BUCKET_NAME = 'seethisproperty-images'
+AWS_ACCESS_KEY_ID = 'AKIAIM3GJJLHCVLC53TA'
+AWS_SECRET_ACCESS_KEY = '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'
