@@ -35,7 +35,8 @@ class Command(BaseCommand):
             # if image was not downloaded yet. Save it
             new_image = models.MainImage()
             new_image.main = image.main
-            new_image.image.save(name, File(open(content[0])), save=True)
+            with open(content[0]) as file_obj:
+                new_image.image.save(name, File(file_obj), save=True)
             count += 1
             if count % 10 == 0:
                 print('{} Downloaded, {} to go'.format(count, total))
