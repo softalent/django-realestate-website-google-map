@@ -42,7 +42,8 @@ class Thumbnailed(object):
         thumb.thumbnail(self.thumbnail_size)
         thumb.save(self.thumb_name)
         try:
-            self.storage.save(self.thumb_full, File(open(self.thumb_name)))
+            with open(self.thumb_name) as file_obj:
+                self.storage.save(self.thumb_full, File(file_obj))
         except Exception as e:
             print(e)
 
