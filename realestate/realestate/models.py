@@ -151,7 +151,6 @@ def image_path(instance, filename):
     return str(instance.main.pk) + '/' + filename
 
 
-# New Stuff
 class MainImage(models.Model):
     image = models.ImageField(verbose_name='Image', upload_to=image_path)
     main = models.ForeignKey(
@@ -163,10 +162,11 @@ class MainImage(models.Model):
         return thumbs.thumb_url
 
     def save(self, *args, **kwargs):
-        super(MainImage, self).save(*args, **kwargs)
         thumbs = Thumbnailed(file=self.image)
         thumbs.compress_image()
         thumbs.create_thumbnail()
+        super(MainImage, self).save(*args, **kwargs)
+        thumbs.garbage_collection()
 
     def delete(self):
         thumbs = Thumbnailed(file=self.image)
