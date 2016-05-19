@@ -25,7 +25,7 @@ class PropertyFeed(Feed):
 
     def convert(self, data):
         if isinstance(data, basestring):
-            return str(data)
+            return data.encode('utf_8', errors='backslashreplace')
         elif isinstance(data, collections.Mapping):
             return dict(map(self.convert, data.iteritems()))
         elif isinstance(data, collections.Iterable):
@@ -36,13 +36,18 @@ class PropertyFeed(Feed):
     def get_context_data(self, item, **kwargs):
         propFeatures = self.convert(item.features)
         images = self.get_item_images(item)
+        def get_image_or_filler(images):
+            try:
+                return images[0].url
+            except AttributeError:
+                return 'http://seethisproperty.com' + images[0]['url']
         context = super(PropertyFeed, self).get_context_data(**kwargs)
         context['property_description'] = item.description
         context['property_address'] = item.address
         context['property_city'] = item.city
         context['property_state'] = item.state
         context['property_zip_code'] = item.zip_code
-        context['property_image'] = images[0].url
+        context['property_image'] = get_image_or_filler(images)
         context['property_features'] = propFeatures
         return context
 
