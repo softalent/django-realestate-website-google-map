@@ -5,6 +5,7 @@ from rest_framework import routers
 from realestate import views
 from realestate.sitemaps import StateSitemap, CitySitemap
 from django.views.generic import TemplateView
+from realestate import feeds
 
 sitemaps = {'cities': CitySitemap, 'states': StateSitemap}
 
@@ -40,4 +41,10 @@ urlpatterns = patterns(
     # SITEMAPS
     url(r'^sitemap\.xml$', index, {'sitemaps': sitemaps}),
     url(r'^sitemap-(?P<section>.+)\.xml$', sitemap, {'sitemaps': sitemaps}),
+
+    # FEEDS
+    url(r'^rss/(?P<s>\w{2})/(?P<c>\w*(-\w*)*?)/$',
+        feeds.PropertyFeed(), name='property_feed'),
+    # url(r'^rss/(?P<s>\w{2})/$',
+    #     feeds.CityFeed(), name='city_feed'),
 )
