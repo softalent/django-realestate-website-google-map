@@ -50,6 +50,7 @@ class PropertyFeed(Feed):
         context['property_zip_code'] = item.zip_code
         context['property_image'] = get_image_or_filler(images)
         context['property_features'] = propFeatures
+        context['create_date'] = item.create_date
         return context
 
 # class CityFeed(generic.ListView):
