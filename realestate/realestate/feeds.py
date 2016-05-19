@@ -12,7 +12,7 @@ class PropertyFeed(Feed):
     def get_object(self, request, *args, **kwargs):
         return get_list_or_404(
             models.Main,
-            available=True, create_date=datetime.date.today() state=kwargs.get('s', ''),
+            available=True, create_date=datetime.date.today(), state=kwargs.get('s', ''),
             city=kwargs.get('c', '').replace('-', ' '))
 
     def items(self, obj):
