@@ -15,7 +15,7 @@ class PropertyFeed(Feed):
             city=kwargs.get('c', '').replace('-', ' '))
 
     def items(self, obj):
-        return obj[:50]
+        return obj[:100]
 
     def get_item_images(self, item):
         return item.get_images()
