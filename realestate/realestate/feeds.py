@@ -2,6 +2,7 @@ from django.contrib.syndication.views import Feed
 from django.shortcuts import get_list_or_404, get_object_or_404
 from realestate import models
 import collections
+import datetime
 
 class PropertyFeed(Feed):
     title = 'Properties'
@@ -11,11 +12,11 @@ class PropertyFeed(Feed):
     def get_object(self, request, *args, **kwargs):
         return get_list_or_404(
             models.Main,
-            available=True, state=kwargs.get('s', ''),
+            available=True, create_date=datetime.date.today(), state=kwargs.get('s', ''),
             city=kwargs.get('c', '').replace('-', ' '))
 
     def items(self, obj):
-        return obj[:10]
+        return obj
 
     def get_item_images(self, item):
         return item.get_images()
@@ -49,6 +50,7 @@ class PropertyFeed(Feed):
         context['property_zip_code'] = item.zip_code
         context['property_image'] = get_image_or_filler(images)
         context['property_features'] = propFeatures
+        context['create_date'] = item.create_date
         return context
 
 # class CityFeed(generic.ListView):
