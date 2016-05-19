@@ -1,1 +1,9 @@
-{{ title }}: {{ obj.address }} {{ obj.city }}, {{ obj.state }}
+{
+  "Property Address": "{{ property_address }}",
+  "Property City": "{{ property_city }}",
+  "Property State": "{{ property_state }}",
+  "Property Zip Code": "{{ property_zip_code }}",
+  "Property Image": "{{ property_image }}",
+  "Property Description": "{{ property_description }}",
+  "Property Features": {% autoescape off %}{{ property_features }}{% endautoescape %}
+}
