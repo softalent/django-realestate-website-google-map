@@ -102,10 +102,8 @@ class CityListView(generic.ListView):
     paginate_by = 16
 
     def get_queryset(self):
-        kwargs = self.kwargs
-        qs = models.City.objects.filter(state=kwargs.get('s', ''))
-        queryset = get_list_or_404(qs)
-        return queryset
+        return get_list_or_404(
+            models.City.objects.filter(state=self.kwargs.get('s', '')))
 
 
 def old_property_view(request, **kwargs):
