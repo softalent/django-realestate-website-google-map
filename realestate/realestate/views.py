@@ -91,12 +91,10 @@ class PropertyListView(generic.ListView):
     paginate_by = 16
 
     def get_queryset(self):
-        kwargs = self.kwargs
-        queryset = get_list_or_404(
-            models.Main,
-            available=True, state=kwargs.get('s', ''),
-            city=kwargs.get('c', '').replace('-', ' '))
-        return queryset
+        return models.Main.objects.filter(
+            available=True,
+            state=self.kwargs.get('s', ''),
+            city=self.kwargs.get('c', '').replace('-', ' '))
 
 
 class CityListView(generic.ListView):
