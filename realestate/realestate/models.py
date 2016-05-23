@@ -3,6 +3,7 @@ from django.db import models
 from .thumbnail import Thumbnailed
 import datetime
 from hashlib import md5
+from django.utils.text import slugify
 
 
 class MainManager(models.Manager):
@@ -45,17 +46,6 @@ class Main(models.Model):
     def get_url(self):
         return 'http://seethisproperty.com' + self.get_absolute_url()
 
-    def translate(self, data):
-        character = '/,*,#,$,%,^,&,@, ,(,),-,.'
-        newdata = []
-        for i in data:
-            if i not in character:
-                newdata.append(i)
-            else:
-                newdata.append('-')
-        new_add = ''.join(newdata)
-        return new_add
-
     def get_complete_state(self):
         from realestate.us_states import US_STATES
         if self.state in US_STATES:
@@ -73,11 +63,11 @@ class Main(models.Model):
 
     @property
     def city_slug(self):
-        return self.translate(str(self.city))
+        return slugify(str(self.city)).title()
 
     @property
     def address_slug(self):
-        return self.translate(str(self.address))
+        return slugify(str(self.address)).title()
 
     class Meta:
         db_table = 'main'
@@ -112,6 +102,13 @@ class City(models.Model):
     state = models.CharField(max_length=2, null=True, blank=True)
     available = models.BooleanField(default=True)
     image = models.CharField(max_length=350, null=True, blank=True)
+
+    def get_absolute_url(self):
+        return '/{}/{}'.format(str(self.state), str(self.city_slug))
+
+    @property
+    def city_slug(self):
+        return slugify(str(self.name)).title()
 
 
 class MainRemoved(models.Model):

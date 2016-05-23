@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from realestate.models import Main
+from realestate.models import Main, City
 
 
 class StateSitemap(Sitemap):
@@ -19,8 +19,7 @@ class CitySitemap(Sitemap):
     priority = 0.6
 
     def items(self):
-        return Main.objects.filter(
-            available=True).order_by('city').distinct('city')
+        return City.objects.all()
 
     def location(self, obj):
-        return '/' + str(obj.state) + '/' + obj.city_slug + '/'
+        return obj.get_absolute_url()
