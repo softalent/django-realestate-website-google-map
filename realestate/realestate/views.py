@@ -92,7 +92,6 @@ class PropertyListView(generic.ListView):
 
     def get_queryset(self):
         return models.Main.objects.filter(
-            available=True,
             state=self.kwargs.get('s', ''),
             city=self.kwargs.get('c', '').replace('-', ' '))
 
