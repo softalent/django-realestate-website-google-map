@@ -12,7 +12,7 @@
           {% for property in properties %}
             <div class="item">
               <div class="panel panel-default relative">
-                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">${{ property.price|intcomma|remove_float }}</div>
+                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">{{ property.price|remove_float }}</div>
                 <div class="cover hover overlay margin-none">
                   <img src="{{ property.image.all.0.url }}" alt="location" class="img-responsive" style="height:250px; margin:0 auto;" />
                   <a href="{{ property.get_url }}" class="overlay overlay-full overlay-bg-black overlay-hover">
@@ -50,7 +50,7 @@
           {% for property in properties %}
             <div class="item">
               <div class="panel panel-default relative">
-                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">${{ property.price|intcomma|remove_float }}</div>
+                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">${{ property.price|remove_float }}</div>
                 <div class="cover hover overlay margin-none">
                   <img src="{{ property.image.all.0.url }}" alt="location" class="img-responsive" style="height:250px; margin:0 auto;" />
                   <a href="{{ property.get_url }}" class="overlay overlay-full overlay-bg-black overlay-hover">
@@ -89,7 +89,7 @@
           {% for property in properties %}
             <div class="item">
               <div class="panel panel-default relative">
-                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">${{ property.price|intcomma|remove_float }}</div>
+                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">${{ property.price|remove_float }}</div>
                 <div class="cover hover overlay margin-none">
                   <img src="{{ property.image.all.0.url }}" alt="location" class="img-responsive" style="height:250px; margin:0 auto;" />
                   <a href="{{ property.get_url }}" class="overlay overlay-full overlay-bg-black overlay-hover">
