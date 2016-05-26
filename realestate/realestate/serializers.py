@@ -21,4 +21,4 @@ class MainRemovedSerializer(serializers.HyperlinkedModelSerializer):
 class MainAdvancedSeralizer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Main
-        fields = ('id', 'state', 'city', 'zip_code', 'address', 'get_url', 'bedrooms', 'bathrooms_full', 'bathrooms_half', 'description', 'features', 'price', 'square_feet', 'square_feet_lot', 'home_type', 'longitude', 'latitude', 'available', 'date_posted', 'create_date')
+        fields = ('id', 'state', 'city', 'zip_code', 'address', 'get_url', 'bedrooms', 'bathrooms_full', 'bathrooms_half', 'description', 'features', 'price', 'square_feet', 'square_feet_lot', 'home_type', 'longitude', 'latitude', 'available', 'date_posted', 'create_date', 'get_images')
