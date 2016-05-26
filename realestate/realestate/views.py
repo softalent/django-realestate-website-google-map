@@ -118,14 +118,15 @@ class MainAdvancedViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
 
-    def authenticate(self, request):
-        token = request.GET.get('token', '')
-        if not token:
-            msg = 'Please supply a token'
-            raise exceptions.AuthenticationFailed(msg)
-        return self.authenticate_credentials(token)
-
     def get_queryset(self):
+
+        def authenticate(self):
+            token = self.request.GET.get('token', '')
+            if not token:
+                msg = 'Please supply a token'
+                raise exceptions.AuthenticationFailed(msg)
+            return self.authenticate_credentials(token)
+
         params = {k: v for k, v in self.request.query_params.items()}
         params['available'] = True
         if 'days_posted' in params.keys():

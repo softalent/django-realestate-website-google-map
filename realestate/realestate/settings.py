@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'realestate',
     'rest_framework',
+    'rest_framework.authtoken',
     'bootstrapform',
     'compressor',
     'storages',
