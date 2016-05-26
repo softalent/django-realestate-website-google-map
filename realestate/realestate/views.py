@@ -8,6 +8,7 @@ from rest_framework.authentication import TokenAuthentication, BasicAuthenticati
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from realestate.serializers import MainSerializer, MainRemovedSerializer, MainAdvancedSeralizer
+from realestate.paginators import SmallResultsSetPagination
 from .forms import ContactForm, ContactUsForm
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
@@ -113,8 +114,8 @@ class MainRemovedViewSet(viewsets.ReadOnlyModelViewSet):
         return queryset
 
 class MainAdvancedViewSet(viewsets.ReadOnlyModelViewSet):
-    # queryset = models.Main.objects.all()
     serializer_class = MainAdvancedSeralizer
+    pagination_class = SmallResultsSetPagination
     authentication_classes = (TokenAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
 

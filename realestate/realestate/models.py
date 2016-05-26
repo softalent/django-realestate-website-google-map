@@ -66,6 +66,16 @@ class Main(models.Model):
             '/' + str(self.state), self.city_slug, self.address_slug,
             str(self.pk)])
 
+    def get_image_urls(self):
+        images = self.get_images()
+        urls = []
+        if images != [{'url': '/static/images/noImage.jpg'}]:
+            for i in images:
+                urls.append(i.url)
+        else:
+            urls = images
+        return urls
+
     @property
     def city_slug(self):
         return slugify(str(self.city)).title()
