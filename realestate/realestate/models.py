@@ -8,6 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.conf import settings
+from realestate.custom_models import CustomMoneyField
 
 
 class MainManager(models.Manager):
@@ -30,7 +31,7 @@ class Main(models.Model):
     bathrooms_half = models.SmallIntegerField()
     square_feet = models.IntegerField()
     square_feet_lot = models.CharField('Square Feet Lot', max_length=30)
-    price = models.DecimalField(max_digits=15, decimal_places=2)
+    price = CustomMoneyField(max_length=20)
     description = models.TextField()
     home_type = models.CharField(max_length=250)
     year_built = models.CharField('Year Built', max_length=4)
