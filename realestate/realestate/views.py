@@ -112,7 +112,7 @@ class MainRemovedViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = models.MainRemoved.objects.filter(**params)
         return queryset
 
-class MainAdvancedViewSet(viewsets.ModelViewSet):
+class MainAdvancedViewSet(viewsets.ReadOnlyModelViewSet):
     # queryset = models.Main.objects.all()
     serializer_class = MainAdvancedSeralizer
     authentication_classes = (TokenAuthentication, BasicAuthentication)
