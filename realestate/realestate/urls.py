@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap, index
@@ -6,12 +7,15 @@ from realestate import views
 from realestate.sitemaps import StateSitemap, CitySitemap
 from django.views.generic import TemplateView
 from realestate import feeds
+from rest_framework.authtoken import views as authViews
+import debug_toolbar
 
 sitemaps = {'cities': CitySitemap, 'states': StateSitemap}
 
 router = routers.DefaultRouter()
 router.register(r'main', views.MainViewSet)
 router.register(r'removed', views.MainRemovedViewSet)
+router.register(r'advanced', views.MainAdvancedViewSet, authViews.obtain_auth_token)
 
 urlpatterns = patterns(
     '',

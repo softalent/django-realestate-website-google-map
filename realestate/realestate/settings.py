@@ -45,7 +45,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'bootstrapform',
     'compressor',
-    'storages'
+    'storages',
+    'django.contrib.humanize',
 )
 
 MIDDLEWARE_CLASSES = (
