@@ -24,7 +24,7 @@ class Command(BaseCommand):
 
         for image in images:
             name = urlparse(image.url).path.split('/')[-1]
-            content = urllib.urlretrieve(image.url)
+            content = urllib.urlretrieve(image.url, '/tmp/gather_images/{}'.format(image.url))
             filename = str(image.main.pk) + '/' + name
 
             # if the image was already downloaded, skip
