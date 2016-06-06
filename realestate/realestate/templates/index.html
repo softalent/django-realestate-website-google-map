@@ -176,18 +176,6 @@
 
 
         <div class="carousel-inner" role="listbox" id="lightgallery">
-          {% if info.state == 'CA' %}
-          {% for img in main_data.local_image.all %}
-            {% if forloop.first %}
-              <a href="https://s3-us-west-2.amazonaws.com/seethisproperty-images/{{ img.image }}" class="item active img-responsive">
-                <img lazy-src="https://s3-us-west-2.amazonaws.com/seethisproperty-images/{{ img.image }}" src='https://s3-us-west-2.amazonaws.com/seethisproperty-images/{{ img.image }}' alt='{{ img.image }}' class="img-responsive img-center">
-            {% else %}
-              <a href="https://s3-us-west-2.amazonaws.com/seethisproperty-images/{{ img.image }}" class="item img-responsive">
-                <img lazy-src="https://s3-us-west-2.amazonaws.com/seethisproperty-images/{{ img.image }}" src='#' alt='{{ img.image }}' class="img-responsive img-center">
-            {% endif %}
-            </a>
-          {% endfor %}
-          {% else %}
           {% for img in main_data.image.all %}
             {% if forloop.first %}
               <a href="{{ img.url }}" class="item active img-responsive">
@@ -198,8 +186,6 @@
             {% endif %}
             </a>
           {% endfor %}
-          {% endif %}
-
         </div>
         <div class="overlay overlay-bg-black hidden-xs">
           <div class="v-bottom">
