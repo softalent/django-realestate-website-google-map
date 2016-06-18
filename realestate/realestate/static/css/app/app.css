@@ -40590,6 +40590,8 @@ html.st-layout .st-container,
 html.st-layout .st-pusher,
 html.st-layout .st-content {
   height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 html.st-layout,
 html.st-layout body,
