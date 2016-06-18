@@ -98,7 +98,7 @@ class MainViewSet(viewsets.ReadOnlyModelViewSet):
 
 class MainRemovedViewSet(viewsets.ReadOnlyModelViewSet):
     model = models.MainRemoved
-    queryset = models.MainRemoved.objects.all()
+    queryset = models.MainRemoved.objects.all().distinct('main_id')
     serializer_class = MainRemovedSerializer
 
     def get_queryset(self):
