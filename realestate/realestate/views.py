@@ -98,7 +98,7 @@ class MainViewSet(viewsets.ReadOnlyModelViewSet):
 
 class MainRemovedViewSet(viewsets.ReadOnlyModelViewSet):
     model = models.MainRemoved
-    queryset = models.MainRemoved.objects.all().distinct('main_id')
+    queryset = models.MainRemoved.objects.all()
     serializer_class = MainRemovedSerializer
 
     def get_queryset(self):
@@ -110,7 +110,7 @@ class MainRemovedViewSet(viewsets.ReadOnlyModelViewSet):
             params['date_removed__gte'] = filter_by
             params.pop('days_removed')
 
-        queryset = models.MainRemoved.objects.filter(**params)
+        queryset = models.MainRemoved.objects.filter(**params).distinct('main_id')
         return queryset
 
 class MainAdvancedViewSet(viewsets.ReadOnlyModelViewSet):
