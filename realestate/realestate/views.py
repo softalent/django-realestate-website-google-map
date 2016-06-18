@@ -110,7 +110,7 @@ class MainRemovedViewSet(viewsets.ReadOnlyModelViewSet):
             params['date_removed__gte'] = filter_by
             params.pop('days_removed')
 
-        queryset = models.MainRemoved.objects.filter(**params).distinct('mainid')
+        queryset = models.MainRemoved.objects.filter(**params)
         return queryset
 
 class MainAdvancedViewSet(viewsets.ReadOnlyModelViewSet):
