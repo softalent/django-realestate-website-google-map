@@ -144,3 +144,9 @@ h6 small,
 .img-center {
   margin: 0 auto !important;
 }
+
+@media (max-width: 767px) {
+  .img-mobile-max-height-250 {
+    max-height: 250px !important;
+  }
+}

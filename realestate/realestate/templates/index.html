@@ -135,7 +135,7 @@
               <span id="emvalid" style="display:none;color:red">Please enter a valid email id</span>
             </div>
             <button type="submit" id="sub" class="btn btn-cyan">Submit</button>
-            <a data-toggle="sidebar-menu" class="btn btn-default" href="#sidebar-agent"><i class="fa fa-times fa-fw"></i>Cancel</a>
+            <a data-toggle="sidebar-menu" class="btn btn-default" href="#sidebar-agent">Cancel</a>
           </form>
         </div>
         <div class="col-md-4 visible-lg text-center">
@@ -179,10 +179,10 @@
           {% for img in main_data.image.all %}
             {% if forloop.first %}
               <a href="{{ img.url }}" class="item active img-responsive">
-                <img lazy-src="{{ img.url }}" src='{{ img.url }}' alt='{{ img.alt }}' class="img-responsive img-center">
+                <img lazy-src="{{ img.url }}" src='{{ img.url }}' alt='{{ img.alt }}' class="img-responsive img-center img-mobile-max-height-250">
             {% else %}
               <a href="{{ img.url }}" class="item img-responsive">
-                <img lazy-src="{{ img.url }}" src='#' alt='{{ img.alt }}' class="img-responsive img-center">
+                <img lazy-src="{{ img.url }}" src='#' alt='{{ img.alt }}' class="img-responsive img-center img-mobile-max-height-250">
             {% endif %}
             </a>
           {% endfor %}
@@ -214,7 +214,7 @@
         <ul>
           <li class="property-meta-item"><i class="fa fa-fw icon icon-home-2"></i> {{ info.home_type }}</li><!-- {{listings.type}} -->
           <li class="property-meta-item"><i class="fa fa-fw icon icon-bed"></i> {{ info.bedrooms }} Bedrooms</li><!-- {{listings.bedrooms}} -->
-          <li class="property-meta-item"><i class="fa fa-fw icon icon-toilet"></i> {{ info.bathrooms_full }} Full, {{ info.bathrooms_half }} Half Bathroom(s)</li>
+          <li class="property-meta-item"><i class="fa fa-fw icon icon-toilet"></i> {{ info.bathrooms_full }} Full, {% if info.bathrooms_half == Null %}0{% else %}{{ info.bathrooms_half }}{% endif %} Half Bathroom(s)</li>
           <li class="property-meta-item"><i class="fa fa-fw icon fa-arrows"></i> {{ info.square_feet }} sq ft | {{ info.square_feet_lot }} lot</li>
         </ul>
       </div>
