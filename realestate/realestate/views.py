@@ -44,7 +44,7 @@ class StateListView(generic.ListView):
     template_name = 'state_list.html'
     queryset = models.Main.objects.filter(
         available=True, state__isnull=False).distinct('state').exclude(
-        state='')
+        state='').order_by('city')
 
 
 class PropertyListView(generic.ListView):
@@ -63,7 +63,7 @@ class CityListView(generic.ListView):
 
     def get_queryset(self):
         return get_list_or_404(
-            models.City.objects.filter(state=self.kwargs.get('s', '')))
+            models.City.objects.filter(state=self.kwargs.get('s', '')).order_by('name'))
 
 
 def old_property_view(request, **kwargs):
