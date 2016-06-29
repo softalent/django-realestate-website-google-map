@@ -17,6 +17,8 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 import operator
 from django.db.models import Q
+from django.db.models.aggregates import Count
+from random import randint
 
 
 
@@ -24,10 +26,17 @@ class HomeView(generic.TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, *args, **kwargs):
+        def random(self):
+            count = self.aggregate(count=Count('id'))['count']
+            random_index = randint(0, count - 1)
+            return self.all()[random_index]
+
         context = super(HomeView, self).get_context_data(*args, **kwargs)
-        main_data = models.Main.objects.filter(
-            available=True).order_by('?')[:5]
-        context['properties'] = main_data
+        rand = []
+        for n in range(0,5):
+            p = random(models.Main.objects)
+            rand.append(p)
+        context['properties'] = rand
         return context
 
 
