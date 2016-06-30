@@ -463,4 +463,18 @@
 
       });
     </script>
+    <script>
+      $(document).ready(function() {
+        var $content = $('#content')
+        var $footer = $('.footer-section');
+        $content.scroll(function() {
+            if ($content.scrollTop() + $content.height() >= $content[0].scrollHeight) {
+              $footer.slideDown('fast');
+            }
+            else {
+              $footer.slideUp('fast');
+             };
+        });
+      });
+    </script>
 {% endblock extra_js %}
