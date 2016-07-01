@@ -13,6 +13,7 @@ import os
 from decouple import config
 from dj_database_url import parse as dburl
 import urlparse
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -48,6 +49,7 @@ INSTALLED_APPS = (
     'compressor',
     'storages',
     'django.contrib.humanize',
+    'opbeat.contrib.django',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,6 +64,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
 )
 
 
@@ -69,6 +72,11 @@ ROOT_URLCONF = 'realestate.urls'
 
 WSGI_APPLICATION = 'realestate.wsgi.application'
 
+OPBEAT = {
+    'ORGANIZATION_ID': '67b696028d2e4c6f9230db817a79d7e1',
+    'APP_ID': '8bb83c3bde',
+    'SECRET_TOKEN': 'e84b7467bacfe51ae64a22e9cb060a799873b0eb',
+}
 
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
@@ -172,3 +180,12 @@ AWS_STORAGE_BUCKET_NAME = 'seethisproperty-images'
 AWS_ACCESS_KEY_ID = 'AKIAIM3GJJLHCVLC53TA'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_S3_HOST = 's3-accelerate.amazonaws.com'
+
+TEMPLATE_CONTEXT_PROCESSORS += ("django.core.context_processors.request",)
+
+
+if DEBUG:
+    INSTALLED_APPS += ('debug_toolbar', )
+    MIDDLEWARE_CLASSES += (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    )

@@ -23,3 +23,4 @@ django-storages==1.4.1
 boto==2.40.0
 django-money==0.8
 opbeat==3.3.4
+django-debug-toolbar==1.4
