@@ -74,7 +74,10 @@ class Main(models.Model):
         urls = []
         if images != [{'url': '/static/images/noImage.jpg'}]:
             for i in images:
-                urls.append(i.url)
+                try:
+                    urls.append(i.url)
+                except AttributeError:
+                    urls.append(i.image)
         else:
             urls = images
         return urls
