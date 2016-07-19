@@ -59,7 +59,10 @@ class Main(models.Model):
             return self.state
 
     def get_images(self):
-        return self.image.all() or [{'url': '/static/images/noImage.jpg'}]
+        images = self.local_image.all()
+        if images.count() == 0:
+            images = self.image.all()
+        return images or [{'url': '/static/images/noImage.jpg'}]
 
     def get_absolute_url(self):
         return '/'.join([
