@@ -74,10 +74,7 @@ class Main(models.Model):
         urls = []
         if images != [{'url': '/static/images/noImage.jpg'}]:
             for i in images:
-                try:
-                    urls.append(i.url)
-                except AttributeError:
-                    urls.append(i.image)
+                urls.append(i.url)
         else:
             urls = images
         return urls
@@ -170,7 +167,7 @@ def image_path(instance, filename):
 
 
 class MainImage(models.Model):
-    image = models.ImageField(verbose_name='Image', upload_to=image_path)
+    url = models.ImageField(verbose_name='Image', upload_to=image_path)
     main = models.ForeignKey(
         'Main', related_name='local_image', db_column='main_id')
 
